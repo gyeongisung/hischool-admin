@@ -84,6 +84,11 @@ const SideMenuWrap = styled.div`
               background: #4682a9;
               border-radius: 5px;
             }
+            :last-of-type {
+              .icon-school {
+                margin-right: 12px;
+              }
+            }
             position: relative;
             height: 45px;
             background: 0;
@@ -121,6 +126,9 @@ const SideMenuWrap = styled.div`
             cursor: pointer;
             .icon {
               margin-right: 20px;
+            }
+            .icon-school {
+              margin-right: 12px;
             }
             .arrow {
               position: absolute;
