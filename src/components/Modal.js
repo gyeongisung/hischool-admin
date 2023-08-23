@@ -9,6 +9,44 @@ import { faExclamation } from "@fortawesome/free-solid-svg-icons";
 import { postEmailCodeConFirm } from "../api/signUpAxios";
 import { useState } from "react";
 
+// 학생 승인 확인 모달
+export const TeacherAcceptModal = ({
+  modalOpen,
+  setModalOpen,
+  setAcceptOk,
+}) => {
+  const handleOk = () => {
+    setAcceptOk(true);
+  };
+
+  const closeModal = () => {
+    setModalOpen(false);
+  };
+
+  return (
+    <>
+      {modalOpen && (
+        <StudentRecordModalDiv className="modal">
+          <div className="dim"></div>
+          <div className="content-wrap">
+            <div className="header">
+              <FontAwesomeIcon icon={faExclamation} className="warning-icon" />
+              <span></span>
+            </div>
+            <div className="content">
+              <span>해당 학생을 승인 하시겠습니까?</span>
+            </div>
+            <div className="btns">
+              <button onClick={handleOk}>확인</button>
+              <button onClick={closeModal}>취소</button>
+            </div>
+          </div>
+        </StudentRecordModalDiv>
+      )}
+    </>
+  );
+};
+
 // 회원가입, 마이페이지 모달
 export const Modal = ({ isOpen, onRequestClose, children }) => {
   const handleTestClose = () => {

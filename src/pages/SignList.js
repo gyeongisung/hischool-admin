@@ -109,6 +109,8 @@ const SignList = () => {
               <li className="time-table-th">생년월일</li>
               <li className="time-table-th">연락처</li>
               <li className="time-table-th">이메일</li>
+              <li className="time-table-th">주소</li>
+              <li className="time-table-th">소속</li>
             </ul>
           </li>
           {studentListData.map((item, index) => (
