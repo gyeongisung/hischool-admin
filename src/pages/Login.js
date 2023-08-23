@@ -35,16 +35,6 @@ const Login = () => {
   // // 유저 선택 및 로그인 버튼 함수
   const handleSubmit = async e => {
     e.preventDefault();
-    if (!isLoginDisabled) {
-      const role = await fetchLogin(email, password, setErrConfirm);
-      if (role === "ROLE_TC") {
-        navigate("/teacher/home");
-      } else if (role === "ROLE_STD") {
-        navigate("/student/home");
-      } else {
-        setErrConfirm(true);
-      }
-    }
   };
 
   const handleEmail = e => {
@@ -84,10 +74,6 @@ const Login = () => {
             {errConfirm && (
               <p className="err-message">이메일과 비밀번호를 확인 해주세요.</p>
             )}
-          </div>
-          <div className="link-button">
-            <Link to="#">Email/PW 찾기</Link>
-            <Link to="/signup">회원가입</Link>
           </div>
         </LoginContain>
         <div className="login-button">

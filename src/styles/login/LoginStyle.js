@@ -53,7 +53,7 @@ export const LoginForm = styled.form`
   justify-content: flex-end;
   align-items: center;
   .login-button {
-    margin-top: 9.5%;
+    margin-top: 12%;
     padding-right: 10%;
     button {
       width: 100px;
