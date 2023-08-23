@@ -155,6 +155,18 @@ const SideMenu = () => {
                 <FontAwesomeIcon icon={faChevronRight} className="arrow" />
               </li>
             </NavLink>
+            <NavLink
+              to={`/about`}
+              className={({ isActive }) =>
+                "nav-link" + (isActive ? "-active" : "")
+              }
+            >
+              <li>
+                <FontAwesomeIcon icon={faCircleInfo} className="icon" />
+                <span>Hi School ?</span>
+                <FontAwesomeIcon icon={faChevronRight} className="arrow" />
+              </li>
+            </NavLink>
           </ul>
         </div>
         <div className="footer">
