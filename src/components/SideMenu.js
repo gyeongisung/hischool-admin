@@ -6,10 +6,15 @@ import {
   faCalendarDays,
   faCommentDots,
   faLock,
+  faSchool,
+  faUserTie,
+  faUserGraduate,
+  faSquarePollVertical,
   faRightFromBracket,
   faCircleInfo,
   faHouseChimney,
   faUser,
+  faBook,
 } from "@fortawesome/free-solid-svg-icons";
 import { Link, NavLink, useLocation, useNavigate } from "react-router-dom";
 import { useEffect } from "react";
@@ -85,7 +90,7 @@ const SideMenu = () => {
               }
             >
               <li>
-                <FontAwesomeIcon icon={faFileInvoice} className="icon" />
+                <FontAwesomeIcon icon={faCommentDots} className="icon" />
                 <span>공지사항</span>
                 <FontAwesomeIcon icon={faChevronRight} className="arrow" />
               </li>
@@ -97,7 +102,7 @@ const SideMenu = () => {
               }
             >
               <li>
-                <FontAwesomeIcon icon={faFileInvoice} className="icon" />
+                <FontAwesomeIcon icon={faBook} className="icon" />
                 <span>과목 관리</span>
                 <FontAwesomeIcon icon={faChevronRight} className="arrow" />
               </li>
@@ -109,7 +114,7 @@ const SideMenu = () => {
               }
             >
               <li>
-                <FontAwesomeIcon icon={faCalendarDays} className="icon" />
+                <FontAwesomeIcon icon={faSquarePollVertical} className="icon" />
                 <span>성적 관리</span>
                 <FontAwesomeIcon icon={faChevronRight} className="arrow" />
               </li>
@@ -121,7 +126,7 @@ const SideMenu = () => {
               }
             >
               <li>
-                <FontAwesomeIcon icon={faCommentDots} className="icon" />
+                <FontAwesomeIcon icon={faUserTie} className="icon" />
                 <span>교원 관리</span>
                 <FontAwesomeIcon icon={faChevronRight} className="arrow" />
               </li>
@@ -133,7 +138,7 @@ const SideMenu = () => {
               }
             >
               <li>
-                <FontAwesomeIcon icon={faCircleInfo} className="icon" />
+                <FontAwesomeIcon icon={faUserGraduate} className="icon" />
                 <span>학생 관리</span>
                 <FontAwesomeIcon icon={faChevronRight} className="arrow" />
               </li>
@@ -145,8 +150,20 @@ const SideMenu = () => {
               }
             >
               <li>
-                <FontAwesomeIcon icon={faCircleInfo} className="icon" />
+                <FontAwesomeIcon icon={faSchool} className="icon-school" />
                 <span>학급 관리</span>
+                <FontAwesomeIcon icon={faChevronRight} className="arrow" />
+              </li>
+            </NavLink>
+            <NavLink
+              to={`/about`}
+              className={({ isActive }) =>
+                "nav-link" + (isActive ? "-active" : "")
+              }
+            >
+              <li>
+                <FontAwesomeIcon icon={faCircleInfo} className="icon" />
+                <span>Hi School ?</span>
                 <FontAwesomeIcon icon={faChevronRight} className="arrow" />
               </li>
             </NavLink>

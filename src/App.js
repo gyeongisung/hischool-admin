@@ -14,6 +14,7 @@ import TeacherDetailInfo from "./pages/TeacherDetailInfo";
 import StudentList from "./pages/StudentList";
 import ClassList from "./pages/ClassList";
 import LifeRecord from "./pages/LifeRecord";
+import About from "./pages/About";
 
 function App() {
   return (
@@ -33,6 +34,7 @@ function App() {
           <Route path="/studentlist" element={<StudentList />} />
           <Route path="/classlist" element={<ClassList />} />
           <Route path="/liferecord" element={<LifeRecord />} />
+          <Route path="/about" element={<About />} />
         </Route>
       </Routes>
     </>
