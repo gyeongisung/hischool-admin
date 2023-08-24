@@ -12,6 +12,7 @@ import TeacherDetailInfo from "./pages/TeacherDetailInfo";
 import StudentList from "./pages/StudentList";
 import LifeRecord from "./pages/LifeRecord";
 import About from "./pages/About";
+import NoticeWrite from "./pages/NoticeWrite";
 
 function App() {
   return (
@@ -22,6 +23,7 @@ function App() {
         <Route element={<Main />}>
           <Route path="/home" element={<AdminHome />} />
           <Route path="/notice" element={<Notice />} />
+          <Route path="/write" element={<NoticeWrite />} />
           <Route path="/subjectlist" element={<SubjectList />} />
           <Route path="/teacherlist" element={<TeacherList />} />
           <Route path="/signlist" element={<SignList />} />

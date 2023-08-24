@@ -82,6 +82,14 @@ const NoticeBoard = styled.div`
 const NoticeTitle = styled.div`
   margin-bottom: 20px;
 `;
+const NoticeWhite = styled.div`
+  > p {
+    width: 30%;
+  }
+  input {
+    width: 70%;
+  }
+`;
 const PaginationContainer = styled.div`
   position: fixed;
   bottom: 32px;
@@ -110,4 +118,10 @@ const PaginationContainer = styled.div`
     }
   }
 `;
-export { NoticeBoard, NoticeTitle, NoticeInput, PaginationContainer };
+export {
+  NoticeBoard,
+  NoticeTitle,
+  NoticeInput,
+  PaginationContainer,
+  NoticeWhite,
+};

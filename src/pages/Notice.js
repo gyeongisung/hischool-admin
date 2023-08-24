@@ -1,11 +1,8 @@
 import React, { useState } from "react";
-import {
-  NoticeBoard,
-  NoticeInput,
-  NoticeTitle,
-  PaginationContainer,
-} from "../styles/NoticeStyle";
+import { NoticeBoard, NoticeInput, NoticeTitle } from "../styles/NoticeStyle";
 import { StudentListWrap } from "../styles/StudentListStyle";
+import NoticePaging from "../components/NoticePaging";
+import { Link } from "react-router-dom";
 
 const noticeData = [
   {
@@ -314,9 +311,6 @@ const Notice = () => {
   // 역순 배치
   const sortedcombinedNotices = combinedNotices.sort((a, b) => b.id - a.id);
 
-  // 페이지당 표시되는 공지 개수로부터 총 페이지 수를 계산
-  const totalPages = Math.ceil(totalcombinedNoticeCount / itemsPerPage);
-
   // 현재 페이지에서 보여줄 공지의 첫 번째와 마지막 인덱스를 계산
   const indexOfLastItem = currentPage * itemsPerPage; // 현재 보여지는 페이지 갯수
   const indexOfFirstItem = indexOfLastItem - itemsPerPage; // 한페이지에서 보여줄 항목의 갯수
@@ -326,11 +320,6 @@ const Notice = () => {
     indexOfFirstItem,
     indexOfLastItem,
   );
-
-  // 페이지 변경 시 현재 페이지 상태를 업데이트
-  const handlePageChange = pageNumber => {
-    setCurrentPage(pageNumber);
-  };
   return (
     <StudentListWrap>
       <NoticeTitle>
@@ -345,7 +334,9 @@ const Notice = () => {
             <button>검색</button>
           </td>
           <td>
-            <button className="writing">글쓰기</button>
+            <button className="writing">
+              <Link to={`/write`}>글쓰기</Link>
+            </button>
           </td>
         </tr>
       </NoticeInput>
@@ -383,21 +374,12 @@ const Notice = () => {
           ))}
         </tbody>
       </NoticeBoard>
-      <div>
-        <PaginationContainer>
-          <ul className="pagination">
-            {Array.from({ length: totalPages }).map((_, index) => (
-              <li
-                key={index}
-                onClick={() => handlePageChange(index + 1)}
-                className={currentPage === index + 1 ? "active" : ""}
-              >
-                {index + 1}
-              </li>
-            ))}
-          </ul>
-        </PaginationContainer>
-      </div>
+      <NoticePaging
+        page={currentPage}
+        setPage={setCurrentPage}
+        totalnotice={normalNotices.length}
+        totalpage={totalcombinedNoticeCount}
+      />
     </StudentListWrap>
   );
 };
