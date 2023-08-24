@@ -108,18 +108,6 @@ const SideMenu = () => {
               </li>
             </NavLink>
             <NavLink
-              to={`/recordlist`}
-              className={({ isActive }) =>
-                "nav-link" + (isActive ? "-active" : "")
-              }
-            >
-              <li>
-                <FontAwesomeIcon icon={faSquarePollVertical} className="icon" />
-                <span>성적 관리</span>
-                <FontAwesomeIcon icon={faChevronRight} className="arrow" />
-              </li>
-            </NavLink>
-            <NavLink
               to={`/teacherlist`}
               className={({ isActive }) =>
                 "nav-link" + (isActive ? "-active" : "")
@@ -143,18 +131,6 @@ const SideMenu = () => {
                 <FontAwesomeIcon icon={faChevronRight} className="arrow" />
               </li>
             </NavLink>{" "}
-            <NavLink
-              to={`classlist`}
-              className={({ isActive }) =>
-                "nav-link" + (isActive ? "-active" : "")
-              }
-            >
-              <li>
-                <FontAwesomeIcon icon={faSchool} className="icon-school" />
-                <span>학급 관리</span>
-                <FontAwesomeIcon icon={faChevronRight} className="arrow" />
-              </li>
-            </NavLink>
             <NavLink
               to={`/about`}
               className={({ isActive }) =>

@@ -9,7 +9,7 @@ import { faExclamation } from "@fortawesome/free-solid-svg-icons";
 import { postEmailCodeConFirm } from "../api/signUpAxios";
 import { useState } from "react";
 
-// 학생 승인 확인 모달
+// 교원 승인 확인 모달
 export const TeacherAcceptModal = ({
   modalOpen,
   setModalOpen,
@@ -34,7 +34,7 @@ export const TeacherAcceptModal = ({
               <span></span>
             </div>
             <div className="content">
-              <span>해당 학생을 승인 하시겠습니까?</span>
+              <span>해당 교원을 승인 하시겠습니까?</span>
             </div>
             <div className="btns">
               <button onClick={handleOk}>확인</button>

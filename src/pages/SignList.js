@@ -7,6 +7,7 @@ import {
 import { useNavigate } from "react-router";
 import { getSignListData, patchSignAccept } from "../api/signListAxios";
 import { StudentAcceptModal } from "../components/Modal";
+import Pagination from "../components/Paging";
 
 const SignList = () => {
   const [studentListData, setStudentListData] = useState([]);
@@ -69,7 +70,7 @@ const SignList = () => {
   };
 
   const handleCancel = () => {
-    navigate("/teacher/studentlist");
+    navigate("/teacherlist");
   };
 
   return (
@@ -129,11 +130,14 @@ const SignList = () => {
                 <li>{item.birth}</li>
                 <li>{item.phone}</li>
                 <li>{item.email}</li>
+                <li>{item.adress}</li>
+                <li>{item.asdf}</li>
               </ul>
             </li>
           ))}
         </ul>
       </TimeTableDiv>
+      <Pagination />
     </StudentListWrap>
   );
 };
