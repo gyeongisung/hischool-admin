@@ -3,6 +3,8 @@ import {
   ModalBody,
   ModalCloseBtn,
   StudentRecordModalDiv,
+  EditClassModalDiv,
+  EditAttendModalDiv,
 } from "../styles/ModalStyle";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faExclamation } from "@fortawesome/free-solid-svg-icons";
@@ -121,6 +123,127 @@ export const EmailConFirmModal = ({
             </div>
           </div>
         </StudentRecordModalDiv>
+      )}
+    </>
+  );
+};
+
+// 학반 정보 수정 모달
+export const EditClassModal = ({
+  editClassModalOpen,
+  setEditClassModalOpen,
+}) => {
+  const handleOk = () => {
+    setEditClassModalOpen(false);
+  };
+  const closeModal = () => {
+    setEditClassModalOpen(false);
+  };
+
+  return (
+    <>
+      {editClassModalOpen && (
+        <EditClassModalDiv className="modal">
+          <div className="dim"></div>
+          <div className="content-wrap">
+            <div className="header">
+              <span className="title">
+                <FontAwesomeIcon
+                  icon={faExclamation}
+                  className="warning-icon"
+                />
+                학반 정보 변경
+              </span>
+              <span className="description">
+                변경할 학년과 반을 선택해주세요.
+              </span>
+            </div>
+            <div className="content">
+              <label htmlFor="">
+                <select
+                  name="grade"
+                  id="grade"
+                  // onChange={e => handleYearList(e)}
+                >
+                  <option value="">학년</option>
+                  <option>1학년</option>
+                  <option>2학년</option>
+                  <option>3학년</option>
+                </select>
+              </label>
+              <label htmlFor="">
+                <select
+                  name="grade"
+                  id="grade"
+                  // onChange={e => handleYearList(e)}
+                >
+                  <option value="">반</option>
+                  <option>1반</option>
+                  <option>2반</option>
+                  <option>3반</option>
+                </select>
+              </label>
+            </div>
+            <div className="btns">
+              <button onClick={handleOk}>저장</button>
+              <button onClick={closeModal}>취소</button>
+            </div>
+          </div>
+        </EditClassModalDiv>
+      )}
+    </>
+  );
+};
+
+// 재학 여부 수정 모달
+export const EditAttendModal = ({
+  editAttendModalOpen,
+  setEditAttendModalOpen,
+}) => {
+  const handleOk = () => {
+    setEditAttendModalOpen(false);
+  };
+  const closeModal = () => {
+    setEditAttendModalOpen(false);
+  };
+
+  return (
+    <>
+      {editAttendModalOpen && (
+        <EditAttendModalDiv className="modal">
+          <div className="dim"></div>
+          <div className="content-wrap">
+            <div className="header">
+              <span className="title">
+                <FontAwesomeIcon
+                  icon={faExclamation}
+                  className="warning-icon"
+                />
+                학적 구분 변경
+              </span>
+              <span className="description">변경할 학적을 선택해주세요.</span>
+            </div>
+            <div className="content">
+              <label htmlFor="">
+                <select
+                  name="grade"
+                  id="grade"
+                  // onChange={e => handleYearList(e)}
+                >
+                  <option value="">학적 선택</option>
+                  <option>재학</option>
+                  <option>졸업</option>
+                  <option>전학</option>
+                  <option>자퇴</option>
+                </select>
+              </label>
+            </div>
+            <div className="btns">
+              <button onClick={handleOk}>저장</button>
+              <button onClick={closeModal}>취소</button>
+            </div>
+          </div>
+        </EditAttendModalDiv>
       )}
     </>
   );
