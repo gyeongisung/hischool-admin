@@ -1,5 +1,10 @@
 import React, { useState } from "react";
-import { NoticeBoard, NoticeInput, NoticeTitle } from "../styles/NoticeStyle";
+import {
+  NoticeBoard,
+  NoticeInput,
+  NoticeTitle,
+  NoticeWrap,
+} from "../styles/NoticeStyle";
 import { StudentListWrap } from "../styles/StudentListStyle";
 import NoticePaging from "../components/NoticePaging";
 import { Link } from "react-router-dom";
@@ -321,24 +326,18 @@ const Notice = () => {
     indexOfLastItem,
   );
   return (
-    <StudentListWrap>
+    <NoticeWrap>
       <NoticeTitle>
-        <h1>공지사항 목록</h1>
+        <h3>공지사항</h3>
       </NoticeTitle>
       <NoticeInput>
-        <tr>
-          <th>
-            <input type="text" placeholder="제목" />
-          </th>
-          <td>
-            <button>검색</button>
-          </td>
-          <td>
-            <button className="writing">
-              <Link to={`/write`}>글쓰기</Link>
-            </button>
-          </td>
-        </tr>
+        <div>
+          <input type="text" placeholder="제목" />
+          <button>검색</button>
+        </div>
+        <button className="writing">
+          <Link to={`/write`}>글쓰기</Link>
+        </button>
       </NoticeInput>
       <NoticeBoard>
         <thead>
@@ -354,7 +353,7 @@ const Notice = () => {
           {last4ImportantNotices.map(notice => (
             <tr key={notice.id} className="important-notice">
               <td>중요</td>
-              <th>{notice.title}</th>
+              <td>{notice.title}</td>
               <td>{notice.writer}</td>
               <td>{notice.creationDate}</td>
               <td>{notice.views}</td>
@@ -380,7 +379,7 @@ const Notice = () => {
         totalnotice={normalNotices.length}
         totalpage={totalcombinedNoticeCount}
       />
-    </StudentListWrap>
+    </NoticeWrap>
   );
 };
 

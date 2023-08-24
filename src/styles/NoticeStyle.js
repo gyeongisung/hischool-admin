@@ -1,22 +1,53 @@
 import styled from "@emotion/styled";
 
+const NoticeWrap = styled.div`
+  width: 100%;
+  height: 100%;
+  background: #f7f7f7;
+  padding: 15px;
+  box-shadow: 0px 0.5px 5px 0px rgba(0, 0, 0, 0.2);
+  font-size: 18px;
+  h3 {
+    font-size: 30px;
+    margin-bottom: 10px;
+  }
+`;
+
 const NoticeInput = styled.div`
   font-size: 13px;
   margin: auto;
-  margin-bottom: 15px;
-  > tr > th > input {
-    line-height: 23px;
-    height: 23px;
+  margin-bottom: 10px;
+  display: flex;
+  justify-content: space-between;
+  > div {
+    input {
+      border: 1px solid #bbb;
+      border-radius: 3px;
+      width: 200px;
+      height: 24px;
+      padding-left: 5px;
+      margin-right: 5px;
+    }
+    button {
+      width: 3vw;
+      height: 24px;
+      line-height: 1;
+      background: #fff;
+      border: 1px solid #bbb;
+      border-radius: 3px;
+      margin-right: 5px;
+      cursor: pointer;
+    }
   }
-  > tr > td > button {
-    height: 23px;
-    line-height: 20px;
-    margin-left: 0.25vw;
-  }
-  > tr > td > button.writing {
-    height: 23px;
-    line-height: 20px;
-    right: 0;
+  button {
+    width: 4vw;
+    height: 24px;
+    line-height: 1;
+    background: #fff;
+    border: 1px solid #bbb;
+    border-radius: 3px;
+    margin-right: 5px;
+    cursor: pointer;
   }
 `;
 
@@ -36,21 +67,49 @@ const NoticeBoard = styled.div`
     height: 4vh;
     background: #176b87;
   }
-  > tbody > tr > td {
-    text-align: center;
-    border-top: 1px solid #e7e7e7;
-    height: 4.5vh;
+  > tbody {
+    > tr {
+      > td {
+        text-align: center;
+        border-top: 1px solid #e7e7e7;
+        :nth-of-type(2) {
+          text-align: left;
+          height: 4.75vh;
+          /* line-height: 4.75vh; */
+        }
+      }
+    }
+  }
+  > tr > td {
+    /* height: 4.5vh; */
   }
   > tbody > tr > th {
     cursor: pointer;
     text-align: left;
     border-top: 1px solid #e7e7e7;
-    height: 4.75vh;
   }
   .important-notice {
-    background-color: skyblue;
+    /* background-color: skyblue; */
     font-weight: bold;
     color: black;
+    /* display: flex;
+    justify-content */
+    > td {
+      :first-of-type {
+        /* color: red; */
+        display: inline-block;
+        width: 40px;
+        height: 25px;
+        background: #ffe7ea;
+        font-size: 15px;
+        font-weight: 900;
+        line-height: 25px;
+        color: #ff5e5e;
+        border-radius: 3px;
+        padding: 0 4px;
+        margin-top: 10.5px;
+      }
+    }
   }
   .table-numer {
     width: 4vw;
@@ -82,6 +141,7 @@ const NoticeBoard = styled.div`
 const NoticeTitle = styled.div`
   margin-bottom: 20px;
 `;
+
 const NoticeWhite = styled.div`
   > p {
     width: 30%;
@@ -90,6 +150,7 @@ const NoticeWhite = styled.div`
     width: 70%;
   }
 `;
+
 const PaginationContainer = styled.div`
   position: fixed;
   bottom: 32px;
@@ -119,6 +180,7 @@ const PaginationContainer = styled.div`
   }
 `;
 export {
+  NoticeWrap,
   NoticeBoard,
   NoticeTitle,
   NoticeInput,
