@@ -1,19 +1,13 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import {
-  StudentListTitle,
   StudentListWrap,
-  TimeTableDiv,
-} from "../styles/SignListStyle";
-import { useNavigate } from "react-router";
-import { getSignListData, patchSignAccept } from "../api/signListAxios";
-import { StudentAcceptModal } from "../components/Modal";
-
+  StudentListDiv,
+  StudentListHeader,
+} from "../styles/StudentListStyle";
+import Pagination from "react-js-pagination";
 const StudentList = () => {
-  const [studentListData, setStudentListData] = useState([]);
-  const [acceptOk, setAcceptOk] = useState(false);
-  const [modalOpen, setModalOpen] = useState(false);
+  const [page, setPage] = useState(1);
   const [saveCheckBox, setSaveCheckBox] = useState([]);
-  const navigate = useNavigate();
   let resultIdArray = saveCheckBox;
 
   // 전체 체크박스 선택
@@ -46,62 +40,215 @@ const StudentList = () => {
     setSaveCheckBox(resultIdArray);
   };
 
-  // Modal 확인 클릭 시
-  useEffect(() => {
-    getSignListData(setStudentListData);
-    if (acceptOk) {
-      resultIdArray.forEach(item => patchSignAccept(item));
-    }
-    setAcceptOk(false);
-    setModalOpen(false);
-  }, [acceptOk]);
-
-  useEffect(() => {
-    document.querySelector(".all-checkbox-btn").checked = false;
-    document
-      .querySelectorAll(".school-checkbox")
-      .forEach(item => (item.checked = false));
-    setSaveCheckBox([]);
-  }, [studentListData]);
-
-  const handleOk = () => {
-    setModalOpen(true);
-  };
-
-  const handleCancel = () => {
-    navigate("/teacher/studentlist");
-  };
-
-    // 승인 취소
-    // const handleOk = e => {
-    //   const resultUserId = e.target.classList[0].slice(6);
-    //   setModalOpen(true);
-    //   setUserPk(resultUserId);
-    // };
-  
+  const example = [
+    {
+      snm: "김길동",
+      birth: "2005-12-12",
+      grade: 3,
+      classNum: 2,
+      phone: "010-1234-1234",
+      email: "class1@naver.com",
+      attend: "재학",
+    },
+    {
+      snm: "김길동",
+      birth: "2005-12-12",
+      grade: 3,
+      classNum: 2,
+      phone: "010-1234-1234",
+      email: "class1@naver.com",
+      attend: "재학",
+    },
+    {
+      snm: "김길동",
+      birth: "2005-12-12",
+      grade: 3,
+      classNum: 2,
+      phone: "010-1234-1234",
+      email: "class1@naver.com",
+      attend: "재학",
+    },
+    {
+      snm: "김길동",
+      birth: "2005-12-12",
+      grade: 3,
+      classNum: 2,
+      phone: "010-1234-1234",
+      email: "class1@naver.com",
+      attend: "재학",
+    },
+    {
+      snm: "김길동",
+      birth: "2005-12-12",
+      grade: 3,
+      classNum: 2,
+      phone: "010-1234-1234",
+      email: "class1@naver.com",
+      attend: "재학",
+    },
+    {
+      snm: "김길동",
+      birth: "2005-12-12",
+      grade: 3,
+      classNum: 2,
+      phone: "010-1234-1234",
+      email: "class1@naver.com",
+      attend: "재학",
+    },
+    {
+      snm: "김길동",
+      birth: "2005-12-12",
+      grade: 3,
+      classNum: 2,
+      phone: "010-1234-1234",
+      email: "class1@naver.com",
+      attend: "재학",
+    },
+    {
+      snm: "김길동",
+      birth: "2005-12-12",
+      grade: 3,
+      classNum: 2,
+      phone: "010-1234-1234",
+      email: "class1@naver.com",
+      attend: "재학",
+    },
+    {
+      snm: "김길동",
+      birth: "2005-12-12",
+      grade: 3,
+      classNum: 2,
+      phone: "010-1234-1234",
+      email: "class1@naver.com",
+      attend: "재학",
+    },
+    {
+      snm: "김길동",
+      birth: "2005-12-12",
+      grade: 3,
+      classNum: 2,
+      phone: "010-1234-1234",
+      email: "class1@naver.com",
+      attend: "재학",
+    },
+    {
+      snm: "김길동",
+      birth: "2005-12-12",
+      grade: 3,
+      classNum: 2,
+      phone: "010-1234-1234",
+      email: "class1@naver.com",
+      attend: "재학",
+    },
+    {
+      snm: "김길동",
+      birth: "2005-12-12",
+      grade: 3,
+      classNum: 2,
+      phone: "010-1234-1234",
+      email: "class1@naver.com",
+      attend: "재학",
+    },
+    {
+      snm: "김길동",
+      birth: "2005-12-12",
+      grade: 3,
+      classNum: 2,
+      phone: "010-1234-1234",
+      email: "class1@naver.com",
+      attend: "재학",
+    },
+    {
+      snm: "김길동",
+      birth: "2005-12-12",
+      grade: 3,
+      classNum: 2,
+      phone: "010-1234-1234",
+      email: "class1@naver.com",
+      attend: "재학",
+    },
+    {
+      snm: "김길동",
+      birth: "2005-12-12",
+      grade: 3,
+      classNum: 2,
+      phone: "010-1234-1234",
+      email: "class1@naver.com",
+      attend: "재학",
+    },
+    {
+      snm: "김길동",
+      birth: "2005-12-12",
+      grade: 3,
+      classNum: 2,
+      phone: "010-1234-1234",
+      email: "class1@naver.com",
+      attend: "재학",
+    },
+    {
+      snm: "김길동",
+      birth: "2005-12-12",
+      grade: 3,
+      classNum: 2,
+      phone: "010-1234-1234",
+      email: "class1@naver.com",
+      attend: "재학",
+    },
+  ];
 
   return (
     <StudentListWrap>
-      {modalOpen && (
-        <StudentAcceptModal
-          modalOpen={modalOpen}
-          setModalOpen={setModalOpen}
-          resultIdArray={resultIdArray}
-          setAcceptOk={setAcceptOk}
-        />
-      )}
-      <StudentListTitle>
-        <div>
-          <h3>가입대기 명단</h3>
+      <h3>학생 관리</h3>
+      <StudentListHeader>
+        <div className="search-wrap">
+          <form action="">
+            <input type="text" placeholder="학생 이름을 입력하세요." />
+            <button>검색</button>
+          </form>
         </div>
-        <div className="ListButtons">
-          <button type="submit" onClick={handleOk}>
-            승인
-          </button>
-          <button onClick={handleCancel}>취소</button>
+        <div className="right-wrap">
+          <div className="filter-wrap">
+            <select
+              name="grade"
+              id="grade"
+              // onChange={e => handleYearList(e)}
+            >
+              <option value="">학년</option>
+              <option>1</option>
+              <option>2</option>
+              <option>3</option>
+            </select>
+            <select
+              name="classNum"
+              id="classNum"
+              // onChange={e => handleYearList(e)}
+            >
+              <option value="">반</option>
+              <option>1</option>
+              <option>2</option>
+              <option>3</option>
+              <option>4</option>
+              <option>5</option>
+            </select>
+            <select
+              name="attend"
+              id="attend"
+              // onChange={e => handleYearList(e)}
+            >
+              <option value="">재학여부</option>
+              <option>재학</option>
+              <option>졸업</option>
+              <option>자퇴</option>
+              <option>전학</option>
+            </select>
+          </div>
+          <div className="btn-wrap">
+            <button className="edit-class">학반 정보 변경</button>
+            <button className="edit-attend">재학 여부 변경</button>
+          </div>
         </div>
-      </StudentListTitle>
-      <TimeTableDiv>
+      </StudentListHeader>
+      <StudentListDiv>
         <ul>
           <li className="day-list">
             <ul>
@@ -112,34 +259,49 @@ const StudentList = () => {
                   className="all-checkbox-btn"
                 />
               </li>
-              <li className="time-table-th">번호</li>
               <li className="time-table-th">이름</li>
               <li className="time-table-th">생년월일</li>
+              <li className="time-table-th">학년</li>
+              <li className="time-table-th">반</li>
               <li className="time-table-th">연락처</li>
               <li className="time-table-th">이메일</li>
+              <li className="time-table-th">재학여부</li>
             </ul>
           </li>
-          {studentListData.map((item, index) => (
+          {example.map((item, index) => (
             <li className="class" key={index}>
               <ul>
                 <li>
                   <input
                     type="checkbox"
                     defaultChecked={false}
-                    className={`school-checkbox userId${item.userId}`}
+                    className={`school-checkbox userId${1}`}
                     onClick={e => handleCheckBox(e)}
                   />
                 </li>
-                <li>{index + 1}</li>
                 <li>{item.snm}</li>
                 <li>{item.birth}</li>
+                <li>{item.grade}</li>
+                <li>{item.classNum}</li>
                 <li>{item.phone}</li>
                 <li>{item.email}</li>
+                <li>{item.attend}</li>
               </ul>
             </li>
           ))}
         </ul>
-      </TimeTableDiv>
+      </StudentListDiv>
+      <div className="pagination-wrap">
+        <Pagination
+          activePage={page}
+          itemsCountPerPage={10}
+          totalItemsCount={450}
+          pageRangeDisplayed={5}
+          prevPageText={"‹"}
+          nextPageText={"›"}
+          onChange={setPage}
+        />
+      </div>
     </StudentListWrap>
   );
 };
