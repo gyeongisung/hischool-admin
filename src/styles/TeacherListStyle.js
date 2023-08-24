@@ -1,6 +1,6 @@
 import styled from "@emotion/styled";
 
-export const StudentListWrap = styled.div`
+export const TeacherListWrap = styled.div`
   width: 100%;
   height: 100%;
   background: #f7f7f7;
@@ -8,7 +8,7 @@ export const StudentListWrap = styled.div`
   box-shadow: 0px 0.5px 5px 0px rgba(0, 0, 0, 0.2);
   font-size: 20px;
 `;
-export const StudentListTitle = styled.div`
+export const TeacherListTitle = styled.div`
   display: flex;
   gap: 20px;
   align-items: center;
@@ -28,7 +28,7 @@ export const StudentListTitle = styled.div`
   }
 `;
 
-export const TimeTableDiv = styled.div`
+export const TeacherListDiv = styled.div`
   position: relative;
   height: 79vh;
   text-align: center;

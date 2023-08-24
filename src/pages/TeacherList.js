@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
 import {
-  StudentListTitle,
-  StudentListWrap,
-  TimeTableDiv,
+  TeacherListDiv,
+  TeacherListTitle,
+  TeacherListWrap,
 } from "../styles/TeacherListStyle";
 import { useNavigate } from "react-router";
 import Pagination from "../components/Paging";
@@ -196,7 +196,7 @@ const TeacherList = () => {
   };
 
   return (
-    <StudentListWrap>
+    <TeacherListWrap>
       {/* {modalOpen && (
         <TeacherAcceptModal
           modalOpen={modalOpen}
@@ -205,15 +205,15 @@ const TeacherList = () => {
           setAcceptOk={setAcceptOk}
         />
       )} */}
-      <StudentListTitle>
+      <TeacherListTitle>
         <div>
           <h3>교원관리</h3>
         </div>
         <div>
           <button onClick={handleSginClick}>가입대기 명단</button>
         </div>
-      </StudentListTitle>
-      <TimeTableDiv>
+      </TeacherListTitle>
+      <TeacherListDiv>
         <ul className="list-title">
           <li className="list-title-th">번호</li>
           <li className="list-title-th">이름</li>
@@ -242,9 +242,9 @@ const TeacherList = () => {
             </li>
           ))}
         </ul>
-      </TimeTableDiv>
+      </TeacherListDiv>
       <Pagination page={page} setPage={setPage} />
-    </StudentListWrap>
+    </TeacherListWrap>
   );
 };
 
