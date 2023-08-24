@@ -2,7 +2,6 @@ import styled from "@emotion/styled";
 
 const NoticeInput = styled.div`
   font-size: 13px;
-  width: 95%;
   margin: auto;
   margin-bottom: 15px;
   > tr > th > input {
@@ -22,33 +21,39 @@ const NoticeInput = styled.div`
 `;
 
 const NoticeBoard = styled.div`
-  font-size: 13px;
-  width: 95%;
-  border-bottom: 1px solid #ccc;
-  margin: 0 auto;
+  position: relative;
+  height: 71vh;
+  text-align: center;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background: #fff;
+  box-shadow: 0px 0.5px 5px 0px rgba(0, 0, 0, 0.2);
+  box-sizing: border-box;
+  overflow: auto;
   > thead > tr > td {
-    border-top: 1px solid #ccc;
     text-align: center;
+    color: #fff;
     height: 4vh;
-    background: #cfc7c7;
+    background: #176b87;
   }
   > tbody > tr > td {
     text-align: center;
     border-top: 1px solid #e7e7e7;
-    height: 5vh;
+    height: 4.5vh;
   }
   > tbody > tr > th {
     cursor: pointer;
     text-align: left;
     border-top: 1px solid #e7e7e7;
-    height: 5vh;
+    height: 4.75vh;
   }
   .important-notice {
     background-color: skyblue;
     font-weight: bold;
+    color: black;
   }
   .table-numer {
-    width: 6vw;
+    width: 4vw;
     padding: auto;
     text-align: center;
   }
@@ -56,14 +61,15 @@ const NoticeBoard = styled.div`
     width: 60vw;
     padding: auto;
     text-align: center;
+    padding-left: 6vw;
   }
   .table-writer {
-    width: 6vw;
+    width: 7vw;
     padding: auto;
     text-align: center;
   }
   .table-creationdate {
-    width: 7vw;
+    width: 10vw;
     padding: auto;
     text-align: center;
   }
@@ -78,9 +84,9 @@ const NoticeTitle = styled.div`
 `;
 const PaginationContainer = styled.div`
   position: fixed;
-  bottom: 20px;
-  left: 54%;
-  transform: translateX(-54%);
+  bottom: 32px;
+  left: 57%;
+  transform: translateX(-57%);
   display: flex;
   justify-content: center;
   margin-top: 20px;
@@ -100,6 +106,7 @@ const PaginationContainer = styled.div`
     &.active {
       font-weight: bold;
       color: blue;
+      text-decoration: underline;
     }
   }
 `;
