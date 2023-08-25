@@ -16,6 +16,16 @@ const NoticeWrap = styled.div`
 const NoticeTitle = styled.div`
   margin-bottom: 20px;
 `;
+const NoticeButton = styled.button`
+  width: 4vw;
+  height: 24px;
+  line-height: 1;
+  background: #fff;
+  border: 1px solid #bbb;
+  border-radius: 3px;
+  margin-right: 5px;
+  cursor: pointer;
+`;
 
 const NoticeInput = styled.div`
   font-size: 13px;
@@ -54,7 +64,17 @@ const NoticeInput = styled.div`
     cursor: pointer;
   }
 `;
-
+const NoticeWhiteNoitce = styled.div`
+  width: 100%;
+  position: relative;
+  height: 71vh;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background: #fff;
+  box-shadow: 0px 0.5px 5px 0px rgba(0, 0, 0, 0.2);
+  box-sizing: border-box;
+  overflow: auto;
+`;
 const NoticeBoard = styled.div`
   width: 100%;
   position: relative;
@@ -94,6 +114,7 @@ const NoticeBoard = styled.div`
         :nth-of-type(2) {
           text-align: start;
           padding-left: 30px;
+          cursor: pointer;
         }
       }
     }
@@ -169,4 +190,6 @@ export {
   NoticeInput,
   PaginationContainer,
   NoticeWhite,
+  NoticeWhiteNoitce,
+  NoticeButton,
 };
