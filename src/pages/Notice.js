@@ -1,6 +1,10 @@
 import React, { useState } from "react";
-import { NoticeBoard, NoticeInput, NoticeTitle } from "../styles/NoticeStyle";
-import { StudentListWrap } from "../styles/StudentListStyle";
+import {
+  NoticeBoard,
+  NoticeInput,
+  NoticeTitle,
+  NoticeWrap,
+} from "../styles/NoticeStyle";
 import NoticePaging from "../components/NoticePaging";
 import { Link } from "react-router-dom";
 
@@ -321,58 +325,52 @@ const Notice = () => {
     indexOfLastItem,
   );
   return (
-    <StudentListWrap>
+    <NoticeWrap>
       <NoticeTitle>
-        <h1>공지사항 목록</h1>
+        <h3>공지사항</h3>
       </NoticeTitle>
       <NoticeInput>
-        <tr>
-          <th>
-            <input type="text" placeholder="제목" />
-          </th>
-          <td>
-            <button>검색</button>
-          </td>
-          <td>
-            <button className="writing">
-              <Link to={`/write`}>글쓰기</Link>
-            </button>
-          </td>
-        </tr>
+        <div>
+          <input type="text" placeholder="검색어를 입력하세요." />
+          <button>검색</button>
+        </div>
+        <button className="writing">
+          <Link to={`/write`}>글쓰기</Link>
+        </button>
       </NoticeInput>
       <NoticeBoard>
-        <thead>
-          <tr>
-            <td className="table-numer">번호</td>
-            <td className="table-title">제목</td>
-            <td className="table-writer">작성자</td>
-            <td className="table-creationdate">등록일</td>
-            <td className="table-views">조회수</td>
-          </tr>
-        </thead>
-        <tbody>
+        <ul className="title-wrap">
+          <li className="table-numer">번호</li>
+          <li className="table-title">제목</li>
+          <li className="table-writer">작성자</li>
+          <li className="table-creationdate">등록일</li>
+          <li className="table-views">조회수</li>
+        </ul>
+        <div className="notice-list">
           {last4ImportantNotices.map(notice => (
-            <tr key={notice.id} className="important-notice">
-              <td>중요</td>
-              <th>{notice.title}</th>
-              <td>{notice.writer}</td>
-              <td>{notice.creationDate}</td>
-              <td>{notice.views}</td>
-            </tr>
+            <ul key={notice.id} className="important-notice">
+              <li>
+                <span>중요</span>
+              </li>
+              <li>{notice.title}</li>
+              <li>{notice.writer}</li>
+              <li>{notice.creationDate}</li>
+              <li>{notice.views}</li>
+            </ul>
           ))}
           {currentNormalItems.map((notice, index) => (
-            <tr key={notice.id}>
-              <td>
+            <ul key={notice.id}>
+              <li>
                 {totalcombinedNoticeCount -
                   (index + itemsPerPage * (currentPage - 1))}
-              </td>
-              <th>{notice.title}</th>
-              <td>{notice.writer}</td>
-              <td>{notice.creationDate}</td>
-              <td>{notice.views}</td>
-            </tr>
+              </li>
+              <li>{notice.title}</li>
+              <li>{notice.writer}</li>
+              <li>{notice.creationDate}</li>
+              <li>{notice.views}</li>
+            </ul>
           ))}
-        </tbody>
+        </div>
       </NoticeBoard>
       <NoticePaging
         page={currentPage}
@@ -380,7 +378,7 @@ const Notice = () => {
         totalnotice={normalNotices.length}
         totalpage={totalcombinedNoticeCount}
       />
-    </StudentListWrap>
+    </NoticeWrap>
   );
 };
 

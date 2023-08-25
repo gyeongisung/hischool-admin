@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { PagiWrap } from "../styles/PagiStyle";
 import Pagination from "react-js-pagination";
+import { PaginationContainer } from "../styles/NoticeStyle";
 
 const NoticePaging = ({ page, setPage, totalpage, totalnotice }) => {
   // activePage: 현재 페이지
@@ -12,7 +13,7 @@ const NoticePaging = ({ page, setPage, totalpage, totalnotice }) => {
   // onChange: 페이지가 바뀔 때 핸들링해줄 함수
 
   return (
-    <PagiWrap>
+    <PaginationContainer>
       <Pagination
         activePage={page}
         itemsCountPerPage={10}
@@ -22,7 +23,7 @@ const NoticePaging = ({ page, setPage, totalpage, totalnotice }) => {
         nextPageText={"›"}
         onChange={setPage}
       />
-    </PagiWrap>
+    </PaginationContainer>
   );
 };
 
