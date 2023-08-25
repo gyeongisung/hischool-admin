@@ -243,7 +243,9 @@ const TeacherList = () => {
           ))}
         </ul>
       </TeacherListDiv>
-      <Pagination page={page} setPage={setPage} />
+      <div className="pagiWrap">
+        <Pagination page={page} setPage={setPage} />
+      </div>
     </TeacherListWrap>
   );
 };

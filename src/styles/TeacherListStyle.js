@@ -7,6 +7,11 @@ export const TeacherListWrap = styled.div`
   padding: 15px;
   box-shadow: 0px 0.5px 5px 0px rgba(0, 0, 0, 0.2);
   font-size: 20px;
+  .pagiWrap {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
 `;
 export const TeacherListTitle = styled.div`
   display: flex;
@@ -30,14 +35,15 @@ export const TeacherListTitle = styled.div`
 
 export const TeacherListDiv = styled.div`
   position: relative;
-  height: 79vh;
+  height: 74.9vh;
   text-align: center;
   border: 1px solid #ccc;
   border-radius: 5px;
   background: #fff;
   box-shadow: 0px 0.5px 5px 0px rgba(0, 0, 0, 0.2);
   box-sizing: border-box;
-  overflow: auto;
+  margin-bottom: 15px;
+  overflow: hidden;
   .list-title {
     position: sticky;
     top: 0;
@@ -58,7 +64,7 @@ export const TeacherListDiv = styled.div`
     height: 50%;
     display: grid;
     grid-template-columns: 1fr;
-    grid-template-rows: repeat(42px);
+    grid-template-rows: repeat(17, 42px);
     > li {
       border-top: 1px solid #ccc;
       :last-of-type {
