@@ -45,18 +45,22 @@ const NoticeWrite = () => {
       </label>
       <form onSubmit={handleSubmit}>
         <NoticeWhite>
-          <p>제목</p>
+          <label>제목</label>
           <input
             type="text"
             value={title}
             onChange={handleTitleChange}
             required
           />
+          <div className="form-group">
+            <textarea
+              className="form-control summernote"
+              rows="5"
+              id="content"
+            ></textarea>
+          </div>
+          <button type="submit">글쓰기</button>
         </NoticeWhite>
-        <div>
-          <textarea value={content} onChange={handleContentChange} required />
-        </div>
-        <button type="submit">글쓰기</button>
       </form>
     </StudentListWrap>
   );
