@@ -14,10 +14,12 @@ const Paging = ({ page, setPage }) => {
   return (
     <PagiWrap>
       <Pagination
+        pageConut={Math.ceil()}
         activePage={page}
-        itemsCountPerPage={10}
-        totalItemsCount={450}
+        itemsCountPerPage={16}
+        totalItemsCount={18*2}
         pageRangeDisplayed={5}
+        marginPagesDisplayed={0}
         prevPageText={"‹"}
         nextPageText={"›"}
         onChange={setPage}

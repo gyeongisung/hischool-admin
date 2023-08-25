@@ -13,7 +13,7 @@ import { Link } from "react-router-dom";
 
 const liedata = [
   {
-    snm: "안녕",
+    snm: "안녕1",
     birth: "1991-09-07",
     phone: "010-2315-2398",
     email: "lovelove@gmail.com",
@@ -22,7 +22,7 @@ const liedata = [
     employ: "재직",
   },
   {
-    snm: "안녕",
+    snm: "안녕2",
     birth: "1991-09-07",
     phone: "010-2315-2398",
     email: "lovelove@gmail.com",
@@ -31,7 +31,7 @@ const liedata = [
     employ: "재직",
   },
   {
-    snm: "안녕",
+    snm: "안녕3",
     birth: "1991-09-07",
     phone: "010-2315-2398",
     email: "lovelove@gmail.com",
@@ -40,7 +40,7 @@ const liedata = [
     employ: "재직",
   },
   {
-    snm: "안녕",
+    snm: "안녕4",
     birth: "1991-09-07",
     phone: "010-2315-2398",
     email: "lovelove@gmail.com",
@@ -49,7 +49,7 @@ const liedata = [
     employ: "재직",
   },
   {
-    snm: "안녕",
+    snm: "안녕5",
     birth: "1991-09-07",
     phone: "010-2315-2398",
     email: "lovelove@gmail.com",
@@ -58,7 +58,7 @@ const liedata = [
     employ: "재직",
   },
   {
-    snm: "안녕",
+    snm: "안녕6",
     birth: "1991-09-07",
     phone: "010-2315-2398",
     email: "lovelove@gmail.com",
@@ -67,7 +67,7 @@ const liedata = [
     employ: "재직",
   },
   {
-    snm: "안녕",
+    snm: "안녕7",
     birth: "1991-09-07",
     phone: "010-2315-2398",
     email: "lovelove@gmail.com",
@@ -76,7 +76,7 @@ const liedata = [
     employ: "재직",
   },
   {
-    snm: "안녕",
+    snm: "안녕8",
     birth: "1991-09-07",
     phone: "010-2315-2398",
     email: "lovelove@gmail.com",
@@ -85,7 +85,7 @@ const liedata = [
     employ: "재직",
   },
   {
-    snm: "안녕",
+    snm: "안녕9",
     birth: "1991-09-07",
     phone: "010-2315-2398",
     email: "lovelove@gmail.com",
@@ -94,7 +94,7 @@ const liedata = [
     employ: "재직",
   },
   {
-    snm: "안녕",
+    snm: "안녕10",
     birth: "1991-09-07",
     phone: "010-2315-2398",
     email: "lovelove@gmail.com",
@@ -103,7 +103,7 @@ const liedata = [
     employ: "재직",
   },
   {
-    snm: "안녕",
+    snm: "안녕11",
     birth: "1991-09-07",
     phone: "010-2315-2398",
     email: "lovelove@gmail.com",
@@ -112,7 +112,7 @@ const liedata = [
     employ: "재직",
   },
   {
-    snm: "안녕",
+    snm: "안녕12",
     birth: "1991-09-07",
     phone: "010-2315-2398",
     email: "lovelove@gmail.com",
@@ -121,7 +121,7 @@ const liedata = [
     employ: "재직",
   },
   {
-    snm: "안녕",
+    snm: "안녕13",
     birth: "1991-09-07",
     phone: "010-2315-2398",
     email: "lovelove@gmail.com",
@@ -130,7 +130,7 @@ const liedata = [
     employ: "재직",
   },
   {
-    snm: "안녕",
+    snm: "안녕14",
     birth: "1991-09-07",
     phone: "010-2315-2398",
     email: "lovelove@gmail.com",
@@ -139,7 +139,7 @@ const liedata = [
     employ: "재직",
   },
   {
-    snm: "안녕",
+    snm: "안녕15",
     birth: "1991-09-07",
     phone: "010-2315-2398",
     email: "lovelove@gmail.com",
@@ -148,7 +148,7 @@ const liedata = [
     employ: "재직",
   },
   {
-    snm: "안녕",
+    snm: "안녕16",
     birth: "1991-09-07",
     phone: "010-2315-2398",
     email: "lovelove@gmail.com",
@@ -157,7 +157,7 @@ const liedata = [
     employ: "재직",
   },
   {
-    snm: "안녕",
+    snm: "안녕17",
     birth: "1991-09-07",
     phone: "010-2315-2398",
     email: "lovelove@gmail.com",
@@ -166,7 +166,7 @@ const liedata = [
     employ: "재직",
   },
   {
-    snm: "안녕",
+    snm: "안녕18",
     birth: "1991-09-07",
     phone: "010-2315-2398",
     email: "lovelove@gmail.com",
@@ -180,7 +180,12 @@ const TeacherList = () => {
   const [studentListData, setStudentListData] = useState([]);
   const [acceptOk, setAcceptOk] = useState(false);
   const [modalOpen, setModalOpen] = useState(false);
+
   const [page, setPage] = useState(1);
+  // const [count, setCount] = useState();
+  // const [] = useState([]);
+  // const [] = useState(16);
+
   const navigate = useNavigate();
 
   // const handleOk = () => {
