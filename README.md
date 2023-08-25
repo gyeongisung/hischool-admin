@@ -26,11 +26,12 @@
 
 ## :space_invader: About Team Member
 
-<a href="https://github.com/heeheepark">
-  <img src="/src/assets/developer1.png" width="120px" height="120px"/>
-</a>
+
 <a href="https://github.com/gyeongisung">
 <img src="/src/assets/developer2.png" width="120px" height="120px">
+</a>
+<a href="https://github.com/heeheepark">
+  <img src="/src/assets/developer1.png" width="120px" height="120px"/>
 </a>
 <a href="https://github.com/devicepac">
 <img src="/src/assets/developer3.png" width="120px" height="120px">
@@ -45,7 +46,7 @@
 ### 담당 영역 및 역할
 
 - 견기성: 요구사항 명세서 작성 / 교원관리, 교원 승인 대기명단, 교원 탈퇴 목록, 교원 세부정보, 출결 현황, 수상 경력
-- 박주희: 스토리보드 작성 / 헤더·사이드 메뉴, 메인, 성적 관리, 학생 관리, 학급 관리, 진로 희망사항, 봉사활동 실적
+- 박주희: 스토리보드 작성 / 헤더·사이드 메뉴, 메인, 학생 관리, 진로 희망사항, 봉사활동 실적
 - 박호진: Figma 작업 / 공지사항, 과목 관리, 과목 정보 입력, 성적현황
 
 <br>
