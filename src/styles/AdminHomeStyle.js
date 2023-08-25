@@ -338,6 +338,7 @@ export const NumberListWrap = styled.div`
         border: 1px solid #ccc;
         border-radius: 5px;
         box-shadow: 0px 0.5px 5px 0px rgba(0, 0, 0, 0.2);
+        overflow: hidden;
         > li {
           height: 33.3%;
           line-height: 2.4;
@@ -350,6 +351,10 @@ export const NumberListWrap = styled.div`
             > li {
               border-right: 1px solid #ccc;
               border-bottom: 1px solid #ccc;
+              :first-of-type {
+                background: #176b87;
+                color: #fff;
+              }
               :last-of-type {
                 border-right: 0;
               }
