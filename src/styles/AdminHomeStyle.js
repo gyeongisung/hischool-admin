@@ -244,6 +244,7 @@ export const HomeNoticeWrap = styled.div`
   box-shadow: 0px 0.5px 5px 0px rgba(0, 0, 0, 0.2);
   padding: 15px;
   margin-bottom: 10px;
+  flex-grow: 1;
   h3 {
     font-size: 21px;
     font-weight: 700;
@@ -319,11 +320,30 @@ export const NumberListWrap = styled.div`
   border-radius: 5px;
   box-shadow: 0px 0.5px 5px 0px rgba(0, 0, 0, 0.2);
   padding: 15px;
-  h3 {
-    font-size: 21px;
-    font-weight: 700;
+  .number-list-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
     margin-bottom: 10px;
-    color: #333;
+    h3 {
+      font-size: 21px;
+      font-weight: 700;
+      color: #333;
+    }
+    button {
+      border: 0;
+      background: transparent;
+      font-size: 15px;
+      color: #333;
+      cursor: pointer;
+      .save-btn {
+        background: #64ccc5;
+        padding: 3px 5px;
+        font-size: 12px;
+        color: #fff;
+        border-radius: 3px;
+      }
+    }
   }
   .number-list-top {
     height: 36%;
@@ -358,6 +378,11 @@ export const NumberListWrap = styled.div`
               :last-of-type {
                 border-right: 0;
               }
+              input {
+                height: 27px;
+                border: 1px solid #ccc;
+                padding-left: 6px;
+              }
             }
           }
           :last-of-type {
@@ -368,45 +393,6 @@ export const NumberListWrap = styled.div`
             }
           }
         }
-      }
-    }
-  }
-  .number-list-bottom {
-    height: 45%;
-    background: #fff;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    box-shadow: 0px 0.5px 5px 0px rgba(0, 0, 0, 0.2);
-    overflow: hidden;
-    > ul {
-      > li {
-        height: 21%;
-        line-height: 2.3;
-        > ul {
-          display: grid;
-          grid-template-columns: 1fr 1fr 1fr 1fr;
-          grid-template-rows: 1fr;
-          font-size: 15px;
-          text-align: center;
-          > li {
-            border-right: 1px solid #ccc;
-            border-bottom: 1px solid #ccc;
-            :last-of-type {
-              border-right: 0;
-            }
-          }
-        }
-        :last-of-type {
-          > ul {
-            > li {
-              border-bottom: 0;
-            }
-          }
-        }
-      }
-      .grade-main-teacher {
-        background: #176b87;
-        color: #fff;
       }
     }
   }

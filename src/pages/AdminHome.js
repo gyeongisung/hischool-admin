@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import {
   AdminHomeDiv,
@@ -7,12 +7,14 @@ import {
 } from "../styles/AdminHomeStyle";
 import FullCalendar from "@fullcalendar/react";
 import dayGridPlugin from "@fullcalendar/daygrid";
-import HomeNotice from "../components/home/HomeNotice";
-import NumberList from "../components/home/NumberList";
+import { getAllMemberStatus, getSchedule } from "../api/adminHomeAxios";
+import HomeNotice from "../components/adminHome/HomeNotice";
+import NumberList from "../components/adminHome/NumberList";
 
 const AdminHome = () => {
   const calRef = useRef(null);
   const [scheduleData, setScheduleData] = useState([]);
+  const [memberStatus, setMemberStatus] = useState("");
 
   // 현재 기준 캘린더 날짜
   const today = new Date();
@@ -49,6 +51,14 @@ const AdminHome = () => {
     }
   };
 
+  useEffect(() => {
+    getAllMemberStatus(setMemberStatus);
+  }, []);
+
+  useEffect(() => {
+    getSchedule(setScheduleData, startDate, endDate);
+  }, [startDate, endDate]);
+
   return (
     <AdminHomeDiv>
       <StatusCountDiv>
@@ -57,7 +67,7 @@ const AdminHome = () => {
           <div className="student-status">
             <span>총 인원:</span>
             <Link to="/studentlist">
-              <span className="student-num">320</span>
+              <span className="student-num">{memberStatus.stdNum}</span>
             </Link>
             <span>명</span>
           </div>
@@ -67,12 +77,12 @@ const AdminHome = () => {
           <div className="teacher-status">
             <span>총 인원:</span>
             <Link to="/teacherlist">
-              <span className="teacher-num">80</span>
+              <span className="teacher-num">{memberStatus.tcNum}</span>
             </Link>
             <span>명</span>
             <span>(승인 대기 인원:</span>
             <Link to="/signlist">
-              <span className="teacher-num">5</span>
+              <span className="teacher-num">{memberStatus.tcWaitingNum}</span>
             </Link>
             <span>명)</span>
           </div>
