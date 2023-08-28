@@ -107,7 +107,7 @@ const NoticeWrite = () => {
     <NoticeWrap>
       <h3>게시판 글쓰기</h3>
       <label>
-        중요 공지 시 체크
+        중요 공지
         <input
           type="checkbox"
           checked={isImportant}
