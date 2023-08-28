@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import {
   AdminHomeDiv,
@@ -51,10 +51,13 @@ const AdminHome = () => {
     }
   };
 
-  useState(() => {
+  useEffect(() => {
     getAllMemberStatus(setMemberStatus);
-    getSchedule(setScheduleData, startDate, endDate);
   }, []);
+
+  useEffect(() => {
+    getSchedule(setScheduleData, startDate, endDate);
+  }, [startDate, endDate]);
 
   return (
     <AdminHomeDiv>
