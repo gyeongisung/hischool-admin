@@ -3,7 +3,7 @@ import { getCookie, setCookie } from "./cookie";
 
 // axios 인스턴스 생성
 export const client = axios.create({
-  baseURL: "http://localhost:3001/",
+  baseURL: "http://localhost:3000/",
   headers: {
     "Content-Type": "application/json",
   },
@@ -34,7 +34,7 @@ client.interceptors.response.use(
     const refreshToken = getCookie("refreshToken");
     if (response.status === 401 && refreshToken) {
       try {
-        const { data } = await client.post(`/api/refresh-token`, {
+        const { data } = await client.post(`/api/admin/refresh-token`, {
           refreshToken,
         });
         const accessToken = data;
@@ -55,7 +55,7 @@ client.interceptors.response.use(
 // 로그인 함수
 export const fetchLogin = async (email, password) => {
   try {
-    const res = await client.post(`/api/sign-in`, {
+    const res = await client.post(`/api/admin/sign-in`, {
       email: email,
       pw: password,
     });

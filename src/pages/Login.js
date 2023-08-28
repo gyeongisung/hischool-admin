@@ -5,7 +5,7 @@ import {
   LoginForm,
   LoginWrap,
 } from "../styles/login/LoginStyle";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { fetchLogin } from "../api/client";
 
 const Login = () => {
@@ -35,6 +35,14 @@ const Login = () => {
   // // 유저 선택 및 로그인 버튼 함수
   const handleSubmit = async e => {
     e.preventDefault();
+    const role = await fetchLogin(email, password);
+    if (!isLoginDisabled) {
+      if (role === "ROLE_ADMIN") {
+        navigate("/home");
+      } else {
+        setErrConfirm(true);
+      }
+    }
   };
 
   const handleEmail = e => {
