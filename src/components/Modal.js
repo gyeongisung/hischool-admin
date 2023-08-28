@@ -10,6 +10,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faExclamation } from "@fortawesome/free-solid-svg-icons";
 import { postEmailCodeConFirm } from "../api/signUpAxios";
 import { useState } from "react";
+import { PutNumberList } from "../api/adminHomeAxios";
 
 // 교원 승인 확인 모달
 export const TeacherAcceptModal = ({
@@ -365,11 +366,10 @@ export const SaveNumverModal = ({
   modalOpen,
   setModalOpen,
   setEditMode,
-  tempList,
+  numberList,
 }) => {
   const handleOk = () => {
-    // PUTNumber
-    // tempList
+    PutNumberList(numberList);
     setModalOpen(false);
     setEditMode(false);
   };

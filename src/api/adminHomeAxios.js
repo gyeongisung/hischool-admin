@@ -33,3 +33,17 @@ export const getSchedule = async (setScheduleData, startDate, endDate) => {
     console.log(err);
   }
 };
+
+// 비상연락망 GET
+export const getNumberList = async setNumberList => {
+  const res = await client.get(`/api/admin/emergency-contacts`);
+  const result = res.data;
+  setNumberList(result);
+};
+
+// 비상연락망 PUT
+export const PutNumberList = async numberList => {
+  const res = await client.put(`/api/admin/emergency-contacts`, numberList);
+  const result = res.data;
+  console.log(result);
+};

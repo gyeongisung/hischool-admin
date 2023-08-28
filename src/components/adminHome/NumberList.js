@@ -3,24 +3,12 @@ import { NumberListWrap } from "../../styles/AdminHomeStyle";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPencil } from "@fortawesome/free-solid-svg-icons";
 import { SaveNumverModal } from "../Modal";
+import { getNumberList } from "../../api/adminHomeAxios";
 
 const NumberList = () => {
-  const [admNum, setAdmNum] = useState("2154");
-  const [tcNum, setTcNum] = useState("5126");
-  const [prcpNum, setPrcpNum] = useState("5124");
-  const [mainNum, setMainNum] = useState("5123");
-  const [machineNum, setMachineNum] = useState("5121");
-  const [faxNum, setFaxNum] = useState("052)5465546");
   const [modalOpen, setModalOpen] = useState(false);
   const [editMode, setEditMode] = useState(false);
-  const tempList = {
-    admNum: admNum,
-    tcNum: tcNum,
-    prcpNum: prcpNum,
-    mainNum: mainNum,
-    machineNum: machineNum,
-    faxNum: faxNum,
-  };
+  const [numberList, setNumberList] = useState([]);
 
   const handleEditNumber = () => {
     if (editMode) {
@@ -34,6 +22,10 @@ const NumberList = () => {
     setModalOpen(true);
   };
 
+  useEffect(() => {
+    getNumberList(setNumberList);
+  }, []);
+
   return (
     <>
       {modalOpen && (
@@ -41,7 +33,7 @@ const NumberList = () => {
           modalOpen={modalOpen}
           setModalOpen={setModalOpen}
           setEditMode={setEditMode}
-          tempList={tempList}
+          numberList={numberList}
         />
       )}
       <NumberListWrap>
@@ -72,11 +64,16 @@ const NumberList = () => {
                       <input
                         type="text"
                         placeholder="행정실 번호"
-                        value={tempList.admNum}
-                        onChange={e => setAdmNum(e.target.value)}
+                        value={numberList.admNum}
+                        onChange={e =>
+                          setNumberList({
+                            ...numberList,
+                            admNum: e.target.value,
+                          })
+                        }
                       />
                     ) : (
-                      tempList.admNum
+                      numberList.admNum
                     )}
                   </li>
                 </ul>
@@ -89,11 +86,16 @@ const NumberList = () => {
                       <input
                         type="text"
                         placeholder="교무실 번호"
-                        value={tempList.tcNum}
-                        onChange={e => setTcNum(e.target.value)}
+                        value={numberList.tcNum}
+                        onChange={e =>
+                          setNumberList({
+                            ...numberList,
+                            tcNum: e.target.value,
+                          })
+                        }
                       />
                     ) : (
-                      tempList.tcNum
+                      numberList.tcNum
                     )}
                   </li>
                 </ul>
@@ -106,11 +108,16 @@ const NumberList = () => {
                       <input
                         type="text"
                         placeholder="교장실 번호"
-                        value={tempList.prcpNum}
-                        onChange={e => setPrcpNum(e.target.value)}
+                        value={numberList.prcpNum}
+                        onChange={e =>
+                          setNumberList({
+                            ...numberList,
+                            prcpNum: e.target.value,
+                          })
+                        }
                       />
                     ) : (
-                      tempList.prcpNum
+                      numberList.prcpNum
                     )}
                   </li>
                 </ul>
@@ -125,11 +132,16 @@ const NumberList = () => {
                       <input
                         type="text"
                         placeholder="관리실 번호"
-                        value={tempList.mainNum}
-                        onChange={e => setMainNum(e.target.value)}
+                        value={numberList.mainNum}
+                        onChange={e =>
+                          setNumberList({
+                            ...numberList,
+                            mainNum: e.target.value,
+                          })
+                        }
                       />
                     ) : (
-                      tempList.mainNum
+                      numberList.mainNum
                     )}
                   </li>
                 </ul>
@@ -142,11 +154,16 @@ const NumberList = () => {
                       <input
                         type="text"
                         placeholder="기계실 번호"
-                        value={tempList.machineNum}
-                        onChange={e => setMachineNum(e.target.value)}
+                        value={numberList.machineNum}
+                        onChange={e =>
+                          setNumberList({
+                            ...numberList,
+                            machineNum: e.target.value,
+                          })
+                        }
                       />
                     ) : (
-                      tempList.machineNum
+                      numberList.machineNum
                     )}
                   </li>
                 </ul>
@@ -159,11 +176,16 @@ const NumberList = () => {
                       <input
                         type="text"
                         placeholder="팩스 번호"
-                        value={tempList.faxNum}
-                        onChange={e => setFaxNum(e.target.value)}
+                        value={numberList.faxNum}
+                        onChange={e =>
+                          setNumberList({
+                            ...numberList,
+                            faxNum: e.target.value,
+                          })
+                        }
                       />
                     ) : (
-                      tempList.faxNum
+                      numberList.faxNum
                     )}
                   </li>
                 </ul>
