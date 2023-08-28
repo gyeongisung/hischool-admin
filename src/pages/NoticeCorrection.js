@@ -1,20 +1,20 @@
-import React, { useMemo, useState } from "react";
-import { useNavigate } from "react-router";
+import React, { useEffect, useMemo, useState } from "react";
+import { useNavigate, useParams } from "react-router";
 import {
   NoticeButton,
   NoticeWhiteNoitce,
   NoticeWrap,
 } from "../styles/NoticeStyle";
 import ReactQuill from "react-quill";
-import "react-quill/dist/quill.snow.css";
-import { postNoticeData } from "../api/notices";
+import { getNoticeData } from "../api/notices";
 
-const NoticeWrite = () => {
+const NoticeCorrection = () => {
+  const { noticeId } = useParams();
+  const [notice, setNotice] = useState(null);
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
   const [isImportant, setIsImportant] = useState(false);
   const navigate = useNavigate();
-
   // ReactQull 태그 reference 저장
   const quillRef = React.useRef(null);
 
@@ -98,7 +98,7 @@ const NoticeWrite = () => {
     };
     try {
       console.log(dataToSend);
-      await postNoticeData(dataToSend); // postNoticeData 함수 호출
+      //   await postNoticeData(dataToSend); // postNoticeData 함수 호출
       console.log("글 등록 성공");
     } catch (error) {
       console.error("글 등록 오류:", error);
@@ -109,6 +109,27 @@ const NoticeWrite = () => {
     setIsImportant(false);
     navigate(-1);
   };
+
+  useEffect(() => {
+    async function fetchNotice() {
+      try {
+        const fetchedNotice = await getNoticeData(noticeId); // 공지사항 데이터 가져오기
+        setNotice(fetchedNotice);
+      } catch (error) {
+        console.error("Error fetching notice:", error);
+        setNotice(null);
+      }
+    }
+    fetchNotice();
+  }, [noticeId]);
+
+  if (notice === null) {
+    return <div>로딩 중...</div>;
+  }
+
+  if (!notice) {
+    return <div>공지사항을 찾을 수 없습니다.</div>;
+  }
 
   const handleCencle = () => {
     navigate(-1);
@@ -150,4 +171,4 @@ const NoticeWrite = () => {
   );
 };
 
-export default NoticeWrite;
+export default NoticeCorrection;

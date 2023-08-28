@@ -138,6 +138,84 @@ const NoticeBoard = styled.div`
   }
 `;
 
+const NoticeDetailButton = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  button {
+    width: 3vw;
+    height: 24px;
+    line-height: 1;
+    background: #fff;
+    border: 1px solid #bbb;
+    border-radius: 3px;
+    margin-right: 5px;
+    cursor: pointer;
+  }
+`;
+
+const NoticeDetailBoard = styled.div`
+  width: 100%;
+  position: relative;
+  height: 65vh;
+  text-align: left;
+  border-top: 1px solid #000;
+  border-bottom: 1px solid #000;
+  background: #fff;
+  overflow: auto;
+  padding: 1.8vh;
+`;
+
+const NoticeDetailInformation = styled.div`
+  display: flex;
+  width: 100%;
+  position: relative;
+  height: 3vh;
+  text-align: left;
+  border-top: 1px solid #000;
+  background: #fff;
+  overflow: auto;
+  justify-content: space-between;
+  padding: 0 1.8vh;
+  > div {
+    display: flex;
+    gap: 1vh;
+    align-items: center;
+    > p {
+      :nth-child(2) {
+        position: relative;
+        margin-left: 2px;
+        padding-left: 10px;
+      }
+      :nth-child(2)::after {
+        position: absolute;
+        left: 0;
+        top: 3px;
+        content: "";
+        top: 50%;
+        transform: translateY(-50%);
+        width: 1px;
+        height: 15px;
+        background-color: black;
+      }
+    }
+  }
+`;
+
+const NoticeDetailITitle = styled.div`
+  display: flex;
+  width: 100%;
+  position: relative;
+  align-items: center;
+  height: 4vh;
+  text-align: left;
+  border-top: 1px solid #000;
+  background: #176b87;
+  color: #fff;
+  font: bold;
+  overflow: auto;
+  padding: 0 1.8vh;
+`;
 const NoticeWhite = styled.div`
   > p {
     width: 30%;
@@ -192,4 +270,8 @@ export {
   NoticeWhite,
   NoticeWhiteNoitce,
   NoticeButton,
+  NoticeDetailBoard,
+  NoticeDetailInformation,
+  NoticeDetailITitle,
+  NoticeDetailButton,
 };

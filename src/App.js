@@ -13,6 +13,8 @@ import StudentList from "./pages/StudentList";
 import LifeRecord from "./pages/LifeRecord";
 import About from "./pages/About";
 import NoticeWrite from "./pages/NoticeWrite";
+import NoticeDetail from "./pages/NoticeDetail";
+import NoticeCorrection from "./pages/NoticeCorrection";
 
 function App() {
   return (
@@ -24,6 +26,11 @@ function App() {
           <Route path="/home" element={<AdminHome />} />
           <Route path="/notice" element={<Notice />} />
           <Route path="/write" element={<NoticeWrite />} />
+          <Route path="/noticedetail/:noticeId" element={<NoticeDetail />} />
+          <Route
+            path="/noticecorrection/:noticeId"
+            element={<NoticeCorrection />}
+          />
           <Route path="/subjectlist" element={<SubjectList />} />
           <Route path="/teacherlist" element={<TeacherList />} />
           <Route path="/signlist" element={<SignList />} />

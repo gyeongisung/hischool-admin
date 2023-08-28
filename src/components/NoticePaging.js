@@ -1,9 +1,13 @@
-import React, { useState } from "react";
-import { PagiWrap } from "../styles/PagiStyle";
+import React from "react";
 import Pagination from "react-js-pagination";
 import { PaginationContainer } from "../styles/NoticeStyle";
 
-const NoticePaging = ({ page, setPage, totalpage, totalnotice }) => {
+const NoticePaging = ({
+  page,
+  setPage,
+  totalpage,
+  itemsPerPage,
+}) => {
   // activePage: 현재 페이지
   // itemsCountPerPage: 한 페이지당 보여줄 리스트 아이템의 개수
   // totalItemsCount: 총 아이템의 개수
@@ -16,7 +20,7 @@ const NoticePaging = ({ page, setPage, totalpage, totalnotice }) => {
     <PaginationContainer>
       <Pagination
         activePage={page}
-        itemsCountPerPage={10}
+        itemsCountPerPage={itemsPerPage}
         totalItemsCount={totalpage}
         pageRangeDisplayed={5}
         prevPageText={"‹"}
