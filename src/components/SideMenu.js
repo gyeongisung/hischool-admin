@@ -46,22 +46,22 @@ const SideMenu = () => {
   return (
     <SideMenuWrap>
       <div className="user-info-wrap">
-        <div className="main-logo" onClick={() => navigate(`/${user}/home`)}>
+        <div className="main-logo" onClick={() => navigate(`/home`)}>
           <span>Hi! School</span>
         </div>
-        <div className="user-img" onClick={() => navigate(`/${user}/mypage`)}>
+        <div className="user-img" onClick={() => navigate(`/mypage`)}>
           <img src={userImg} alt="안녕" className="img-wrap" />
         </div>
         <p>
           <span className="user-icon">
             <FontAwesomeIcon icon={faUser} />
           </span>
-          <ins onClick={() => navigate(`/${user}/mypage`)}>
+          <ins onClick={() => navigate(`/mypage`)}>
             <span className="user-name">관리자</span>
           </ins>
           <span>님</span>
           <br />
-          <ins onClick={() => navigate(`/${user}/mypage`)}>
+          <ins onClick={() => navigate(`/mypage`)}>
             <span className="user-email">{`(${userEmail})`}</span>
           </ins>
           <br />
