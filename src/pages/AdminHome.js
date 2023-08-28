@@ -7,9 +7,9 @@ import {
 } from "../styles/AdminHomeStyle";
 import FullCalendar from "@fullcalendar/react";
 import dayGridPlugin from "@fullcalendar/daygrid";
-import NumberList from "../components/home/NumberList";
-import { getAllMemberStatus } from "../api/adminHomeAxios";
+import { getAllMemberStatus, getSchedule } from "../api/adminHomeAxios";
 import HomeNotice from "../components/adminHome/HomeNotice";
+import NumberList from "../components/adminHome/NumberList";
 
 const AdminHome = () => {
   const calRef = useRef(null);
@@ -53,6 +53,7 @@ const AdminHome = () => {
 
   useState(() => {
     getAllMemberStatus(setMemberStatus);
+    getSchedule(setScheduleData, startDate, endDate);
   }, []);
 
   return (

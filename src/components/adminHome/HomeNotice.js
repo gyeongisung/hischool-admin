@@ -8,6 +8,11 @@ import { getMainNoticeList } from "../../api/adminHomeAxios";
 const HomeNotice = () => {
   const [noticeList, setNoticeList] = useState([]);
 
+  // // 공지사항 개수 제한
+  // const maxVisibleLists = 8;
+  // const importantListCount = noticeList.imptList?.length;
+  // const normalListViewCount = maxVisibleLists - importantListCount;
+
   useEffect(() => {
     getMainNoticeList(setNoticeList);
   }, []);
