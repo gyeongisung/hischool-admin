@@ -5,188 +5,22 @@ import {
   TeacherListWrap,
 } from "../styles/TeacherListStyle";
 import { useNavigate } from "react-router";
-import Pagination from "../components/Paging";
 import { Link } from "react-router-dom";
-// import { getStudentData, patchSignCancel } from "../api/studentListAxios";
-// import { TeacherAcceptModal } from "../components/Modal";
-// import { getSignListData, patchSignAccept } from "../api/signListAxios";
-
-const liedata = [
-  {
-    snm: "안녕1",
-    birth: "1991-09-07",
-    phone: "010-2315-2398",
-    email: "lovelove@gmail.com",
-    adress: "우리집이 어딘지 잘 모르겠어요",
-    belong: "3학년 2반",
-    employ: "재직",
-  },
-  {
-    snm: "안녕2",
-    birth: "1991-09-07",
-    phone: "010-2315-2398",
-    email: "lovelove@gmail.com",
-    adress: "우리집이 어딘지 잘 모르겠어요",
-    belong: "3학년 2반",
-    employ: "재직",
-  },
-  {
-    snm: "안녕3",
-    birth: "1991-09-07",
-    phone: "010-2315-2398",
-    email: "lovelove@gmail.com",
-    adress: "우리집이 어딘지 잘 모르겠어요",
-    belong: "3학년 2반",
-    employ: "재직",
-  },
-  {
-    snm: "안녕4",
-    birth: "1991-09-07",
-    phone: "010-2315-2398",
-    email: "lovelove@gmail.com",
-    adress: "우리집이 어딘지 잘 모르겠어요",
-    belong: "3학년 2반",
-    employ: "재직",
-  },
-  {
-    snm: "안녕5",
-    birth: "1991-09-07",
-    phone: "010-2315-2398",
-    email: "lovelove@gmail.com",
-    adress: "우리집이 어딘지 잘 모르겠어요",
-    belong: "3학년 2반",
-    employ: "재직",
-  },
-  {
-    snm: "안녕6",
-    birth: "1991-09-07",
-    phone: "010-2315-2398",
-    email: "lovelove@gmail.com",
-    adress: "우리집이 어딘지 잘 모르겠어요",
-    belong: "3학년 2반",
-    employ: "재직",
-  },
-  {
-    snm: "안녕7",
-    birth: "1991-09-07",
-    phone: "010-2315-2398",
-    email: "lovelove@gmail.com",
-    adress: "우리집이 어딘지 잘 모르겠어요",
-    belong: "3학년 2반",
-    employ: "재직",
-  },
-  {
-    snm: "안녕8",
-    birth: "1991-09-07",
-    phone: "010-2315-2398",
-    email: "lovelove@gmail.com",
-    adress: "우리집이 어딘지 잘 모르겠어요",
-    belong: "3학년 2반",
-    employ: "재직",
-  },
-  {
-    snm: "안녕9",
-    birth: "1991-09-07",
-    phone: "010-2315-2398",
-    email: "lovelove@gmail.com",
-    adress: "우리집이 어딘지 잘 모르겠어요",
-    belong: "3학년 2반",
-    employ: "재직",
-  },
-  {
-    snm: "안녕10",
-    birth: "1991-09-07",
-    phone: "010-2315-2398",
-    email: "lovelove@gmail.com",
-    adress: "우리집이 어딘지 잘 모르겠어요",
-    belong: "3학년 2반",
-    employ: "재직",
-  },
-  {
-    snm: "안녕11",
-    birth: "1991-09-07",
-    phone: "010-2315-2398",
-    email: "lovelove@gmail.com",
-    adress: "우리집이 어딘지 잘 모르겠어요",
-    belong: "3학년 2반",
-    employ: "재직",
-  },
-  {
-    snm: "안녕12",
-    birth: "1991-09-07",
-    phone: "010-2315-2398",
-    email: "lovelove@gmail.com",
-    adress: "우리집이 어딘지 잘 모르겠어요",
-    belong: "3학년 2반",
-    employ: "재직",
-  },
-  {
-    snm: "안녕13",
-    birth: "1991-09-07",
-    phone: "010-2315-2398",
-    email: "lovelove@gmail.com",
-    adress: "우리집이 어딘지 잘 모르겠어요",
-    belong: "3학년 2반",
-    employ: "재직",
-  },
-  {
-    snm: "안녕14",
-    birth: "1991-09-07",
-    phone: "010-2315-2398",
-    email: "lovelove@gmail.com",
-    adress: "우리집이 어딘지 잘 모르겠어요",
-    belong: "3학년 2반",
-    employ: "재직",
-  },
-  {
-    snm: "안녕15",
-    birth: "1991-09-07",
-    phone: "010-2315-2398",
-    email: "lovelove@gmail.com",
-    adress: "우리집이 어딘지 잘 모르겠어요",
-    belong: "3학년 2반",
-    employ: "재직",
-  },
-  {
-    snm: "안녕16",
-    birth: "1991-09-07",
-    phone: "010-2315-2398",
-    email: "lovelove@gmail.com",
-    adress: "우리집이 어딘지 잘 모르겠어요",
-    belong: "3학년 2반",
-    employ: "재직",
-  },
-  {
-    snm: "안녕17",
-    birth: "1991-09-07",
-    phone: "010-2315-2398",
-    email: "lovelove@gmail.com",
-    adress: "우리집이 어딘지 잘 모르겠어요",
-    belong: "3학년 2반",
-    employ: "재직",
-  },
-  {
-    snm: "안녕18",
-    birth: "1991-09-07",
-    phone: "010-2315-2398",
-    email: "lovelove@gmail.com",
-    adress: "우리집이 어딘지 잘 모르겠어요",
-    belong: "3학년 2반",
-    employ: "재직",
-  },
-];
+import { getTeacherList } from "../api/TeacherListAxios";
+import Paging from "../components/Paging";
 
 const TeacherList = () => {
-  const [studentListData, setStudentListData] = useState([]);
-  const [acceptOk, setAcceptOk] = useState(false);
-  const [modalOpen, setModalOpen] = useState(false);
-
-  const [page, setPage] = useState(1);
-  // const [count, setCount] = useState();
-  // const [] = useState([]);
-  // const [] = useState(16);
-
+  // const [studentListData, setStudentListData] = useState([]);
+  // const [acceptOk, setAcceptOk] = useState(false);
+  // const [modalOpen, setModalOpen] = useState(false);
+  const [page, setPage] = useState(0);
+  const [count, setCount] = useState("");
+  const [listData, setListData] = useState([]);
   const navigate = useNavigate();
+  console.log(count);
+  useEffect(() => {
+    getTeacherList(page, setListData, setCount);
+  }, []);
 
   // const handleOk = () => {
   //   setModalOpen(true);
@@ -194,10 +28,6 @@ const TeacherList = () => {
 
   const handleSginClick = () => {
     navigate("/signlist");
-  };
-
-  const handleNameClick = () => {
-    navigate("/teacherdetailinfo");
   };
 
   return (
@@ -225,31 +55,35 @@ const TeacherList = () => {
           <li className="list-title-th">생년월일</li>
           <li className="list-title-th">연락처</li>
           <li className="list-title-th">이메일</li>
-          <li className="list-title-th">주소</li>
           <li className="list-title-th">소속</li>
           <li className="list-title-th">재직여부</li>
         </ul>
         <ul className="data-list">
-          {liedata?.map((item, index) => (
-            <li className="class" key={index}>
-              <ul>
-                <li>{index + 1}</li>
-                <li>
-                  <Link to={"/teacherdetailinfo"}>{item.snm}</Link>
-                </li>
-                <li>{item.birth}</li>
-                <li>{item.phone}</li>
-                <li>{item.email}</li>
-                <li>{item.adress}</li>
-                <li>{item.belong}</li>
-                <li>{item.employ}</li>
-              </ul>
-            </li>
-          ))}
+          {listData.length > 0 &&
+            listData.map((item, index) => (
+              <li className="class" key={index}>
+                <ul>
+                  <li>{index + 1}</li>
+                  <li>
+                    <Link to={"/teacherdetailinfo"}>{item.nm}</Link>
+                  </li>
+                  <li>{item.birth}</li>
+                  <li>{item.phone}</li>
+                  <li>{item.email}</li>
+                  <li>
+                    {item.grade}학년 {item.vanNum}반
+                  </li>
+                  {item.enrollState === "ENROLL" && <li>재직</li>}
+                  {item.enrollState === "LEAVE" && <li>탈퇴</li>}
+                  {item.enrollState === "TRANSFER" && <li>전근</li>}
+                  {/* <li>{item.enrollState}</li> */}
+                </ul>
+              </li>
+            ))}
         </ul>
       </TeacherListDiv>
       <div className="pagiWrap">
-        <Pagination page={page} setPage={setPage} />
+        <Paging page={page} setPage={setPage} count={count} />
       </div>
     </TeacherListWrap>
   );

@@ -1,40 +1,24 @@
 import { client } from "../api/client";
 
-// 학생관리 리스트
-export const getStudentData = async setStudentListData => {
+// 교원 가입 대기 명단
+export const getSignListData = async (page, setListData, setCount) => {
   try {
-    const res = await client.get(`/api/teacher/signed`);
-    const result = res.data;
-    const listSortData = result.sort((a, b) =>
-      a.snm.toLowerCase() < b.snm.toLowerCase() ? -1 : 1,
-    );
-    setStudentListData(listSortData);
-  } catch (err) {
-    console.error(err);
-  }
-};
-
-// 학생 가입 대기 명단
-export const getSignListData = async setStudentListData => {
-  try {
-    const res = await client.get(`/api/teacher/unsigned`);
-    const result = res.data;
-    const signListSortData = result.sort((a, b) =>
-      a.snm.toLowerCase() < b.snm.toLowerCase() ? -1 : 1,
-    );
-    setStudentListData(signListSortData);
+    const res = await client.get(`/api/admin/tc?page=${page}&size=16&sort=`);
+    const result = res.data.list;
+    setListData(result);
+    const totalCount = res.data.totalCount;
+    setCount(totalCount);
   } catch (err) {
     console.log(err);
   }
 };
 
-// 학생 가입 승인
-export const patchSignAccept = async userId => {
+// 교원 가입 승인
+export const putSignAccept = async userId => {
   try {
-    const res = await client.patch(
-      `/api/teacher/accept-student?userId=${userId}`,
-    );
+    const res = await client.put(`/api/admin/tc?teacherId=2${userId}`);
     const result = res.data;
+    console.log(result);
   } catch (err) {
     console.log(err);
   }

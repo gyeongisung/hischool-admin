@@ -5,17 +5,27 @@ import {
   TimeTableDiv,
 } from "../styles/SignListStyle";
 import { useNavigate } from "react-router";
-import { getSignListData, patchSignAccept } from "../api/signListAxios";
+import {
+  getSignListData,
+  patchSignAccept,
+  putSignAccept,
+} from "../api/signListAxios";
 import { StudentAcceptModal } from "../components/Modal";
 import Pagination from "../components/Paging";
 
 const SignList = () => {
-  const [studentListData, setStudentListData] = useState([]);
+  const [listData, setListData] = useState([]);
   const [acceptOk, setAcceptOk] = useState(false);
   const [modalOpen, setModalOpen] = useState(false);
   const [saveCheckBox, setSaveCheckBox] = useState([]);
+  const [page, setPage] = useState(0);
+  const [count, setCount] = useState("");
   const navigate = useNavigate();
   let resultIdArray = saveCheckBox;
+
+  useEffect(() => {
+    getSignListData(page, setListData, setCount);
+  }, []);
 
   // 전체 체크박스 선택
   const handleAllCheck = e => {
@@ -49,9 +59,9 @@ const SignList = () => {
 
   // Modal 확인 클릭 시
   useEffect(() => {
-    getSignListData(setStudentListData);
+    getSignListData(setListData);
     if (acceptOk) {
-      resultIdArray.forEach(item => patchSignAccept(item));
+      resultIdArray.forEach(item => putSignAccept(item));
     }
     setAcceptOk(false);
     setModalOpen(false);
@@ -63,7 +73,7 @@ const SignList = () => {
       .querySelectorAll(".school-checkbox")
       .forEach(item => (item.checked = false));
     setSaveCheckBox([]);
-  }, [studentListData]);
+  }, [listData]);
 
   const handleOk = () => {
     setModalOpen(true);
@@ -110,11 +120,10 @@ const SignList = () => {
               <li className="time-table-th">생년월일</li>
               <li className="time-table-th">연락처</li>
               <li className="time-table-th">이메일</li>
-              <li className="time-table-th">주소</li>
               <li className="time-table-th">소속</li>
             </ul>
           </li>
-          {studentListData.map((item, index) => (
+          {listData.map((item, index) => (
             <li className="class" key={index}>
               <ul>
                 <li>
@@ -126,18 +135,19 @@ const SignList = () => {
                   />
                 </li>
                 <li>{index + 1}</li>
-                <li>{item.snm}</li>
+                <li>{item.nm}</li>
                 <li>{item.birth}</li>
                 <li>{item.phone}</li>
                 <li>{item.email}</li>
-                <li>{item.adress}</li>
-                <li>{item.asdf}</li>
+                <li>
+                  {item.grade}학년 {item.vanNum}반
+                </li>
               </ul>
             </li>
           ))}
         </ul>
       </TimeTableDiv>
-      <Pagination />
+      <Pagination page={page} setPage={setPage} count={count} />
     </StudentListWrap>
   );
 };

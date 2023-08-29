@@ -49,7 +49,7 @@ export const TeacherListDiv = styled.div`
     top: 0;
     width: 100%;
     display: grid;
-    grid-template-columns: 0.3fr 0.4fr 0.5fr 0.7fr 1.1fr 1.5fr 0.6fr 0.4fr;
+    grid-template-columns: 0.3fr 0.4fr 0.5fr 0.7fr 1.1fr 0.6fr 0.4fr;
     grid-template-rows: 1fr;
     li {
       line-height: 42px;
@@ -72,7 +72,7 @@ export const TeacherListDiv = styled.div`
       }
       > ul {
         display: grid;
-        grid-template-columns: 0.3fr 0.4fr 0.5fr 0.7fr 1.1fr 1.5fr 0.6fr 0.4fr;
+        grid-template-columns: 0.3fr 0.4fr 0.5fr 0.7fr 1.1fr 0.6fr 0.4fr;
         > li {
           line-height: 2;
           :not(:last-of-type) {
