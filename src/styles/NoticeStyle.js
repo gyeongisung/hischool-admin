@@ -11,6 +11,43 @@ const NoticeWrap = styled.div`
     font-size: 30px;
     margin-bottom: 10px;
   }
+  label {
+    > input {
+      margin-left: 1vh;
+      > .checkbox {
+      }
+    }
+  }
+`;
+const NoticeWUTitle = styled.div`
+  display: flex;
+  width: 100%;
+  position: relative;
+  height: 3vh;
+  text-align: left;
+  border-top: 1px solid #000;
+  background: #fff;
+  overflow: auto;
+  margin-top: 1vh;
+  div {
+    width: 10%;
+    background: #176b87;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    > label {
+      color: #fff;
+      display: inline-block;
+      text-align: center;
+      width: 100%;
+    }
+  }
+
+  input {
+    border: 0;
+    margin: 0 auto;
+    width: 89%;
+  }
 `;
 
 const NoticeTitle = styled.div`
@@ -68,10 +105,8 @@ const NoticeWhiteNoitce = styled.div`
   width: 100%;
   position: relative;
   height: 71vh;
-  border: 1px solid #ccc;
-  border-radius: 5px;
+  border-bottom: 1px solid #ccc;
   background: #fff;
-  box-shadow: 0px 0.5px 5px 0px rgba(0, 0, 0, 0.2);
   box-sizing: border-box;
   overflow: auto;
 `;
@@ -142,6 +177,7 @@ const NoticeDetailButton = styled.div`
   display: flex;
   align-items: center;
   justify-content: flex-end;
+  margin-top: 2vh;
   button {
     width: 3vw;
     height: 24px;
@@ -154,10 +190,17 @@ const NoticeDetailButton = styled.div`
   }
 `;
 
+const NoticeWUButton = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  margin-top: 1vh;
+`;
+
 const NoticeDetailBoard = styled.div`
   width: 100%;
   position: relative;
-  height: 65vh;
+  height: 69vh;
   text-align: left;
   border-top: 1px solid #000;
   border-bottom: 1px solid #000;
@@ -215,6 +258,18 @@ const NoticeDetailITitle = styled.div`
   font: bold;
   overflow: auto;
   padding: 0 1.8vh;
+  font-weight: bold;
+  color: #fff;
+  > span {
+    background: #ffe7ea;
+    font-size: 15px;
+    font-weight: 900;
+    text-align: center;
+    color: #ff5e5e;
+    padding: 1px 6px;
+    border-radius: 3px;
+    margin-right: 2vh;
+  }
 `;
 const NoticeWhite = styled.div`
   > p {
@@ -274,4 +329,6 @@ export {
   NoticeDetailInformation,
   NoticeDetailITitle,
   NoticeDetailButton,
+  NoticeWUTitle,
+  NoticeWUButton,
 };

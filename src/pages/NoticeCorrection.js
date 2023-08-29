@@ -1,20 +1,24 @@
 import React, { useEffect, useMemo, useState } from "react";
-import { useNavigate, useParams } from "react-router";
 import {
   NoticeButton,
+  NoticeWUButton,
+  NoticeWUTitle,
   NoticeWhiteNoitce,
   NoticeWrap,
 } from "../styles/NoticeStyle";
 import ReactQuill from "react-quill";
-import { getNoticeData } from "../api/notices";
+import "../styles/quill.snow.css";
+import { useNavigate, useParams } from "react-router";
+import { getNoticeData, patchNoticeData } from "../api/noticesAxios";
 
 const NoticeCorrection = () => {
   const { noticeId } = useParams();
-  const [notice, setNotice] = useState(null);
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
   const [isImportant, setIsImportant] = useState(false);
+  const [notice, setNotice] = useState([]);
   const navigate = useNavigate();
+
   // ReactQull 태그 reference 저장
   const quillRef = React.useRef(null);
 
@@ -85,59 +89,50 @@ const NoticeCorrection = () => {
   const handleContentChange = event => {
     setContent(event);
   };
+
   const handleCheckboxChange = event => {
     setIsImportant(event.target.checked);
   };
 
-  const handleSubmit = async event => {
-    event.preventDefault();
-    const dataToSend = {
-      title: title,
-      content: content,
-      imptyn: parseInt(isImportant ? 1 : 0),
-    };
-    try {
-      console.log(dataToSend);
-      //   await postNoticeData(dataToSend); // postNoticeData 함수 호출
-      console.log("글 등록 성공");
-    } catch (error) {
-      console.error("글 등록 오류:", error);
-    }
-
-    setTitle("");
-    setContent("");
-    setIsImportant(false);
+  const handleCencle = () => {
     navigate(-1);
   };
 
   useEffect(() => {
     async function fetchNotice() {
       try {
-        const fetchedNotice = await getNoticeData(noticeId); // 공지사항 데이터 가져오기
+        const fetchedNotice = await getNoticeData(noticeId);
         setNotice(fetchedNotice);
+        setTitle(fetchedNotice.title);
+        setContent(fetchedNotice.content);
+        setIsImportant(fetchedNotice.imptYn === 1);
       } catch (error) {
-        console.error("Error fetching notice:", error);
+        console.error("공지를 불러오는 중 오류 발생:", error);
         setNotice(null);
       }
     }
     fetchNotice();
   }, [noticeId]);
 
-  if (notice === null) {
-    return <div>로딩 중...</div>;
-  }
-
-  if (!notice) {
-    return <div>공지사항을 찾을 수 없습니다.</div>;
-  }
-
-  const handleCencle = () => {
-    navigate(-1);
+  const handleSubmit = async event => {
+    event.preventDefault();
+    try {
+      const dataToSend = {
+        noticeId: noticeId,
+        title: title,
+        content: content,
+        imptyn: isImportant ? 1 : 0,
+      };
+      await patchNoticeData(dataToSend);
+      navigate(-1); // 성공 시 이전 페이지로 이동
+    } catch (error) {
+      console.error("글 수정 오류:", error);
+    }
   };
 
   return (
     <NoticeWrap>
-      <h3>게시판 글쓰기</h3>
+      <h3>게시판 수정</h3>
       <label>
         중요 공지
         <input
@@ -147,26 +142,26 @@ const NoticeCorrection = () => {
         />
       </label>
       <form onSubmit={handleSubmit}>
-        <div>
-          <label>제목</label>
-          <input
-            type="text"
-            value={title}
-            onChange={handleTitleChange}
-            required
-          />
-        </div>
+        <NoticeWUTitle>
+          <div>
+            <label>제목</label>
+          </div>
+          <input type="text" value={title} onChange={handleTitleChange} />
+        </NoticeWUTitle>
         <NoticeWhiteNoitce>
           <ReactQuill
             ref={quillRef}
             value={content}
             onChange={handleContentChange}
             modules={modules}
+            style={{ height: "92%", border: "none" }}
           />
         </NoticeWhiteNoitce>
-        <NoticeButton type="submit">글쓰기</NoticeButton>
+        <NoticeWUButton>
+          <NoticeButton type="submit">수정</NoticeButton>
+          <NoticeButton onClick={handleCencle}>취소</NoticeButton>
+        </NoticeWUButton>
       </form>
-      <NoticeButton onClick={handleCencle}>취소</NoticeButton>
     </NoticeWrap>
   );
 };
