@@ -7,7 +7,7 @@ import {
 } from "../styles/NoticeStyle";
 import NoticePaging from "../components/NoticePaging";
 import { Link } from "react-router-dom";
-import { getNoticeList } from "../api/notices";
+import { getNoticeList } from "../api/noticesAxios";
 
 const Notice = () => {
   const [noticeData, setNoticeData] = useState([]);
@@ -90,7 +90,7 @@ const Notice = () => {
                   {notice.title}
                 </Link>
               </li>
-              <li>{/* notice.content */}관리자</li>
+              <li>관리자{notice.userId}</li>
               <li>{notice.createdAt.split("T", 1)}</li>
               <li>{notice.hits}</li>
             </ul>
@@ -106,7 +106,7 @@ const Notice = () => {
                   {notice.title}
                 </Link>
               </li>
-              <li>{/* notice.content */}관리자</li>
+              <li>관리자{notice.userId}</li>
               <li>{notice.createdAt.split("T", 1)}</li>
               <li>{notice.hits}</li>
             </ul>

@@ -2,12 +2,14 @@ import React, { useMemo, useState } from "react";
 import { useNavigate } from "react-router";
 import {
   NoticeButton,
+  NoticeWUButton,
+  NoticeWUTitle,
   NoticeWhiteNoitce,
   NoticeWrap,
 } from "../styles/NoticeStyle";
 import ReactQuill from "react-quill";
-import "react-quill/dist/quill.snow.css";
-import { postNoticeData } from "../api/notices";
+import "../styles/quill.snow.css";
+import { postNoticeData } from "../api/noticesAxios";
 
 const NoticeWrite = () => {
   const [title, setTitle] = useState("");
@@ -126,26 +128,31 @@ const NoticeWrite = () => {
         />
       </label>
       <form onSubmit={handleSubmit}>
-        <div>
-          <label>제목</label>
+        <NoticeWUTitle>
+          <div>
+            <label>제목</label>
+          </div>
           <input
             type="text"
             value={title}
             onChange={handleTitleChange}
             required
           />
-        </div>
+        </NoticeWUTitle>
         <NoticeWhiteNoitce>
           <ReactQuill
             ref={quillRef}
             value={content}
             onChange={handleContentChange}
             modules={modules}
+            style={{height:"92%", border: "none"}}
           />
         </NoticeWhiteNoitce>
-        <NoticeButton type="submit">글쓰기</NoticeButton>
+        <NoticeWUButton>
+          <NoticeButton type="submit">글쓰기</NoticeButton>
+          <NoticeButton onClick={handleCencle}>취소</NoticeButton>
+        </NoticeWUButton>
       </form>
-      <NoticeButton onClick={handleCencle}>취소</NoticeButton>
     </NoticeWrap>
   );
 };

@@ -1,4 +1,4 @@
-import { client } from "../api/client";
+import { client } from "./client";
 
 // 공지사항 리스트
 export const getNoticeList = async setNoticeData => {
@@ -33,15 +33,20 @@ export const getNoticeData = async noticeId => {
     return null;
   }
 };
-///api/notice?noticeId=27&title=string&content=string&imptyn=1
-// export const patchNoticeData = async dataToSend => {
-//   try {
-//     const response = await client.post(
-//       `/api/notice?noticeId=${}&title=string&content=string&imptyn=${}`,
-//       dataToSend,
-//     );
-//     console.log("response", response);
-//   } catch (err) {
-//     console.error(err);
-//   }
-// };
+export const patchNoticeData = async dataToSend => {
+  try {
+    const response = await client.patch(`/api/notice`, dataToSend);
+    console.log("글 수정 : ", response);
+  } catch (err) {
+    console.error(err);
+  }
+};
+
+export const delectNoticeData = async noticeId => {
+  try {
+    const res = await client.delete(`/api/notice?noticeId=${noticeId}`);
+    console.log("글 삭제", res);
+  } catch (err) {
+    console.error(err);
+  }
+};
