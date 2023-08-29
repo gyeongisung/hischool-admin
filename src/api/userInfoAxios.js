@@ -31,16 +31,12 @@ export const getSchoolLogo = async setSchoolLogo => {
   }
 };
 
-export const getSchoolInfo = async (setSchoolName, setGrade, setClassNum) => {
+export const getSchoolInfo = async setSchoolName => {
   try {
     const res = await client.get(`/api/header/school-info`);
     const result = res.data;
     const userSchool = result.nm;
-    const userGrade = result.grade;
-    const userClass = result.van;
     setSchoolName(userSchool);
-    setGrade(userGrade);
-    setClassNum(userClass);
   } catch (err) {
     console.log(err);
   }

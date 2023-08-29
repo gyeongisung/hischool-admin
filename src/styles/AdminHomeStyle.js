@@ -324,7 +324,7 @@ export const NumberListWrap = styled.div`
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 10px;
+    margin-bottom: 8px;
     h3 {
       font-size: 21px;
       font-weight: 700;
@@ -346,8 +346,6 @@ export const NumberListWrap = styled.div`
     }
   }
   .number-list-top {
-    height: 36%;
-    margin-bottom: 15px;
     .main-number-list {
       display: flex;
       gap: 20px;

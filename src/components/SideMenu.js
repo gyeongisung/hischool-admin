@@ -2,14 +2,9 @@ import { SideMenuWrap } from "../styles/main/SideMenuStyle";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faChevronRight,
-  faFileInvoice,
-  faCalendarDays,
   faCommentDots,
-  faLock,
-  faSchool,
   faUserTie,
   faUserGraduate,
-  faSquarePollVertical,
   faRightFromBracket,
   faCircleInfo,
   faHouseChimney,
@@ -27,8 +22,6 @@ const SideMenu = () => {
   const [userName, setUserName] = useState(null);
   const [userEmail, setUserEmail] = useState(null);
   const navigate = useNavigate();
-  const location = useLocation();
-  const user = location.pathname.split("/")[1];
   const cookies = new Cookies();
 
   const handleDeleteCookie = () => {
