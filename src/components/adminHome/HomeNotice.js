@@ -8,10 +8,10 @@ import { getMainNoticeList } from "../../api/adminHomeAxios";
 const HomeNotice = () => {
   const [noticeList, setNoticeList] = useState([]);
 
-  // // 공지사항 개수 제한
-  // const maxVisibleLists = 8;
-  // const importantListCount = noticeList.imptList?.length;
-  // const normalListViewCount = maxVisibleLists - importantListCount;
+  // 공지사항 개수 제한
+  const maxVisibleLists = 13;
+  const importantListCount = noticeList.imptList?.length;
+  const normalListViewCount = maxVisibleLists - importantListCount;
 
   useEffect(() => {
     getMainNoticeList(setNoticeList);
@@ -45,7 +45,7 @@ const HomeNotice = () => {
               </ul>
             ))}
           {noticeList.normalList?.length > 0 &&
-            noticeList.normalList.map(item => (
+            noticeList.normalList.slice(0, normalListViewCount).map(item => (
               <ul key={item.noticeId}>
                 <li>{item.noticeId}</li>
                 <li>{item.title}</li>

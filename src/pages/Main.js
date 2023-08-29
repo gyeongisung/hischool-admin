@@ -8,11 +8,9 @@ import { getSchoolInfo, getSchoolLogo } from "../api/userInfoAxios";
 const Main = () => {
   const [schoolLogo, setSchoolLogo] = useState(null);
   const [schoolName, setSchoolName] = useState(null);
-  const [grade, setGrade] = useState(null);
-  const [classNum, setClassNum] = useState(null);
 
   useEffect(() => {
-    getSchoolInfo(setSchoolName, setGrade, setClassNum);
+    getSchoolInfo(setSchoolName);
     getSchoolLogo(setSchoolLogo);
   }, []);
 
@@ -28,7 +26,7 @@ const Main = () => {
               <div className="school-logo">
                 <img src={schoolLogo} alt="" />
               </div>
-              <span className="school-name">함지고등학교</span>
+              <span className="school-name">{schoolName}</span>
             </div>
           </Header>
           <Content>
