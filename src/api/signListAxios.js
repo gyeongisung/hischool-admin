@@ -3,9 +3,7 @@ import { client } from "../api/client";
 // 교원 가입 대기 명단
 export const getSignListData = async (page, setListData, setCount) => {
   try {
-    const res = await client.get(
-      `/api/admin/tc?page=${page - 1}&size=16&sort=`,
-    );
+    const res = await client.get(`/api/admin/tc?page=${page}&size=16&sort=`);
     const result = res.data.list;
     console.log(result);
     setListData(result);

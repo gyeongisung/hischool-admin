@@ -1,13 +1,9 @@
 import { client } from "../api/client";
 
-export const getTeacherList = async (
-  page,
-  setListData,
-  setCount
-) => {
+export const getTeacherList = async (page, setListData, setCount) => {
   try {
     const res = await client.get(
-      `/api/admin/tc/all?page=${page - 1}&size=16&sort=`,
+      `/api/admin/tc/all?page=${page}&size=16&sort=`,
     );
     const result = res.data.list;
     setListData(result);
