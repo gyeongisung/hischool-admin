@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { PagiWrap } from "../styles/PagiStyle";
 import Pagination from "react-js-pagination";
 
@@ -10,11 +10,13 @@ const Paging = ({ page, setPage, count }) => {
   // prevPageText: "이전"을 나타낼 텍스트 (prev, <, ...)
   // nextPageText: "다음"을 나타낼 텍스트 (next, >, ...)
   // onChange: 페이지가 바뀔 때 핸들링해줄 함수
+
   console.log(page, count);
+
   return (
     <PagiWrap>
       <Pagination
-        activePage={page + 1}
+        activePage={page}
         itemsCountPerPage={16}
         totalItemsCount={count}
         pageRangeDisplayed={5}
