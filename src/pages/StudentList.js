@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   StudentListWrap,
   StudentListDiv,
@@ -6,41 +6,43 @@ import {
 } from "../styles/StudentListStyle";
 import Pagination from "react-js-pagination";
 import { EditAttendModal, EditClassModal } from "../components/Modal";
+import { getStudentData } from "../api/studentListAxios";
 const StudentList = () => {
   const [page, setPage] = useState(1);
   const [saveCheckBox, setSaveCheckBox] = useState([]);
   const [editClassModalOpen, setEditClassModalOpen] = useState(false);
   const [editAttendModalOpen, setEditAttendModalOpen] = useState(false);
-  let resultIdArray = saveCheckBox;
+  const [studentListData, setStudentListData] = useState("");
 
   // 전체 체크박스 선택
   const handleAllCheck = e => {
-    const allCheckBox = document.querySelectorAll(".school-checkbox");
-    resultIdArray = [];
+    const allCheckBox = document.querySelectorAll(".checkbox");
+    let userIdList = [];
     if (e.target.checked === true) {
       allCheckBox.forEach(item => {
         item.checked = true;
-        resultIdArray.push(parseInt(item.classList[1].slice(6)));
+        userIdList.push(parseInt(item.classList[1].slice(6)));
       });
     } else {
       allCheckBox.forEach(item => {
         item.checked = false;
       });
-      resultIdArray = [];
+      userIdList = [];
     }
-    setSaveCheckBox(resultIdArray);
+    setSaveCheckBox(userIdList);
   };
 
   // 개별 체크박스 선택
   const handleCheckBox = e => {
     const clickList = e.currentTarget;
     const userId = parseInt(clickList.classList[1].slice(6));
+    let userIdList;
     if (e.target.checked === true) {
-      resultIdArray.push(userId);
+      setSaveCheckBox([...saveCheckBox, userId]);
     } else {
-      resultIdArray = resultIdArray.filter(item => item !== userId);
+      userIdList = saveCheckBox.filter(item => item !== userId);
+      setSaveCheckBox(userIdList);
     }
-    setSaveCheckBox(resultIdArray);
   };
 
   const handleEditClass = () => {
@@ -51,161 +53,9 @@ const StudentList = () => {
     setEditAttendModalOpen(true);
   };
 
-  const example = [
-    {
-      snm: "김길동",
-      birth: "2005-12-12",
-      grade: 3,
-      classNum: 2,
-      phone: "010-1234-1234",
-      email: "class1@naver.com",
-      attend: "재학",
-    },
-    {
-      snm: "김길동",
-      birth: "2005-12-12",
-      grade: 3,
-      classNum: 2,
-      phone: "010-1234-1234",
-      email: "class1@naver.com",
-      attend: "재학",
-    },
-    {
-      snm: "김길동",
-      birth: "2005-12-12",
-      grade: 3,
-      classNum: 2,
-      phone: "010-1234-1234",
-      email: "class1@naver.com",
-      attend: "재학",
-    },
-    {
-      snm: "김길동",
-      birth: "2005-12-12",
-      grade: 3,
-      classNum: 2,
-      phone: "010-1234-1234",
-      email: "class1@naver.com",
-      attend: "재학",
-    },
-    {
-      snm: "김길동",
-      birth: "2005-12-12",
-      grade: 3,
-      classNum: 2,
-      phone: "010-1234-1234",
-      email: "class1@naver.com",
-      attend: "재학",
-    },
-    {
-      snm: "김길동",
-      birth: "2005-12-12",
-      grade: 3,
-      classNum: 2,
-      phone: "010-1234-1234",
-      email: "class1@naver.com",
-      attend: "재학",
-    },
-    {
-      snm: "김길동",
-      birth: "2005-12-12",
-      grade: 3,
-      classNum: 2,
-      phone: "010-1234-1234",
-      email: "class1@naver.com",
-      attend: "재학",
-    },
-    {
-      snm: "김길동",
-      birth: "2005-12-12",
-      grade: 3,
-      classNum: 2,
-      phone: "010-1234-1234",
-      email: "class1@naver.com",
-      attend: "재학",
-    },
-    {
-      snm: "김길동",
-      birth: "2005-12-12",
-      grade: 3,
-      classNum: 2,
-      phone: "010-1234-1234",
-      email: "class1@naver.com",
-      attend: "재학",
-    },
-    {
-      snm: "김길동",
-      birth: "2005-12-12",
-      grade: 3,
-      classNum: 2,
-      phone: "010-1234-1234",
-      email: "class1@naver.com",
-      attend: "재학",
-    },
-    {
-      snm: "김길동",
-      birth: "2005-12-12",
-      grade: 3,
-      classNum: 2,
-      phone: "010-1234-1234",
-      email: "class1@naver.com",
-      attend: "재학",
-    },
-    {
-      snm: "김길동",
-      birth: "2005-12-12",
-      grade: 3,
-      classNum: 2,
-      phone: "010-1234-1234",
-      email: "class1@naver.com",
-      attend: "재학",
-    },
-    {
-      snm: "김길동",
-      birth: "2005-12-12",
-      grade: 3,
-      classNum: 2,
-      phone: "010-1234-1234",
-      email: "class1@naver.com",
-      attend: "재학",
-    },
-    {
-      snm: "김길동",
-      birth: "2005-12-12",
-      grade: 3,
-      classNum: 2,
-      phone: "010-1234-1234",
-      email: "class1@naver.com",
-      attend: "재학",
-    },
-    {
-      snm: "김길동",
-      birth: "2005-12-12",
-      grade: 3,
-      classNum: 2,
-      phone: "010-1234-1234",
-      email: "class1@naver.com",
-      attend: "재학",
-    },
-    {
-      snm: "김길동",
-      birth: "2005-12-12",
-      grade: 3,
-      classNum: 2,
-      phone: "010-1234-1234",
-      email: "class1@naver.com",
-      attend: "재학",
-    },
-    {
-      snm: "김길동",
-      birth: "2005-12-12",
-      grade: 3,
-      classNum: 2,
-      phone: "010-1234-1234",
-      email: "class1@naver.com",
-      attend: "재학",
-    },
-  ];
+  useEffect(() => {
+    getStudentData(setStudentListData);
+  }, []);
 
   return (
     <>
@@ -217,6 +67,7 @@ const StudentList = () => {
       )}
       {editAttendModalOpen && (
         <EditAttendModal
+          saveCheckBox={saveCheckBox}
           editAttendModalOpen={editAttendModalOpen}
           setEditAttendModalOpen={setEditAttendModalOpen}
         />
@@ -296,27 +147,31 @@ const StudentList = () => {
                 <li className="time-table-th">학적 구분</li>
               </ul>
             </li>
-            {example.map((item, index) => (
-              <li className="class" key={index}>
-                <ul>
-                  <li>
-                    <input
-                      type="checkbox"
-                      defaultChecked={false}
-                      className={`school-checkbox userId${1}`}
-                      onClick={e => handleCheckBox(e)}
-                    />
-                  </li>
-                  <li>{item.snm}</li>
-                  <li>{item.birth}</li>
-                  <li>{item.grade}</li>
-                  <li>{item.classNum}</li>
-                  <li>{item.phone}</li>
-                  <li>{item.email}</li>
-                  <li>{item.attend}</li>
-                </ul>
-              </li>
-            ))}
+            {studentListData.length > 0 &&
+              studentListData.slice(0, 17).map((item, index) => (
+                <li className="class" key={index}>
+                  <ul>
+                    <li>
+                      <input
+                        type="checkbox"
+                        defaultChecked={false}
+                        className={`checkbox userId${item.userId}`}
+                        onClick={e => handleCheckBox(e)}
+                      />
+                    </li>
+                    <li>{item.nm}</li>
+                    <li>{"0000-00-00"}</li>
+                    <li>{item.grade}</li>
+                    <li>{item.classNum}</li>
+                    <li>{item.phone}</li>
+                    <li>{item.email}</li>
+                    {item.enrollState === "ENROLL" && <li>재학</li>}
+                    {item.enrollState === "GRADUATION" && <li>졸업</li>}
+                    {item.enrollState === "LEAVE" && <li>자퇴</li>}
+                    {item.enrollState === "TRANSFER" && <li>전학</li>}
+                  </ul>
+                </li>
+              ))}
           </ul>
         </StudentListDiv>
         <div className="pagination-wrap">

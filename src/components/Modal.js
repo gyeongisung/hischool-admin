@@ -11,6 +11,7 @@ import { faExclamation } from "@fortawesome/free-solid-svg-icons";
 import { postEmailCodeConFirm } from "../api/signUpAxios";
 import { useState } from "react";
 import { PutNumberList } from "../api/adminHomeAxios";
+import { patchStudentAttend } from "../api/studentListAxios";
 
 // 교원 승인 확인 모달
 export const TeacherAcceptModal = ({
@@ -198,10 +199,14 @@ export const EditClassModal = ({
 
 // 재학 여부 수정 모달
 export const EditAttendModal = ({
+  saveCheckBox,
   editAttendModalOpen,
   setEditAttendModalOpen,
 }) => {
+  const [attendState, setAttendState] = useState("");
+
   const handleOk = () => {
+    saveCheckBox.forEach(item => patchStudentAttend(item, attendState));
     setEditAttendModalOpen(false);
   };
   const closeModal = () => {
@@ -229,13 +234,13 @@ export const EditAttendModal = ({
                 <select
                   name="grade"
                   id="grade"
-                  // onChange={e => handleYearList(e)}
+                  onChange={e => setAttendState(e.target.value)}
                 >
                   <option value="">학적 선택</option>
-                  <option>재학</option>
-                  <option>졸업</option>
-                  <option>전학</option>
-                  <option>자퇴</option>
+                  <option value="enroll">재학</option>
+                  <option value="graduation">졸업</option>
+                  <option value="transfer">전학</option>
+                  <option value="leave">자퇴</option>
                 </select>
               </label>
             </div>

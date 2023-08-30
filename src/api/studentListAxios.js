@@ -3,48 +3,29 @@ import { client } from "../api/client";
 // 학생관리 리스트
 export const getStudentData = async setStudentListData => {
   try {
-    const res = await client.get(`/api/teacher/signed`);
+    const res = await client.get(`/api/admin/student-list?page=1`);
     const result = res.data;
-    const listSortData = result.sort((a, b) =>
-      a.snm.toLowerCase() < b.snm.toLowerCase() ? -1 : 1,
-    );
-    setStudentListData(listSortData);
+    setStudentListData(result);
   } catch (err) {
     console.error(err);
   }
 };
 
-// 학생 가입 대기 명단
-export const getSignListData = async setStudentListData => {
+// 학생 학적구분 변경
+export const patchStudentAttend = async (saveCheckBox, attendState) => {
   try {
-    const res = await client.get(`/api/teacher/unsigned`);
+    let res;
+    if (attendState === "enroll") {
+      res = client.patch(`/api/admin/enroll-user?userId=${saveCheckBox}`);
+    } else if (attendState === "graduation") {
+      res = client.patch(`/api/admin/grad-user?userId=${saveCheckBox}`);
+    } else if (attendState === "transfer") {
+      res = client.patch(`/api/admin/tran-user?userId=${saveCheckBox}`);
+    } else {
+      res = client.patch(`/api/admin/leave-user?userId=${saveCheckBox}`);
+    }
     const result = res.data;
-    const signListSortData = result.sort((a, b) =>
-      a.snm.toLowerCase() < b.snm.toLowerCase() ? -1 : 1,
-    );
-    setStudentListData(signListSortData);
-  } catch (err) {
-    console.log(err);
-  }
-};
-
-// 학생 가입 승인
-export const patchSignAccept = async userId => {
-  try {
-    const res = await client.patch(
-      `/api/teacher/accept-student?userId=${userId}`,
-    );
-    const result = res.data;
-  } catch (err) {
-    console.log(err);
-  }
-};
-
-// 학생 승인 취소
-export const patchSignCancel = async userId => {
-  try {
-    const res = await client.patch(`/api/teacher/cancel-std?userId=${userId}`);
-    const result = res.data;
+    console.log(result);
   } catch (err) {
     console.log(err);
   }
