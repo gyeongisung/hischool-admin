@@ -1,5 +1,4 @@
-import React, { useMemo, useState } from "react";
-import { useNavigate } from "react-router";
+import React, { useEffect, useMemo, useState } from "react";
 import {
   NoticeButton,
   NoticeWUButton,
@@ -9,19 +8,17 @@ import {
 } from "../styles/NoticeStyle";
 import ReactQuill from "react-quill";
 import "../styles/quill.snow.css";
-import { postNoticeData } from "../api/noticesAxios";
+import { useNavigate } from "react-router";
+import { getNoticeData, patchNoticeData } from "../api/noticesAxios";
 
-const NoticeWrite = () => {
+const NoticeCorrection = props => {
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
   const [isImportant, setIsImportant] = useState(false);
   const navigate = useNavigate();
-
-  // ReactQull 태그 reference 저장
   const quillRef = React.useRef(null);
+  const noticeId = props.noticeId;
 
-  // 툴바 설정하기
-  // 화면이 갱신될때마다 새로 정의할 필요가 없음.
   const modules = useMemo(
     () => ({
       toolbar: {
@@ -44,7 +41,7 @@ const NoticeWrite = () => {
                 "#ffffff",
                 "#facccc",
                 "#ffebcc",
-                "#ffffcc",
+                "#ffffcc",-
                 "#cce8cc",
                 "#cce0f5",
                 "#ebd6ff",
@@ -87,38 +84,48 @@ const NoticeWrite = () => {
   const handleContentChange = event => {
     setContent(event);
   };
+
   const handleCheckboxChange = event => {
     setIsImportant(event.target.checked);
-  };
-
-  const handleSubmit = async event => {
-    event.preventDefault();
-    const dataToSend = {
-      title: title,
-      content: content,
-      imptyn: parseInt(isImportant ? 1 : 0),
-    };
-    try {
-      console.log(dataToSend);
-      await postNoticeData(dataToSend); // postNoticeData 함수 호출
-      console.log("글 등록 성공");
-    } catch (error) {
-      console.error("글 등록 오류:", error);
-    }
-
-    setTitle("");
-    setContent("");
-    setIsImportant(false);
-    navigate(-1);
   };
 
   const handleCencle = () => {
     navigate(-1);
   };
 
+  useEffect(() => {
+    async function fetchNotice() {
+      try {
+        const fetchedNotice = await getNoticeData(noticeId);
+        setTitle(fetchedNotice.title);
+        setContent(fetchedNotice.content);
+        setIsImportant(fetchedNotice.imptYn === 1);
+      } catch (error) {
+        console.error("공지를 불러오는 중 오류 발생:", error);
+      }
+    }
+    fetchNotice();
+  }, [noticeId]);
+
+  const handleSubmit = async event => {
+    event.preventDefault();
+    try {
+      const dataToSend = {
+        noticeId: noticeId,
+        title: title,
+        content: content,
+        imptyn: isImportant ? 1 : 0,
+      };
+      await patchNoticeData(dataToSend);
+      navigate(-1); // 성공 시 이전 페이지로 이동
+    } catch (error) {
+      console.error("글 수정 오류:", error);
+    }
+  };
+
   return (
     <NoticeWrap>
-      <h3>게시판 글쓰기</h3>
+      <h3>게시판 수정</h3>
       <label>
         중요 공지
         <input
@@ -132,12 +139,7 @@ const NoticeWrite = () => {
           <div>
             <label>제목</label>
           </div>
-          <input
-            type="text"
-            value={title}
-            onChange={handleTitleChange}
-            required
-          />
+          <input type="text" value={title} onChange={handleTitleChange} />
         </NoticeWUTitle>
         <NoticeWhiteNoitce>
           <ReactQuill
@@ -145,11 +147,11 @@ const NoticeWrite = () => {
             value={content}
             onChange={handleContentChange}
             modules={modules}
-            style={{height:"92%", border: "none"}}
+            style={{ height: "92%", border: "none" }}
           />
         </NoticeWhiteNoitce>
         <NoticeWUButton>
-          <NoticeButton type="submit">글쓰기</NoticeButton>
+          <NoticeButton type="submit">수정</NoticeButton>
           <NoticeButton onClick={handleCencle}>취소</NoticeButton>
         </NoticeWUButton>
       </form>
@@ -157,4 +159,4 @@ const NoticeWrite = () => {
   );
 };
 
-export default NoticeWrite;
+export default NoticeCorrection;

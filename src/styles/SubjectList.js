@@ -11,8 +11,8 @@ const SubjectListWrap = styled.div`
     font-size: 30px;
     margin-bottom: 10px;
   }
-  > .SubjectInput > button {
-    width: 6vw;
+  > .SubjectInput > a > button {
+    width: 8vw;
     height: 24px;
     line-height: 1;
     background: #fff;
@@ -22,6 +22,7 @@ const SubjectListWrap = styled.div`
     cursor: pointer;
   }
 `;
+
 const SubjectListGradeButton = styled.div`
   font-size: 20px;
   margin: auto;
@@ -39,6 +40,7 @@ const SubjectListGradeButton = styled.div`
     cursor: pointer;
   }
 `;
+
 const SubjectListDiv = styled.div`
   text-align: center;
   border: 1px solid #ccc;
@@ -78,4 +80,5 @@ const SubjectListDiv = styled.div`
     }
   }
 `;
+
 export { SubjectListWrap, SubjectListDiv, SubjectListGradeButton };

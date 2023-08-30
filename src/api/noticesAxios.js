@@ -6,7 +6,6 @@ export const getNoticeList = async setNoticeData => {
     const res = await client.get(`/api/notice`, { timeout: 1000 });
     const result = res.data;
     setNoticeData(result);
-    console.log(result);
   } catch (err) {
     console.error(err);
   }
@@ -16,7 +15,7 @@ export const getNoticeList = async setNoticeData => {
 export const postNoticeData = async dataToSend => {
   try {
     const response = await client.post("/api/notice", dataToSend);
-    console.log("response", response);
+    return response;
   } catch (err) {
     console.error(err);
   }
@@ -33,10 +32,11 @@ export const getNoticeData = async noticeId => {
     return null;
   }
 };
+
 export const patchNoticeData = async dataToSend => {
   try {
     const response = await client.patch(`/api/notice`, dataToSend);
-    console.log("글 수정 : ", response);
+    return response;
   } catch (err) {
     console.error(err);
   }
@@ -45,7 +45,16 @@ export const patchNoticeData = async dataToSend => {
 export const delectNoticeData = async noticeId => {
   try {
     const res = await client.delete(`/api/notice?noticeId=${noticeId}`);
-    console.log("글 삭제", res);
+    return res;
+  } catch (err) {
+    console.error(err);
+  }
+};
+
+export const patchNoticeHit = async (noticeId) => {
+  try {
+    const response = await client.patch(`/api/notice/hits?noticeId=${noticeId}`);
+    return response;
   } catch (err) {
     console.error(err);
   }

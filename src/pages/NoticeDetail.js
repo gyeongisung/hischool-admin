@@ -1,6 +1,10 @@
 import React, { useEffect, useState } from "react";
-import { Link, useNavigate, useParams } from "react-router-dom";
-import { delectNoticeData, getNoticeData } from "../api/noticesAxios";
+import { useNavigate, useParams } from "react-router-dom";
+import {
+  delectNoticeData,
+  getNoticeData,
+  patchNoticeHit,
+} from "../api/noticesAxios";
 import {
   NoticeDetailBoard,
   NoticeDetailButton,
@@ -15,9 +19,10 @@ const NoticeDetail = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
+    patchNoticeHit(noticeId);
     async function fetchNotice() {
       try {
-        const fetchedNotice = await getNoticeData(noticeId); // 공지사항 데이터 가져오기
+        const fetchedNotice = await getNoticeData(noticeId);
         setNotice(fetchedNotice);
       } catch (error) {
         console.error("Error fetching notice:", error);
@@ -41,6 +46,10 @@ const NoticeDetail = () => {
     delectNoticeData(noticeId);
     navigate(-1);
   };
+  
+  const handleEditClick = () => {
+    navigate(`/noticewc/editing`, { state: { noticeId } });
+  };
 
   return (
     <NoticeWrap>
@@ -50,7 +59,7 @@ const NoticeDetail = () => {
         <p>{notice.title}</p>
       </NoticeDetailITitle>
       <NoticeDetailInformation>
-        <div>관리자</div>
+        <div>관리자{notice.userId}</div>
         <div>
           <p>{notice.hits}</p>
           <p>{notice.createdAt.split("T", 1)}</p>
@@ -60,9 +69,9 @@ const NoticeDetail = () => {
         dangerouslySetInnerHTML={{ __html: notice.content }}
       ></NoticeDetailBoard>
       <NoticeDetailButton>
-        <Link to={`/noticecorrection/${notice.noticeId}`}>
-          <button type="submit">수정</button>
-        </Link>
+        <button type="submit" onClick={handleEditClick}>
+          수정
+        </button>
         <button onClick={handleDelect}>삭제</button>
         <button onClick={handleCencle}>목록</button>
       </NoticeDetailButton>
