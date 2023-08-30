@@ -18,14 +18,10 @@ const SignList = () => {
   const [acceptOk, setAcceptOk] = useState(false);
   const [modalOpen, setModalOpen] = useState(false);
   const [saveCheckBox, setSaveCheckBox] = useState([]);
-  const [page, setPage] = useState(0);
+  const [page, setPage] = useState(1);
   const [count, setCount] = useState("");
   const navigate = useNavigate();
   let resultIdArray = saveCheckBox;
-
-  useEffect(() => {
-    getSignListData(page, setListData, setCount);
-  }, []);
 
   // 전체 체크박스 선택
   const handleAllCheck = e => {
@@ -59,13 +55,13 @@ const SignList = () => {
 
   // Modal 확인 클릭 시
   useEffect(() => {
-    getSignListData(setListData);
+    getSignListData(page, setListData, setCount);
     if (acceptOk) {
       resultIdArray.forEach(item => putSignAccept(item));
     }
     setAcceptOk(false);
     setModalOpen(false);
-  }, [acceptOk]);
+  }, [page, acceptOk]);
 
   useEffect(() => {
     document.querySelector(".all-checkbox-btn").checked = false;

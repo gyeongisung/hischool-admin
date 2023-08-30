@@ -2,7 +2,7 @@ import { client } from "../api/client";
 
 export const getUserData = async setUserData => {
   try {
-    const res = await client.get(`/api/mypage/user-mypage`);
+    const res = await client.get(`/api/admin/tc/{userId}?userId=27`);
     const result = res.data;
     setUserData(result);
   } catch (err) {

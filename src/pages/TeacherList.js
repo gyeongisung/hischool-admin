@@ -13,14 +13,15 @@ const TeacherList = () => {
   // const [studentListData, setStudentListData] = useState([]);
   // const [acceptOk, setAcceptOk] = useState(false);
   // const [modalOpen, setModalOpen] = useState(false);
-  const [page, setPage] = useState(0);
+  const [page, setPage] = useState(1);
   const [count, setCount] = useState("");
   const [listData, setListData] = useState([]);
   const navigate = useNavigate();
   console.log(count);
+
   useEffect(() => {
     getTeacherList(page, setListData, setCount);
-  }, []);
+  }, [page]);
 
   // const handleOk = () => {
   //   setModalOpen(true);
@@ -76,7 +77,6 @@ const TeacherList = () => {
                   {item.enrollState === "ENROLL" && <li>재직</li>}
                   {item.enrollState === "LEAVE" && <li>탈퇴</li>}
                   {item.enrollState === "TRANSFER" && <li>전근</li>}
-                  {/* <li>{item.enrollState}</li> */}
                 </ul>
               </li>
             ))}
