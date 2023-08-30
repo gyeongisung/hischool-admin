@@ -4,13 +4,16 @@ import {
   SubjectListGradeButton,
   SubjectListWrap,
 } from "../styles/SubjectList";
+import { Link } from "react-router-dom";
 
 const SubjectList = () => {
   return (
     <SubjectListWrap>
       <h3>과목 관리</h3>
       <div className="SubjectInput">
-        <button>과목 정보 입력</button>
+        <Link to="/subjectlist/input">
+          <button>과목 정보 입력</button>
+        </Link>
       </div>
       <div>
         <SubjectListGradeButton>

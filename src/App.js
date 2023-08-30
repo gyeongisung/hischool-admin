@@ -12,9 +12,9 @@ import TeacherDetailInfo from "./pages/TeacherDetailInfo";
 import StudentList from "./pages/StudentList";
 import LifeRecord from "./pages/LifeRecord";
 import About from "./pages/About";
-import NoticeWrite from "./pages/NoticeWrite";
 import NoticeDetail from "./pages/NoticeDetail";
-import NoticeCorrection from "./pages/NoticeCorrection";
+import InputSubject from "./pages/InputSubject";
+import NoticeWC from "./pages/NoticeWC";
 
 function App() {
   return (
@@ -25,13 +25,10 @@ function App() {
         <Route element={<Main />}>
           <Route path="/home" element={<AdminHome />} />
           <Route path="/notice" element={<Notice />} />
-          <Route path="/write" element={<NoticeWrite />} />
           <Route path="/noticedetail/:noticeId" element={<NoticeDetail />} />
-          <Route
-            path="/noticecorrection/:noticeId"
-            element={<NoticeCorrection />}
-          />
+          <Route path="/noticewc/*" element={<NoticeWC />} />
           <Route path="/subjectlist" element={<SubjectList />} />
+          <Route path="/subjectlist/input" element={<InputSubject />} />
           <Route path="/teacherlist" element={<TeacherList />} />
           <Route path="/signlist" element={<SignList />} />
           <Route path="/teacherdetailinfo" element={<TeacherDetailInfo />} />

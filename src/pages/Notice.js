@@ -6,41 +6,33 @@ import {
   NoticeWrap,
 } from "../styles/NoticeStyle";
 import NoticePaging from "../components/NoticePaging";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { getNoticeList } from "../api/noticesAxios";
 
 const Notice = () => {
   const [noticeData, setNoticeData] = useState([]);
-  // 현재 페이지 상태를 관리하는 상태 변수
   const [currentPage, setCurrentPage] = useState(1);
+  const navigate = useNavigate();
 
-  // 페이지당 보여질 일반 공지 개수
   const itemsPerPage = 10;
 
-  // 중요한 공지와 일반 공지를 필터링
-  const importantNotices = noticeData.filter(notice => notice.imptYn === 1); //중요공지
-  const normalNotices = noticeData.filter(notice => notice.imptYn === 0); //일반공지
+  const importantNotices = noticeData.filter(notice => notice.imptYn === 1);
+  const normalNotices = noticeData.filter(notice => notice.imptYn === 0);
 
-  // 중요한 공지 중 마지막 4개를 유지, 나머지 중요한 공지는 일반 공지로 처리
   const last4ImportantNotices = importantNotices
-    .slice(-4) // 항상 마지막 4개 선택
-    .sort((a, b) => b.noticeId - a.noticeId); // id 역순 정렬
-  const otherImportantNotices = importantNotices.slice(0, -4); // 마지막에서 4번째를 제외하고 나머지
+    .slice(-4)
+    .sort((a, b) => b.noticeId - a.noticeId);
+  const otherImportantNotices = importantNotices.slice(0, -4);
 
-  // 마지막에서 4번째를 제외하고 중요한 공지와 일반 공지를 합친 배열
   const combinedNotices = [...otherImportantNotices, ...normalNotices];
-  // 총 개수
   const totalcombinedNoticeCount = combinedNotices.length;
-  // 역순 배치
   const sortedcombinedNotices = combinedNotices.sort(
     (a, b) => b.noticeId - a.noticeId,
   );
 
-  // 현재 페이지에서 보여줄 공지의 첫 번째와 마지막 인덱스를 계산
-  const indexOfLastItem = currentPage * itemsPerPage; // 현재 보여지는 페이지 갯수
-  const indexOfFirstItem = indexOfLastItem - itemsPerPage; // 한페이지에서 보여줄 항목의 갯수
+  const indexOfLastItem = currentPage * itemsPerPage;
+  const indexOfFirstItem = indexOfLastItem - itemsPerPage;
 
-  // 현재 페이지 일반 공지 배열
   const currentNormalItems = sortedcombinedNotices.slice(
     indexOfFirstItem,
     indexOfLastItem,
@@ -57,6 +49,10 @@ const Notice = () => {
     fetchData();
   }, [setNoticeData]);
 
+  const handleWritingClick = () => {
+    navigate("/noticewc/writing");
+  };
+
   return (
     <NoticeWrap>
       <NoticeTitle>
@@ -67,8 +63,8 @@ const Notice = () => {
           <input type="text" placeholder="검색어를 입력하세요." />
           <button>검색</button>
         </div>
-        <button className="writing">
-          <Link to={`/write`}>글쓰기</Link>
+        <button className="writing" onClick={handleWritingClick}>
+          글쓰기
         </button>
       </NoticeInput>
       <NoticeBoard>
