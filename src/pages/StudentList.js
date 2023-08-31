@@ -9,6 +9,7 @@ import { EditAttendModal, EditClassModal } from "../components/Modal";
 import { getStudentData } from "../api/studentListAxios";
 const StudentList = () => {
   const [page, setPage] = useState(1);
+  const [totlaPage, setTotalPage] = useState(1);
   const [saveCheckBox, setSaveCheckBox] = useState([]);
   const [editClassModalOpen, setEditClassModalOpen] = useState(false);
   const [editAttendModalOpen, setEditAttendModalOpen] = useState(false);
@@ -54,8 +55,8 @@ const StudentList = () => {
   };
 
   useEffect(() => {
-    getStudentData(setStudentListData);
-  }, [studentListData]);
+    getStudentData(page, setStudentListData, setTotalPage);
+  }, [page, studentListData]);
 
   return (
     <>
@@ -70,6 +71,7 @@ const StudentList = () => {
           saveCheckBox={saveCheckBox}
           editAttendModalOpen={editAttendModalOpen}
           setEditAttendModalOpen={setEditAttendModalOpen}
+          setSaveCheckBox={setSaveCheckBox}
         />
       )}
       <StudentListWrap>
@@ -148,7 +150,7 @@ const StudentList = () => {
               </ul>
             </li>
             {studentListData.length > 0 &&
-              studentListData.slice(0, 17).map((item, index) => (
+              studentListData.map((item, index) => (
                 <li className="class" key={index}>
                   <ul>
                     <li>
@@ -177,8 +179,8 @@ const StudentList = () => {
         <div className="pagination-wrap">
           <Pagination
             activePage={page}
-            itemsCountPerPage={10}
-            totalItemsCount={450}
+            itemsCountPerPage={17}
+            totalItemsCount={totlaPage}
             pageRangeDisplayed={5}
             prevPageText={"‹"}
             nextPageText={"›"}

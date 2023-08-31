@@ -1,11 +1,16 @@
 import { client } from "../api/client";
 
 // 학생관리 리스트
-export const getStudentData = async setStudentListData => {
+export const getStudentData = async (
+  page,
+  setStudentListData,
+  setTotalPage,
+) => {
   try {
-    const res = await client.get(`/api/admin/student-list?page=1`);
+    const res = await client.get(`/api/admin/student-list?page=${page}`);
     const result = res.data;
-    setStudentListData(result);
+    setStudentListData(result.list);
+    setTotalPage(result.totalCount);
   } catch (err) {
     console.error(err);
   }
