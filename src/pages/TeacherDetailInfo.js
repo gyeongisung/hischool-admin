@@ -7,6 +7,7 @@ import {
 } from "../styles/TeacherInfoStyle";
 import {
   deleteUser,
+  getTcDetailData,
   getUserData,
   putMyPageData,
 } from "../api/TeacherInfoAxios";
@@ -54,9 +55,8 @@ const TeacherDetailInfo = () => {
   const userRole = location.pathname.split("/")[1];
   // get axios 담는 함수
   useEffect(() => {
-    getUserData(setUserData);
+    getTcDetailData(setUserData);
   }, []);
-
 
   const handleChangeAddress = e => {
     setHouseAddress(e.target.value);
@@ -131,7 +131,7 @@ const TeacherDetailInfo = () => {
           <div className="user-info">
             <div className="user-info-wrap">
               <div className="picture-img">
-                <img src={userPic || userData.pic} alt="pic" />
+                <img src={userPic || userData.aprPic} alt="pic" />
               </div>
               <div className="school-info">
                 <TcMyPageUserInfo>

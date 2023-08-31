@@ -1,8 +1,8 @@
 import { client } from "../api/client";
 
-export const getUserData = async setUserData => {
+export const getTcDetailData = async (setUserData, userId) => {
   try {
-    const res = await client.get(`/api/admin/tc/{userId}?userId=27`);
+    const res = await client.get(`/api/admin/tc/${userId}`);
     const result = res.data;
     setUserData(result);
   } catch (err) {
