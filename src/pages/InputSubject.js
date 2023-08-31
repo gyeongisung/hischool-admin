@@ -4,7 +4,11 @@ import { useEffect } from "react";
 import { useState } from "react";
 import { faPlusCircle } from "@fortawesome/free-solid-svg-icons";
 import TSubjectPlus from "../components/TSubjectPlus";
-import { getALLMainSubData, getALLSubData, postALLData } from "../api/inputSubjectAxios";
+import {
+  getALLMainSubData,
+  getALLSubData,
+  postALLData,
+} from "../api/inputSubjectAxios";
 import {
   ISRButtonWrapper,
   InputSubJectWrap,
@@ -83,7 +87,7 @@ const InputSubject = () => {
     }
     fetchData();
   }, []);
-  
+
   const handleGrade = e => {
     setDropGrade(e.target.value);
   };
@@ -91,13 +95,15 @@ const InputSubject = () => {
   return (
     <InputSubJectWrap>
       <SJHeader>
-        <h3>과목 정보 입력</h3>
-        <select value={dropGrade} onChange={handleGrade}>
-          <option value="">학년 선택</option>
-          <option value={1}>1학년</option>
-          <option value={2}>2학년</option>
-          <option value={3}>3학년</option>
-        </select>
+        <div>
+          <h3>과목 정보 입력</h3>
+          <select value={dropGrade} onChange={handleGrade}>
+            <option value="">학년 선택</option>
+            <option value={1}>1학년</option>
+            <option value={2}>2학년</option>
+            <option value={3}>3학년</option>
+          </select>
+        </div>
         <SJButton>
           <button onClick={handleSaveButtonClick}>저장</button>
           <button onClick={() => navigate(-1)}>취소</button>
