@@ -95,13 +95,15 @@ const InputSubject = () => {
   return (
     <InputSubJectWrap>
       <SJHeader>
-        <h3>과목 정보 입력</h3>
-        <select value={dropGrade} onChange={handleGrade}>
-          <option value="">학년 선택</option>
-          <option value={1}>1학년</option>
-          <option value={2}>2학년</option>
-          <option value={3}>3학년</option>
-        </select>
+        <div>
+          <h3>과목 정보 입력</h3>
+          <select value={dropGrade} onChange={handleGrade}>
+            <option value="">학년 선택</option>
+            <option value={1}>1학년</option>
+            <option value={2}>2학년</option>
+            <option value={3}>3학년</option>
+          </select>
+        </div>
         <SJButton>
           <button onClick={handleSaveButtonClick}>저장</button>
           <button onClick={() => navigate(-1)}>취소</button>
