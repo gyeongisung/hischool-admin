@@ -10,6 +10,7 @@ export const StudentListWrap = styled.div`
   h3 {
     font-size: 30px;
     margin-bottom: 10px;
+    padding-left: 10px;
   }
   .pagination-wrap {
     ul {

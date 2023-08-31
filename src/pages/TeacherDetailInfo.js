@@ -3,17 +3,14 @@ import {
   MypageDiv,
   TcButtons,
   TcMyPageUserInfo,
-  TcMyPageWrap,
 } from "../styles/TeacherInfoStyle";
 import {
   deleteUser,
   getTcDetailData,
-  getUserData,
   putMyPageData,
 } from "../api/TeacherInfoAxios";
 import { DeleteUserModal } from "../components/Modal";
 import { useLocation, useNavigate } from "react-router";
-import { Cookies } from "react-cookie";
 
 const TeacherDetailInfo = () => {
   const [userData, setUserData] = useState([]);
@@ -33,7 +30,9 @@ const TeacherDetailInfo = () => {
   const [modalOpen, setModalOpen] = useState(false);
   const [errPassword, setErrPassword] = useState("");
   const navigate = useNavigate();
-  const location = useLocation();
+  const { state } = useLocation();
+
+  console.log(state);
 
   const checkPass = () => {
     const regex =
@@ -42,20 +41,9 @@ const TeacherDetailInfo = () => {
     setErrPassword(isValid ? "" : "비밀번호를 확인 해주세요.");
   };
 
-  const cookies = new Cookies();
-
-  const handleDeleteCookie = () => {
-    cookies.remove("accessToken");
-    cookies.remove("refreshToken");
-    setTimeout(() => {
-      navigate("/");
-    }, 500);
-  };
-
-  const userRole = location.pathname.split("/")[1];
   // get axios 담는 함수
   useEffect(() => {
-    getTcDetailData(setUserData);
+    getTcDetailData(setUserData, state.userId);
   }, []);
 
   const handleChangeAddress = e => {
@@ -114,7 +102,6 @@ const TeacherDetailInfo = () => {
     if (cancelOk === true) {
       setModalOpen(false);
       setCancelOk(false);
-      handleDeleteCookie();
       deleteUser();
     }
   }, [cancelOk]);
@@ -131,7 +118,7 @@ const TeacherDetailInfo = () => {
           <div className="user-info">
             <div className="user-info-wrap">
               <div className="picture-img">
-                <img src={userPic || userData.aprPic} alt="pic" />
+                <img src={userData.aprPic} alt="pic" />
               </div>
               <div className="school-info">
                 <TcMyPageUserInfo>
@@ -149,7 +136,7 @@ const TeacherDetailInfo = () => {
                     <input
                       type="text"
                       name="tnm"
-                      defaultValue={userData.unm}
+                      defaultValue={userData.nm}
                       readOnly
                     />
                   </li>
@@ -169,6 +156,7 @@ const TeacherDetailInfo = () => {
                       name="phone"
                       defaultValue={userData.phone}
                       onChange={handleChangePhone}
+                      readOnly
                     />
                   </li>
                   <li>
@@ -183,7 +171,8 @@ const TeacherDetailInfo = () => {
                           name="address"
                           onChange={handleChangeAddress}
                           onClick={() => setAddressModal(true)}
-                          value={houseAddress.address || userData.address}
+                          value={userData.address}
+                          readOnly
                         />
                       </div>
                       <input
@@ -191,8 +180,8 @@ const TeacherDetailInfo = () => {
                         name="detailAddress"
                         className="detail-address"
                         defaultValue={userData.detailAddr}
-                        onChange={handleChangeDetailAddr}
                         placeholder="상세 주소를 입력하세요."
+                        readOnly
                       />
                     </div>
                   </li>
@@ -202,7 +191,8 @@ const TeacherDetailInfo = () => {
                       <input
                         type="text"
                         name="snm"
-                        defaultValue={userData.schnm}
+                        defaultValue={userData.schoolNm}
+                        readOnly
                       />
                       <div>
                         <input
@@ -213,7 +203,7 @@ const TeacherDetailInfo = () => {
                         <input
                           type="text"
                           name="van"
-                          defaultValue={userData.van}
+                          defaultValue={userData.vanNum}
                         />
                       </div>
                     </div>

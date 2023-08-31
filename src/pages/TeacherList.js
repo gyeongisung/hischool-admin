@@ -5,27 +5,18 @@ import {
   TeacherListWrap,
 } from "../styles/TeacherListStyle";
 import { useNavigate } from "react-router";
-import { Link } from "react-router-dom";
 import { getTeacherList } from "../api/TeacherListAxios";
 import Paging from "../components/Paging";
 
 const TeacherList = () => {
-  // const [studentListData, setStudentListData] = useState([]);
-  // const [acceptOk, setAcceptOk] = useState(false);
-  // const [modalOpen, setModalOpen] = useState(false);
   const [page, setPage] = useState(1);
   const [count, setCount] = useState("");
   const [listData, setListData] = useState([]);
   const navigate = useNavigate();
-  console.log(count);
 
   useEffect(() => {
     getTeacherList(page, setListData, setCount);
   }, [page]);
-
-  // const handleOk = () => {
-  //   setModalOpen(true);
-  // };
 
   const handleSginClick = () => {
     navigate("/signlist");
@@ -33,20 +24,26 @@ const TeacherList = () => {
 
   return (
     <TeacherListWrap>
-      {/* {modalOpen && (
-        <TeacherAcceptModal
-          modalOpen={modalOpen}
-          setModalOpen={setModalOpen}
-          resultIdArray={resultIdArray}
-          setAcceptOk={setAcceptOk}
-        />
-      )} */}
       <TeacherListTitle>
-        <div>
+        <div className="title-left">
           <h3>교원관리</h3>
+          <button onClick={handleSginClick}>승인대기 명단</button>
         </div>
-        <div>
-          <button onClick={handleSginClick}>가입대기 명단</button>
+        <div className="title-right">
+          <div>
+            <select>
+              <option value="">재직 여부</option>
+              <option value="ENROLL">재직</option>
+              <option value="TRANSFER">전근</option>
+              <option value="LEAVE">퇴직</option>
+            </select>
+          </div>
+          <div>
+            <form>
+              <input type="text" placeholder="이름을 입력하세요." />
+              <button>검색</button>
+            </form>
+          </div>
         </div>
       </TeacherListTitle>
       <TeacherListDiv>
@@ -65,8 +62,15 @@ const TeacherList = () => {
               <li className="class" key={index}>
                 <ul>
                   <li>{index + 1}</li>
-                  <li>
-                    <Link to={"/teacherdetailinfo"}>{item.nm}</Link>
+                  <li
+                    className="student-name"
+                    onClick={() => {
+                      navigate("/teacherdetailinfo", {
+                        state: { userId: item.userId },
+                      });
+                    }}
+                  >
+                    {item.nm}
                   </li>
                   <li>{item.birth}</li>
                   <li>{item.phone}</li>
@@ -75,8 +79,8 @@ const TeacherList = () => {
                     {item.grade}학년 {item.vanNum}반
                   </li>
                   {item.enrollState === "ENROLL" && <li>재직</li>}
-                  {item.enrollState === "LEAVE" && <li>탈퇴</li>}
                   {item.enrollState === "TRANSFER" && <li>전근</li>}
+                  {item.enrollState === "LEAVE" && <li>퇴직</li>}
                 </ul>
               </li>
             ))}

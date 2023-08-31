@@ -131,7 +131,16 @@ const SignList = () => {
                   />
                 </li>
                 <li>{index + 1}</li>
-                <li>{item.nm}</li>
+                <li
+                  className="student-name"
+                  onClick={() => {
+                    navigate("/teacherdetailinfo", {
+                      state: { userId: item.userId },
+                    });
+                  }}
+                >
+                  {item.nm}
+                </li>
                 <li>{item.birth}</li>
                 <li>{item.phone}</li>
                 <li>{item.email}</li>
