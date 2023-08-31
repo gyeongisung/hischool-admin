@@ -13,6 +13,7 @@ const SideMenuWrap = styled.div`
     height: 200px;
     border-radius: 50%;
     border: 3px solid #fff;
+    background: #fff;
     overflow: hidden;
     .img-wrap {
       width: 200px;
@@ -41,9 +42,6 @@ const SideMenuWrap = styled.div`
       align-items: center;
       span {
       }
-    }
-    .user-img {
-      cursor: pointer;
     }
     p {
       text-align: center;
@@ -105,7 +103,7 @@ const SideMenuWrap = styled.div`
             .arrow {
               position: absolute;
               right: 20px;
-              top: calc(50% - 9px);
+              top: calc(50% - 7px);
               font-size: 15px;
             }
           }
@@ -133,7 +131,7 @@ const SideMenuWrap = styled.div`
             .arrow {
               position: absolute;
               right: 20px;
-              top: calc(50% - 9px);
+              top: calc(50% - 7px);
               font-size: 15px;
             }
           }

@@ -19,7 +19,7 @@ const TeacherList = () => {
   }, [page]);
 
   const handleSginClick = () => {
-    navigate("/signlist");
+    navigate("/teacherlist/signlist");
   };
 
   return (
@@ -65,7 +65,7 @@ const TeacherList = () => {
                   <li
                     className="student-name"
                     onClick={() => {
-                      navigate("/teacherdetailinfo", {
+                      navigate("/teacherlist/detailinfo", {
                         state: { userId: item.userId },
                       });
                     }}
