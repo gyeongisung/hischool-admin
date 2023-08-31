@@ -22,7 +22,7 @@ const InputSubject = () => {
   const [studentsData, setStudentsData] = useState([]);
   const [lastSavedData, setLastSavedData] = useState([]);
   const [subjectData, setSubjectData] = useState([]);
-  const [dropGrade, setDropGrade] = useState([]);
+  const [grade, setGrade] = useState([]);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -41,11 +41,10 @@ const InputSubject = () => {
     setLastSavedData(updateData);
   };
 
-  console.log("lastSavedData :", lastSavedData);
   const handleSaveButtonClick = async () => {
     if (lastSavedData) {
       const dataToSend = lastSavedData.map(item => ({
-        subjectid: parseInt(item.subjectid) || 0,
+        subjectId: parseInt(item.subjectid) || 0,
       }));
       await postALLData(dataToSend);
       navigate(-1);
@@ -66,15 +65,16 @@ const InputSubject = () => {
       try {
         // 과목 계열 가져오기
         const mainSubData = await getALLMainSubData();
+        console.log("mainSubData", mainSubData);
         // 세부 과목 가져오기
         const newSubjectData = await Promise.all(
           mainSubData.map(async mainSubject => {
-            const subData = await getALLSubData(mainSubject.categoryid);
+            const subData = await getALLSubData(mainSubject.categoryId);
             return {
-              mainsubject: mainSubject.nm,
+              mainsubject: mainSubject.categoryNm,
               data: subData.map(subSubject => ({
-                subsubject: subSubject.nm,
-                subjectid: subSubject.subjectid,
+                subsubject: subSubject.subjectNm,
+                subjectid: subSubject.subjectId,
               })),
             };
           }),
@@ -89,7 +89,7 @@ const InputSubject = () => {
   }, []);
 
   const handleGrade = e => {
-    setDropGrade(e.target.value);
+    setGrade(e.target.value);
   };
 
   return (
@@ -97,7 +97,7 @@ const InputSubject = () => {
       <SJHeader>
         <div>
           <h3>과목 정보 입력</h3>
-          <select value={dropGrade} onChange={handleGrade}>
+          <select value={grade} onChange={handleGrade}>
             <option value="">학년 선택</option>
             <option value={1}>1학년</option>
             <option value={2}>2학년</option>
