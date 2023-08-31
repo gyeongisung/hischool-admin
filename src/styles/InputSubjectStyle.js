@@ -62,6 +62,14 @@ const SJHeader = styled.div`
       font-size: 30px;
       margin-right: 10px;
     }
+    select {
+      margin: 0 auto;
+      border: 1px solid #bbb;
+      border-radius: 3px;
+      width: 10vw;
+      height: 25px;
+      text-align: center;
+    }
   }
 `;
 

@@ -225,23 +225,21 @@ const NoticeDetailInformation = styled.div`
     display: flex;
     gap: 1vh;
     align-items: center;
-    > p {
-      :nth-child(2) {
-        position: relative;
-        margin-left: 2px;
-        padding-left: 10px;
-      }
-      :nth-child(2)::after {
-        position: absolute;
-        left: 0;
-        top: 3px;
-        content: "";
-        top: 50%;
-        transform: translateY(-50%);
-        width: 1px;
-        height: 15px;
-        background-color: black;
-      }
+    :nth-child(2) {
+      position: relative;
+      margin-left: 2px;
+      padding-left: 10px;
+    }
+    :nth-child(2)::after {
+      position: absolute;
+      left: 0;
+      top: 3px;
+      content: "";
+      top: 50%;
+      transform: translateY(-50%);
+      width: 1px;
+      height: 15px;
+      background-color: black;
     }
   }
 `;
