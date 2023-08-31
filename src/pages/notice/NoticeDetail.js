@@ -42,7 +42,7 @@ const NoticeDetail = () => {
     return <div>공지사항을 찾을 수 없습니다.</div>;
   }
   const handleCencle = () => {
-    navigate(-1);
+    navigate("/notice");
   };
   const handleDelect = () => {
     delectNoticeData(noticeId);

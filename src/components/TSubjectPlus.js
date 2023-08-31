@@ -10,7 +10,7 @@ const TSubjectPlus = ({
 }) => {
   const initialStudentData = {
     subject: "",
-    subjectid: "",
+    subjectId: "",
   };
   const [studentData, setStudentData] = useState(initialStudentData);
 
@@ -55,8 +55,8 @@ const TSubjectPlus = ({
           })}
         </select>
         <select
-          name="subjectid"
-          value={studentData?.subjectid || ""}
+          name="subjectId"
+          value={studentData?.subjectId || ""}
           onChange={handleInputChange}
         >
           <option value="">세부 과목 선택</option>

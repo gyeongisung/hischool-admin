@@ -15,21 +15,56 @@ export const TeacherListWrap = styled.div`
 `;
 export const TeacherListTitle = styled.div`
   display: flex;
+  justify-content: space-between;
   gap: 20px;
-  align-items: center;
   padding: 0 0 0.5% 0;
-  h3 {
-    font-size: 30px;
+  .title-left {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    h3 {
+      font-size: 30px;
+      padding-left: 10px;
+    }
+    button {
+      width: 120px;
+      height: 30px;
+      font-size: 17px;
+      cursor: pointer;
+      border: none;
+      border-radius: 5px;
+      background: #64ccc5;
+      color: #fff;
+    }
   }
-  button {
-    width: 120px;
-    height: 30px;
-    font-size: 17px;
-    cursor: pointer;
-    border: none;
-    border-radius: 5px;
-    background: #64ccc5;
-    color: #fff;
+  .title-right {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 15px;
+    margin-right: 20px;
+    > div {
+      line-height: 1;
+      > select {
+        height: 25px;
+      }
+    }
+    form {
+      display: flex;
+      gap: 5px;
+      input {
+        padding-left: 5px;
+      }
+      button {
+        width: 50px;
+        height: 25px;
+        cursor: pointer;
+        border: none;
+        border-radius: 5px;
+        background: #64ccc5;
+        color: #fff;
+      }
+    }
   }
 `;
 
@@ -88,6 +123,10 @@ export const TeacherListDiv = styled.div`
             background: #176b87;
             color: #fff;
           }
+        }
+        .student-name {
+          cursor: pointer;
+          text-decoration: underline;
         }
       }
     }

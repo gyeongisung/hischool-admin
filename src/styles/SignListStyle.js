@@ -16,6 +16,7 @@ const StudentListTitle = styled.div`
   h3 {
     font-size: 30px;
     margin-bottom: 5px;
+    padding-left: 10px;
   }
   .ListButtons {
     display: flex;
@@ -69,6 +70,10 @@ const TimeTableDiv = styled.div`
           :not(:last-of-type) {
             border-right: 1px solid #ccc;
           }
+        }
+        .student-name {
+          cursor: pointer;
+          text-decoration: underline;
         }
       }
     }

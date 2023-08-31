@@ -2,6 +2,7 @@ import { client } from "../api/client";
 
 export const getTcDetailData = async (setUserData, userId) => {
   try {
+    console.log(userId);
     const res = await client.get(`/api/admin/tc/${userId}`);
     const result = res.data;
     setUserData(result);
