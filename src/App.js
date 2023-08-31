@@ -31,8 +31,11 @@ function App() {
           <Route path="/subjectlist" element={<SubjectList />} />
           <Route path="/subjectlist/input" element={<InputSubject />} />
           <Route path="/teacherlist" element={<TeacherList />} />
-          <Route path="/signlist" element={<SignList />} />
-          <Route path="/teacherdetailinfo" element={<TeacherDetailInfo />} />
+          <Route path="/teacherlist/signlist" element={<SignList />} />
+          <Route
+            path="/teacherlist/detailinfo"
+            element={<TeacherDetailInfo />}
+          />
           <Route path="/studentlist" element={<StudentList />} />
           <Route path="/liferecord" element={<LifeRecord />} />
           <Route path="/about" element={<About />} />

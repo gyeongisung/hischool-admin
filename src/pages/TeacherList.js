@@ -28,7 +28,7 @@ const TeacherList = () => {
   // };
 
   const handleSginClick = () => {
-    navigate("/signlist");
+    navigate("/teacherlist/signlist");
   };
 
   return (
@@ -66,7 +66,7 @@ const TeacherList = () => {
                 <ul>
                   <li>{index + 1}</li>
                   <li>
-                    <Link to={"/teacherdetailinfo"}>{item.nm}</Link>
+                    <Link to={"/teacherlist/detailinfo"}>{item.nm}</Link>
                   </li>
                   <li>{item.birth}</li>
                   <li>{item.phone}</li>

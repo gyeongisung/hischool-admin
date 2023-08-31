@@ -42,21 +42,17 @@ const SideMenu = () => {
         <div className="main-logo" onClick={() => navigate(`/home`)}>
           <span>Hi! School</span>
         </div>
-        <div className="user-img" onClick={() => navigate(`/mypage`)}>
+        <div className="user-img">
           <img src={userImg} alt="안녕" className="img-wrap" />
         </div>
         <p>
           <span className="user-icon">
             <FontAwesomeIcon icon={faUser} />
           </span>
-          <ins onClick={() => navigate(`/mypage`)}>
-            <span className="user-name">관리자</span>
-          </ins>
+          <span className="user-name">관리자</span>
           <span>님</span>
           <br />
-          <ins onClick={() => navigate(`/mypage`)}>
-            <span className="user-email">{`(${userEmail})`}</span>
-          </ins>
+          <span className="user-email">{`(${userEmail})`}</span>
           <br />
           <span>반갑습니다!</span>
         </p>
