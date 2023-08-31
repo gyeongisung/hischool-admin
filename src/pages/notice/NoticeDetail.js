@@ -4,14 +4,14 @@ import {
   delectNoticeData,
   getNoticeData,
   patchNoticeHit,
-} from "../api/noticesAxios";
+} from "../../api/noticesAxios";
 import {
   NoticeDetailBoard,
   NoticeDetailButton,
   NoticeDetailITitle,
   NoticeDetailInformation,
   NoticeWrap,
-} from "../styles/NoticeStyle";
+} from "../../styles/notice/NoticeStyle";
 
 const NoticeDetail = () => {
   const { noticeId } = useParams();
@@ -46,7 +46,7 @@ const NoticeDetail = () => {
     delectNoticeData(noticeId);
     navigate(-1);
   };
-  
+
   const handleEditClick = () => {
     navigate(`/noticewc/editing`, { state: { noticeId } });
   };

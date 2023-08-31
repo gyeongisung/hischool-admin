@@ -1,8 +1,8 @@
 import React from "react";
-import "../styles/quill.snow.css";
+import "../../styles/notice/quill.snow.css";
 import { useLocation } from "react-router";
-import NoticeWrite from "../components/NoticeWrite";
-import NoticeCorrection from "../components/NoticeCorrection";
+import NoticeWrite from "../../components/notice/NoticeWrite";
+import NoticeCorrection from "../../components/notice/NoticeCorrection";
 
 const NoticeWC = () => {
   const location = useLocation();

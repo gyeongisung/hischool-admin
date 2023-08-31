@@ -1,15 +1,16 @@
 import React, { useEffect, useMemo, useState } from "react";
+
+import ReactQuill from "react-quill";
+import "../../styles/notice/quill.snow.css";
+import { useNavigate } from "react-router";
+import { getNoticeData, patchNoticeData } from "../../api/noticesAxios";
 import {
   NoticeButton,
   NoticeWUButton,
   NoticeWUTitle,
   NoticeWhiteNoitce,
   NoticeWrap,
-} from "../styles/NoticeStyle";
-import ReactQuill from "react-quill";
-import "../styles/quill.snow.css";
-import { useNavigate } from "react-router";
-import { getNoticeData, patchNoticeData } from "../api/noticesAxios";
+} from "../../styles/notice/NoticeStyle";
 
 const NoticeCorrection = props => {
   const [title, setTitle] = useState("");
@@ -41,8 +42,8 @@ const NoticeCorrection = props => {
                 "#ffffff",
                 "#facccc",
                 "#ffebcc",
-                "#ffffcc",-
-                "#cce8cc",
+                "#ffffcc",
+                -"#cce8cc",
                 "#cce0f5",
                 "#ebd6ff",
                 "#bbbbbb",
