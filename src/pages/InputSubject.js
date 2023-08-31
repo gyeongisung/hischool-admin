@@ -4,7 +4,11 @@ import { useEffect } from "react";
 import { useState } from "react";
 import { faPlusCircle } from "@fortawesome/free-solid-svg-icons";
 import TSubjectPlus from "../components/TSubjectPlus";
-import { getALLMainSubData, getALLSubData, postALLData } from "../api/inputSubjectAxios";
+import {
+  getALLMainSubData,
+  getALLSubData,
+  postALLData,
+} from "../api/inputSubjectAxios";
 import {
   ISRButtonWrapper,
   InputSubJectWrap,
@@ -83,7 +87,7 @@ const InputSubject = () => {
     }
     fetchData();
   }, []);
-  
+
   const handleGrade = e => {
     setDropGrade(e.target.value);
   };
