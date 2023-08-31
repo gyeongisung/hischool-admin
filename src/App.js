@@ -26,6 +26,7 @@ function App() {
           <Route path="/home" element={<AdminHome />} />
           <Route path="/notice" element={<Notice />} />
           <Route path="/notice/:noticeId" element={<NoticeDetail />} />
+          <Route path="/notice/editing/:noticeId" element={<NoticeWC />} />
           <Route path="/notice/writing" element={<NoticeWC />} />
           <Route path="/subjectlist" element={<SubjectList />} />
           <Route path="/subjectlist/input" element={<InputSubject />} />
