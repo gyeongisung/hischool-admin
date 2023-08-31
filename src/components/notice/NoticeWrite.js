@@ -1,15 +1,16 @@
 import React, { useMemo, useState } from "react";
 import { useNavigate } from "react-router";
+
+import ReactQuill from "react-quill";
+import "../../styles/notice/quill.snow.css";
+import { postNoticeData } from "../../api/noticesAxios";
 import {
   NoticeButton,
   NoticeWUButton,
   NoticeWUTitle,
   NoticeWhiteNoitce,
   NoticeWrap,
-} from "../styles/NoticeStyle";
-import ReactQuill from "react-quill";
-import "../styles/quill.snow.css";
-import { postNoticeData } from "../api/noticesAxios";
+} from "../../styles/notice/NoticeStyle";
 
 const NoticeWrite = () => {
   const [title, setTitle] = useState("");

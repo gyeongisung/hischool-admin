@@ -25,7 +25,6 @@ export const patchStudentAttend = async (saveCheckBox, attendState) => {
       res = client.patch(`/api/admin/leave-user?userId=${saveCheckBox}`);
     }
     const result = res.data;
-    console.log(result);
   } catch (err) {
     console.log(err);
   }

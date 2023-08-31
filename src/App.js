@@ -4,7 +4,7 @@ import Login from "./pages/Login";
 import NotFound from "./pages/NotFound";
 import Main from "./pages/Main";
 import AdminHome from "./pages/AdminHome";
-import Notice from "./pages/Notice";
+import Notice from "./pages/notice/Notice";
 import SubjectList from "./pages/SubjectList";
 import TeacherList from "./pages/TeacherList";
 import SignList from "./pages/SignList";
@@ -12,9 +12,9 @@ import TeacherDetailInfo from "./pages/TeacherDetailInfo";
 import StudentList from "./pages/StudentList";
 import LifeRecord from "./pages/LifeRecord";
 import About from "./pages/About";
-import NoticeDetail from "./pages/NoticeDetail";
+import NoticeDetail from "./pages/notice/NoticeDetail";
 import InputSubject from "./pages/InputSubject";
-import NoticeWC from "./pages/NoticeWC";
+import NoticeWC from "./pages/notice/NoticeWC";
 
 function App() {
   return (
@@ -25,8 +25,8 @@ function App() {
         <Route element={<Main />}>
           <Route path="/home" element={<AdminHome />} />
           <Route path="/notice" element={<Notice />} />
-          <Route path="/noticedetail/:noticeId" element={<NoticeDetail />} />
-          <Route path="/noticewc/*" element={<NoticeWC />} />
+          <Route path="/notice/:noticeId" element={<NoticeDetail />} />
+          <Route path="/notice/writing" element={<NoticeWC />} />
           <Route path="/subjectlist" element={<SubjectList />} />
           <Route path="/subjectlist/input" element={<InputSubject />} />
           <Route path="/teacherlist" element={<TeacherList />} />

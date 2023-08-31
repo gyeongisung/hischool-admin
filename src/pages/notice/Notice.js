@@ -4,10 +4,11 @@ import {
   NoticeInput,
   NoticeTitle,
   NoticeWrap,
-} from "../styles/NoticeStyle";
-import NoticePaging from "../components/NoticePaging";
+  PaginationContainer,
+} from "../../styles/notice/NoticeStyle";
 import { Link, useNavigate } from "react-router-dom";
-import { getNoticeList } from "../api/noticesAxios";
+import { getNoticeList } from "../../api/noticesAxios";
+import Pagination from "react-js-pagination";
 
 const Notice = () => {
   const [noticeData, setNoticeData] = useState([]);
@@ -50,7 +51,7 @@ const Notice = () => {
   }, [setNoticeData]);
 
   const handleWritingClick = () => {
-    navigate("/noticewc/writing");
+    navigate("/notice/writing");
   };
 
   return (
@@ -82,9 +83,7 @@ const Notice = () => {
                 <span>중요</span>
               </li>
               <li>
-                <Link to={`/noticedetail/${notice.noticeId}`}>
-                  {notice.title}
-                </Link>
+                <Link to={`/notice/${notice.noticeId}`}>{notice.title}</Link>
               </li>
               <li>관리자{notice.userId}</li>
               <li>{notice.createdAt.split("T", 1)}</li>
@@ -98,9 +97,7 @@ const Notice = () => {
                   (index + itemsPerPage * (currentPage - 1))}
               </li>
               <li>
-                <Link to={`/noticedetail/${notice.noticeId}`}>
-                  {notice.title}
-                </Link>
+                <Link to={`/notice/${notice.noticeId}`}>{notice.title}</Link>
               </li>
               <li>관리자{notice.userId}</li>
               <li>{notice.createdAt.split("T", 1)}</li>
@@ -109,12 +106,17 @@ const Notice = () => {
           ))}
         </div>
       </NoticeBoard>
-      <NoticePaging
-        page={currentPage}
-        setPage={setCurrentPage}
-        totalpage={totalcombinedNoticeCount}
-        itemsPerPage={itemsPerPage}
-      />
+      <PaginationContainer>
+        <Pagination
+          activePage={currentPage}
+          itemsCountPerPage={itemsPerPage}
+          totalItemsCount={totalcombinedNoticeCount}
+          pageRangeDisplayed={5}
+          prevPageText={"‹"}
+          nextPageText={"›"}
+          onChange={setCurrentPage}
+        />
+      </PaginationContainer>
     </NoticeWrap>
   );
 };

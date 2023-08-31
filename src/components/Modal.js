@@ -205,9 +205,18 @@ export const EditAttendModal = ({
 }) => {
   const [attendState, setAttendState] = useState("");
 
+  // 체크박스 초기화
+  const checkBoxInit = () => {
+    const allCheckBox = document.querySelectorAll(".checkbox");
+    allCheckBox.forEach(item => {
+      item.checked = false;
+    });
+  };
+
   const handleOk = () => {
     saveCheckBox.forEach(item => patchStudentAttend(item, attendState));
     setEditAttendModalOpen(false);
+    checkBoxInit();
   };
   const closeModal = () => {
     setEditAttendModalOpen(false);

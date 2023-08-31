@@ -55,7 +55,7 @@ const StudentList = () => {
 
   useEffect(() => {
     getStudentData(setStudentListData);
-  }, []);
+  }, [studentListData]);
 
   return (
     <>
