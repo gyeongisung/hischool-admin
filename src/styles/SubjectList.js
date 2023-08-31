@@ -22,6 +22,11 @@ const SubjectListWrap = styled.div`
     cursor: pointer;
   }
 `;
+const SubjectListGradeSubject = styled.div`
+  margin-top: 1vh;
+  display: flex;
+  justify-content: space-between;
+`;
 
 const SubjectListGradeButton = styled.div`
   font-size: 20px;
@@ -51,7 +56,7 @@ const SubjectListDiv = styled.div`
   box-sizing: border-box;
   margin-bottom: 2vh;
   > ul {
-    height: 20vh;
+    height: 76vh;
     display: grid;
     grid-template-columns: 1fr;
     grid-template-rows: repeat(18, 39px);
@@ -69,7 +74,7 @@ const SubjectListDiv = styled.div`
       > ul {
         height: 100%;
         display: grid;
-        grid-template-columns: 1fr 1fr 1fr 1fr;
+        grid-template-columns: 1fr 16fr;
         > li {
           line-height: 2;
           :not(:last-of-type) {
@@ -81,4 +86,9 @@ const SubjectListDiv = styled.div`
   }
 `;
 
-export { SubjectListWrap, SubjectListDiv, SubjectListGradeButton };
+export {
+  SubjectListWrap,
+  SubjectListDiv,
+  SubjectListGradeButton,
+  SubjectListGradeSubject,
+};

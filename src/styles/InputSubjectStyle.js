@@ -57,9 +57,11 @@ const SJHeader = styled.div`
   justify-content: space-between;
   align-items: end;
   margin-bottom: 15px;
-  h3 {
-    font-size: 30px;
-    margin-right: 10px;
+  div {
+    h3 {
+      font-size: 30px;
+      margin-right: 10px;
+    }
   }
 `;
 
