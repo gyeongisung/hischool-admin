@@ -142,6 +142,7 @@ export const StudentListDiv = styled.div`
   background: #fff;
   box-shadow: 0px 0.5px 5px 0px rgba(0, 0, 0, 0.2);
   box-sizing: border-box;
+  position: relative;
   > ul {
     height: 100%;
     display: grid;
@@ -170,5 +171,11 @@ export const StudentListDiv = styled.div`
         }
       }
     }
+  }
+  .list-err-msg {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
   }
 `;

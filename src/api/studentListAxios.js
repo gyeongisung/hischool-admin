@@ -43,14 +43,13 @@ export const getStudentSearchList = async (
   setTotalPage,
 ) => {
   try {
-    console.log(searchText, page);
-    const res = client.get(
-      `/api/admin/name-student-list?search=%EA%B9%80&page=1`,
+    const res = await client.get(
+      `/api/admin/name-student-list?search=${searchText}&page=${page}`,
     );
     const result = res.data;
     console.log(result);
-    // setStudentListData(result.list);
-    // setTotalPage(result.totalCount);
+    setStudentListData(result.list);
+    setTotalPage(result.totalCount);
   } catch (err) {
     console.log(err);
   }

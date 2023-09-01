@@ -12,6 +12,7 @@ const StudentList = () => {
   const [totlaPage, setTotalPage] = useState(0);
   const [searchText, setSearchText] = useState("");
   const [saveCheckBox, setSaveCheckBox] = useState([]);
+  const [handleOk, setHandleOk] = useState(false);
   const [editClassModalOpen, setEditClassModalOpen] = useState(false);
   const [editAttendModalOpen, setEditAttendModalOpen] = useState(false);
   const [studentListData, setStudentListData] = useState("");
@@ -62,11 +63,8 @@ const StudentList = () => {
 
   useEffect(() => {
     getStudentData(page, setStudentListData, setTotalPage);
-  }, [page, studentListData]);
-
-  useEffect(() => {
-    getStudentData(page, setStudentListData, setTotalPage);
-  }, [studentListData]);
+    setHandleOk(false);
+  }, [page, handleOk]);
 
   return (
     <>
@@ -82,13 +80,14 @@ const StudentList = () => {
           editAttendModalOpen={editAttendModalOpen}
           setEditAttendModalOpen={setEditAttendModalOpen}
           setSaveCheckBox={setSaveCheckBox}
+          setHandleOk={setHandleOk}
         />
       )}
       <StudentListWrap>
         <h3>학생 관리</h3>
         <StudentListHeader>
           <div className="search-wrap">
-            <form action="">
+            <form>
               <input
                 type="text"
                 placeholder="학생 이름을 입력하세요."
@@ -164,7 +163,7 @@ const StudentList = () => {
                 <li className="time-table-th">학적 구분</li>
               </ul>
             </li>
-            {studentListData.length > 0 &&
+            {studentListData.length > 0 ? (
               studentListData.map((item, index) => (
                 <li className="class" key={index}>
                   <ul>
@@ -188,20 +187,25 @@ const StudentList = () => {
                     {item.enrollState === "TRANSFER" && <li>전학</li>}
                   </ul>
                 </li>
-              ))}
+              ))
+            ) : (
+              <div className="list-err-msg">조회된 학생이 없습니다.</div>
+            )}
           </ul>
         </StudentListDiv>
-        <div className="pagination-wrap">
-          <Pagination
-            activePage={page}
-            itemsCountPerPage={17}
-            totalItemsCount={totlaPage}
-            pageRangeDisplayed={5}
-            prevPageText={"‹"}
-            nextPageText={"›"}
-            onChange={setPage}
-          />
-        </div>
+        {totlaPage !== 0 && (
+          <div className="pagination-wrap">
+            <Pagination
+              activePage={page}
+              itemsCountPerPage={17}
+              totalItemsCount={totlaPage}
+              pageRangeDisplayed={5}
+              prevPageText={"‹"}
+              nextPageText={"›"}
+              onChange={setPage}
+            />
+          </div>
+        )}
       </StudentListWrap>
     </>
   );
