@@ -15,6 +15,7 @@ import About from "./pages/About";
 import NoticeDetail from "./pages/notice/NoticeDetail";
 import InputSubject from "./pages/InputSubject";
 import NoticeWC from "./pages/notice/NoticeWC";
+import SubjectWC from "./pages/SubjectWC";
 
 function App() {
   return (
@@ -30,6 +31,7 @@ function App() {
           <Route path="/notice/writing" element={<NoticeWC />} />
           <Route path="/subjectlist" element={<SubjectList />} />
           <Route path="/subjectlist/input" element={<InputSubject />} />
+          <Route path="/subject/wc/:gradeId" element={<SubjectWC />} />
           <Route path="/teacherlist" element={<TeacherList />} />
           <Route path="/teacherlist/signlist" element={<SignList />} />
           <Route
