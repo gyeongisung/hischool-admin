@@ -6,10 +6,11 @@ import {
 } from "../styles/StudentListStyle";
 import Pagination from "react-js-pagination";
 import { EditAttendModal, EditClassModal } from "../components/Modal";
-import { getStudentData } from "../api/studentListAxios";
+import { getStudentData, getStudentSearchList } from "../api/studentListAxios";
 const StudentList = () => {
   const [page, setPage] = useState(1);
-  const [totlaPage, setTotalPage] = useState(1);
+  const [totlaPage, setTotalPage] = useState(0);
+  const [searchText, setSearchText] = useState("");
   const [saveCheckBox, setSaveCheckBox] = useState([]);
   const [editClassModalOpen, setEditClassModalOpen] = useState(false);
   const [editAttendModalOpen, setEditAttendModalOpen] = useState(false);
@@ -54,9 +55,18 @@ const StudentList = () => {
     setEditAttendModalOpen(true);
   };
 
+  const handleSearchBtn = e => {
+    e.preventDefault();
+    getStudentSearchList(searchText, page, setStudentListData, setTotalPage);
+  };
+
   useEffect(() => {
     getStudentData(page, setStudentListData, setTotalPage);
   }, [page, studentListData]);
+
+  useEffect(() => {
+    getStudentData(page, setStudentListData, setTotalPage);
+  }, [studentListData]);
 
   return (
     <>
@@ -79,8 +89,13 @@ const StudentList = () => {
         <StudentListHeader>
           <div className="search-wrap">
             <form action="">
-              <input type="text" placeholder="학생 이름을 입력하세요." />
-              <button>검색</button>
+              <input
+                type="text"
+                placeholder="학생 이름을 입력하세요."
+                value={searchText}
+                onChange={e => setSearchText(e.target.value)}
+              />
+              <button onClick={handleSearchBtn}>검색</button>
             </form>
           </div>
           <div className="right-wrap">

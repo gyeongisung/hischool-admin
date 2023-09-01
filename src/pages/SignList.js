@@ -19,7 +19,7 @@ const SignList = () => {
   const [modalOpen, setModalOpen] = useState(false);
   const [saveCheckBox, setSaveCheckBox] = useState([]);
   const [page, setPage] = useState(1);
-  const [count, setCount] = useState("");
+  const [count, setCount] = useState(0);
   const navigate = useNavigate();
   let resultIdArray = saveCheckBox;
 
