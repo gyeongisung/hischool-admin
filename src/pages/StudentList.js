@@ -6,11 +6,13 @@ import {
 } from "../styles/StudentListStyle";
 import Pagination from "react-js-pagination";
 import { EditAttendModal, EditClassModal } from "../components/Modal";
-import { getStudentData } from "../api/studentListAxios";
+import { getStudentData, getStudentSearchList } from "../api/studentListAxios";
 const StudentList = () => {
   const [page, setPage] = useState(1);
-  const [totlaPage, setTotalPage] = useState(1);
+  const [totlaPage, setTotalPage] = useState(0);
+  const [searchText, setSearchText] = useState("");
   const [saveCheckBox, setSaveCheckBox] = useState([]);
+  const [handleOk, setHandleOk] = useState(false);
   const [editClassModalOpen, setEditClassModalOpen] = useState(false);
   const [editAttendModalOpen, setEditAttendModalOpen] = useState(false);
   const [studentListData, setStudentListData] = useState("");
@@ -54,9 +56,15 @@ const StudentList = () => {
     setEditAttendModalOpen(true);
   };
 
+  const handleSearchBtn = e => {
+    e.preventDefault();
+    getStudentSearchList(searchText, page, setStudentListData, setTotalPage);
+  };
+
   useEffect(() => {
     getStudentData(page, setStudentListData, setTotalPage);
-  }, [page, studentListData]);
+    setHandleOk(false);
+  }, [page, handleOk]);
 
   return (
     <>
@@ -72,15 +80,21 @@ const StudentList = () => {
           editAttendModalOpen={editAttendModalOpen}
           setEditAttendModalOpen={setEditAttendModalOpen}
           setSaveCheckBox={setSaveCheckBox}
+          setHandleOk={setHandleOk}
         />
       )}
       <StudentListWrap>
         <h3>학생 관리</h3>
         <StudentListHeader>
           <div className="search-wrap">
-            <form action="">
-              <input type="text" placeholder="학생 이름을 입력하세요." />
-              <button>검색</button>
+            <form>
+              <input
+                type="text"
+                placeholder="학생 이름을 입력하세요."
+                value={searchText}
+                onChange={e => setSearchText(e.target.value)}
+              />
+              <button onClick={handleSearchBtn}>검색</button>
             </form>
           </div>
           <div className="right-wrap">
@@ -149,7 +163,7 @@ const StudentList = () => {
                 <li className="time-table-th">학적 구분</li>
               </ul>
             </li>
-            {studentListData.length > 0 &&
+            {studentListData.length > 0 ? (
               studentListData.map((item, index) => (
                 <li className="class" key={index}>
                   <ul>
@@ -173,20 +187,25 @@ const StudentList = () => {
                     {item.enrollState === "TRANSFER" && <li>전학</li>}
                   </ul>
                 </li>
-              ))}
+              ))
+            ) : (
+              <div className="list-err-msg">조회된 학생이 없습니다.</div>
+            )}
           </ul>
         </StudentListDiv>
-        <div className="pagination-wrap">
-          <Pagination
-            activePage={page}
-            itemsCountPerPage={17}
-            totalItemsCount={totlaPage}
-            pageRangeDisplayed={5}
-            prevPageText={"‹"}
-            nextPageText={"›"}
-            onChange={setPage}
-          />
-        </div>
+        {totlaPage !== 0 && (
+          <div className="pagination-wrap">
+            <Pagination
+              activePage={page}
+              itemsCountPerPage={17}
+              totalItemsCount={totlaPage}
+              pageRangeDisplayed={5}
+              prevPageText={"‹"}
+              nextPageText={"›"}
+              onChange={setPage}
+            />
+          </div>
+        )}
       </StudentListWrap>
     </>
   );

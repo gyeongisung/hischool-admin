@@ -203,6 +203,7 @@ export const EditAttendModal = ({
   editAttendModalOpen,
   setEditAttendModalOpen,
   setSaveCheckBox,
+  setHandleOk,
 }) => {
   const [attendState, setAttendState] = useState("");
 
@@ -217,6 +218,7 @@ export const EditAttendModal = ({
   const handleOk = () => {
     saveCheckBox.forEach(item => patchStudentAttend(item, attendState));
     setEditAttendModalOpen(false);
+    setHandleOk(true);
     setSaveCheckBox([]);
     checkBoxInit();
   };

@@ -10,7 +10,7 @@ import Paging from "../components/Paging";
 
 const TeacherList = () => {
   const [page, setPage] = useState(1);
-  const [count, setCount] = useState("");
+  const [count, setCount] = useState(0);
   const [listData, setListData] = useState([]);
   const navigate = useNavigate();
 
