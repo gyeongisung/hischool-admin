@@ -2,14 +2,12 @@ import { client } from "./client";
 
 // 서버로 내신 과목 데이터 전송
 export const postALLData = async (grade, dataToSend) => {
-  console.log("dataToSend", dataToSend);
   try {
-    const response = await client.post(`/api/admin/sbj?grade=${grade}`, {
-      subjectList: [dataToSend],
+    const response = await client.post(`/api/admin/sbj?grade=${parseInt(grade)}`, {
+      list: dataToSend,
     });
-    console.log("response", response);
   } catch (error) {
-    console.error("데이터 전송 오류:", error);
+     console.error("데이터 전송 오류:", error);
   }
 };
 

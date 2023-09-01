@@ -22,7 +22,7 @@ const InputSubject = () => {
   const [studentsData, setStudentsData] = useState([]);
   const [lastSavedData, setLastSavedData] = useState([]);
   const [subjectData, setSubjectData] = useState([]);
-  const [grade, setGrade] = useState([]);
+  const [grade, setGrade] = useState("");
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -42,11 +42,15 @@ const InputSubject = () => {
   };
 
   const handleSaveButtonClick = async () => {
+    if (!grade) {
+      alert("학년을 선택해주세요.");
+      return;
+    }
     if (lastSavedData) {
       const dataToSend = lastSavedData.map(item => ({
-        subjectId: parseInt(item.subjectid) || 0,
+        subjectId: parseInt(item.subjectId) || 0,
       }));
-      await postALLData(dataToSend);
+      await postALLData(grade, dataToSend);
       navigate(-1);
     }
   };
@@ -65,7 +69,6 @@ const InputSubject = () => {
       try {
         // 과목 계열 가져오기
         const mainSubData = await getALLMainSubData();
-        console.log("mainSubData", mainSubData);
         // 세부 과목 가져오기
         const newSubjectData = await Promise.all(
           mainSubData.map(async mainSubject => {
