@@ -35,7 +35,9 @@ const SubjectList = () => {
         <div>
           <SubjectListGradeButton>
             <span>1학년</span>
-            <button>수정</button>
+            <Link to={`/subject/wc/${1}`}>
+              <button>수정</button>
+            </Link>
           </SubjectListGradeButton>
           <SubjectListDiv>
             <ul>
@@ -59,7 +61,9 @@ const SubjectList = () => {
         <div>
           <SubjectListGradeButton>
             <span>2학년</span>
-            <button>수정</button>
+            <Link to={`/subject/wc/${2}`}>
+              <button>수정</button>
+            </Link>
           </SubjectListGradeButton>
           <SubjectListDiv>
             <ul>
@@ -83,7 +87,9 @@ const SubjectList = () => {
         <div>
           <SubjectListGradeButton>
             <span>3학년</span>
-            <button>수정</button>
+            <Link to={`/subject/wc/${3}`}>
+              <button>수정</button>
+            </Link>
           </SubjectListGradeButton>
           <SubjectListDiv>
             <ul>
