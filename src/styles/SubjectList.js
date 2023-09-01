@@ -63,6 +63,8 @@ const SubjectListDiv = styled.div`
   box-shadow: 0px 0.5px 5px 0px rgba(0, 0, 0, 0.2);
   box-sizing: border-box;
   margin-bottom: 2vh;
+  max-height: 76vh;
+  overflow-y: auto;
   > ul {
     height: 75vh;
     display: grid;
@@ -71,9 +73,12 @@ const SubjectListDiv = styled.div`
     > li {
       line-height: 39px;
       :first-of-type {
+        position: sticky;
+        top: 0;
         background: #176b87;
         color: #fff;
         border-top: 0;
+        z-index: 1;
       }
       > ul {
         height: 100%;
