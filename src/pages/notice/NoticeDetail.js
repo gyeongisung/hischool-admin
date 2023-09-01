@@ -18,8 +18,6 @@ const NoticeDetail = () => {
   const [notice, setNotice] = useState(null);
   const navigate = useNavigate();
 
-  console.log(noticeId);
-
   useEffect(() => {
     patchNoticeHit(noticeId);
     async function fetchNotice() {

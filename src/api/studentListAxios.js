@@ -34,3 +34,23 @@ export const patchStudentAttend = async (saveCheckBox, attendState) => {
     console.log(err);
   }
 };
+
+// 학생 검색
+export const getStudentSearchList = async (
+  searchText,
+  page,
+  setStudentListData,
+  setTotalPage,
+) => {
+  try {
+    const res = await client.get(
+      `/api/admin/name-student-list?search=${searchText}&page=${page}`,
+    );
+    const result = res.data;
+    console.log(result);
+    setStudentListData(result.list);
+    setTotalPage(result.totalCount);
+  } catch (err) {
+    console.log(err);
+  }
+};
