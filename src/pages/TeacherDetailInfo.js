@@ -34,13 +34,6 @@ const TeacherDetailInfo = () => {
 
   console.log(state);
 
-  const checkPass = () => {
-    const regex =
-      /^(?=.*[A-Za-z])(?=.*\d)(?=.*[$@$!%*#?&])[A-Za-z\d$@$!%*#?&]{8,16}$/g;
-    const isValid = regex.test(password);
-    setErrPassword(isValid ? "" : "비밀번호를 확인 해주세요.");
-  };
-
   // get axios 담는 함수
   useEffect(() => {
     getTcDetailData(setUserData, state.userId);
@@ -195,22 +188,31 @@ const TeacherDetailInfo = () => {
                         readOnly
                       />
                       <div>
-                        <input
-                          type="text"
-                          name="grade"
-                          defaultValue={userData.grade}
-                        />
-                        <input
-                          type="text"
-                          name="van"
-                          defaultValue={userData.vanNum}
-                        />
+                        <select value={userData.grade}>
+                          <option value="1">1</option>
+                          <option value="2">2</option>
+                          <option value="3">3</option>
+                          <option value="0">해당없음</option>
+                        </select>
+                        <select value={userData.vanNum}>
+                          {/* {userData.map((item, index) => (
+                            <option key={index} value="1">
+                              {item.vanNum}
+                            </option>
+                          ))} */}
+                          <option value="0">해당없음</option>
+                        </select>
                       </div>
                     </div>
                   </li>
                   <li>
-                    <label>담당업무</label>
-                    <input type="text" />
+                    <label>재직여부</label>
+                    <select>
+                      <option value="">재직 여부</option>
+                      <option value="ENROLL">재직</option>
+                      <option value="TRANSFER">전근</option>
+                      <option value="LEAVE">퇴직</option>
+                    </select>
                   </li>
                 </TcMyPageUserInfo>
               </div>
