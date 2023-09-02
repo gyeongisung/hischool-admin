@@ -12,14 +12,32 @@ const TeacherList = () => {
   const [page, setPage] = useState(1);
   const [count, setCount] = useState(0);
   const [listData, setListData] = useState([]);
+  const [search, setSearch] = useState("");
+  const [enrollFilter, setEnrollFilter] = useState("");
   const navigate = useNavigate();
 
+  const fetchData = () => {
+    getTeacherList(page, setListData, setCount, search);
+  };
   useEffect(() => {
-    getTeacherList(page, setListData, setCount);
-  }, [page]);
+    fetchData();
+  }, [page, search]);
 
   const handleSginClick = () => {
     navigate("/teacherlist/signlist");
+  };
+
+  const handleSearchClick = e => {
+    e.preventDefault();
+    fetchData();
+  };
+
+  const handleFilter = () => {
+    if (enrollFilter === "") {
+      return listData;
+    } else {
+      return listData.filter(item => item.enrollState === enrollFilter);
+    }
   };
 
   return (
@@ -31,7 +49,12 @@ const TeacherList = () => {
         </div>
         <div className="title-right">
           <div>
-            <select>
+            <select
+              value={enrollFilter}
+              onChange={e => {
+                setEnrollFilter(e.target.value);
+              }}
+            >
               <option value="">재직 여부</option>
               <option value="ENROLL">재직</option>
               <option value="TRANSFER">전근</option>
@@ -40,8 +63,13 @@ const TeacherList = () => {
           </div>
           <div>
             <form>
-              <input type="text" placeholder="이름을 입력하세요." />
-              <button>검색</button>
+              <input
+                type="text"
+                placeholder="이름을 입력하세요."
+                value={search}
+                onChange={e => setSearch(e.target.value)}
+              />
+              <button onClick={handleSearchClick}>검색</button>
             </form>
           </div>
         </div>
@@ -57,9 +85,9 @@ const TeacherList = () => {
           <li className="list-title-th">재직여부</li>
         </ul>
         <ul className="data-list">
-          {listData.length > 0 &&
-            listData.map((item, index) => (
-              <li className="class" key={index}>
+          {handleFilter().length > 0 &&
+            handleFilter().map((item, index) => (
+              <li className="class" key={item.userId}>
                 <ul>
                   <li>{index + 1}</li>
                   <li

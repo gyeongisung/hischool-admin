@@ -4,17 +4,13 @@ import {
   TcButtons,
   TcMyPageUserInfo,
 } from "../styles/TeacherInfoStyle";
-import {
-  deleteUser,
-  getTcDetailData,
-  putMyPageData,
-} from "../api/TeacherInfoAxios";
-import { DeleteUserModal } from "../components/Modal";
+import { getTcDetailData, putMyPageData } from "../api/TeacherInfoAxios";
+import { TeacherAcceptModal } from "../components/Modal";
 import { useLocation, useNavigate } from "react-router";
+import { putSignAccept } from "../api/signListAxios";
 
 const TeacherDetailInfo = () => {
   const [userData, setUserData] = useState([]);
-  const [name, setName] = useState("");
   const [password, setPassword] = useState("");
   const [passwordConfirm, setPasswordConfirm] = useState("");
   const [houseAddress, setHouseAddress] = useState({
@@ -22,37 +18,20 @@ const TeacherDetailInfo = () => {
   });
   const [detailAddress, setDetailAddress] = useState("");
   const [phone, setPhone] = useState("");
-  const [addressModal, setAddressModal] = useState(false);
-  const [codeConFirm, setCodeConFirm] = useState(false);
   const [selectFile, setSelectFile] = useState(null);
-  const [userPic, setUserPic] = useState("");
-  const [cancelOk, setCancelOk] = useState(false);
+  const [acceptOk, setAcceptOk] = useState(false);
   const [modalOpen, setModalOpen] = useState(false);
-  const [errPassword, setErrPassword] = useState("");
-  const navigate = useNavigate();
   const { state } = useLocation();
+  const navigate = useNavigate();
 
-  console.log(state);
-
-  // get axios 담는 함수
   useEffect(() => {
     getTcDetailData(setUserData, state.userId);
   }, []);
 
-  const handleChangeAddress = e => {
-    setHouseAddress(e.target.value);
-  };
+  const objData = Object.keys(userData);
 
   const handleCancel = () => {
     navigate(-1);
-  };
-
-  const handleChangePhone = e => {
-    setPhone(e.target.value);
-  };
-
-  const handleChangeDetailAddr = e => {
-    setDetailAddress(e.target.value);
   };
 
   // 이벤트 방지 함수
@@ -92,15 +71,16 @@ const TeacherDetailInfo = () => {
 
   // Modal에 확인 버튼 클릭시 유저 삭제
   useEffect(() => {
-    if (cancelOk === true) {
+    if (acceptOk === true) {
       setModalOpen(false);
-      setCancelOk(false);
-      deleteUser();
+      setAcceptOk(false);
+      putSignAccept(state.userId);
+      navigate("/teacherlist/signlist");
     }
-  }, [cancelOk]);
+  }, [acceptOk]);
 
   // 유저 삭제 모달 오픈 함수
-  const handleDeleteModalOpen = () => {
+  const handleSignModalOpen = () => {
     setModalOpen(true);
   };
 
@@ -148,7 +128,6 @@ const TeacherDetailInfo = () => {
                       type="text"
                       name="phone"
                       defaultValue={userData.phone}
-                      onChange={handleChangePhone}
                       readOnly
                     />
                   </li>
@@ -162,9 +141,7 @@ const TeacherDetailInfo = () => {
                           type="text"
                           required={true}
                           name="address"
-                          onChange={handleChangeAddress}
-                          onClick={() => setAddressModal(true)}
-                          value={userData.address}
+                          defaultValue={userData.address}
                           readOnly
                         />
                       </div>
@@ -189,17 +166,17 @@ const TeacherDetailInfo = () => {
                       />
                       <div>
                         <select value={userData.grade}>
-                          <option value="1">1</option>
-                          <option value="2">2</option>
-                          <option value="3">3</option>
+                          <option value="1">1학년</option>
+                          <option value="2">2학년</option>
+                          <option value="3">3학년</option>
                           <option value="0">해당없음</option>
                         </select>
                         <select value={userData.vanNum}>
-                          {/* {userData.map((item, index) => (
+                          {objData.map((item, index) => (
                             <option key={index} value="1">
-                              {item.vanNum}
+                              {item.vanNum}반
                             </option>
-                          ))} */}
+                          ))}
                           <option value="0">해당없음</option>
                         </select>
                       </div>
@@ -208,7 +185,7 @@ const TeacherDetailInfo = () => {
                   <li>
                     <label>재직여부</label>
                     <select>
-                      <option value="">재직 여부</option>
+                      <option value="">선택</option>
                       <option value="ENROLL">재직</option>
                       <option value="TRANSFER">전근</option>
                       <option value="LEAVE">퇴직</option>
@@ -222,13 +199,13 @@ const TeacherDetailInfo = () => {
         <div className="mypage-bottom">
           <TcButtons>
             {modalOpen && (
-              <DeleteUserModal
+              <TeacherAcceptModal
                 modalOpen={modalOpen}
                 setModalOpen={setModalOpen}
-                setCancelOk={setCancelOk}
+                setAcceptOk={setAcceptOk}
               />
             )}
-            <button className="withdraw-btn" onClick={handleDeleteModalOpen}>
+            <button className="withdraw-btn" onClick={handleSignModalOpen}>
               승인
             </button>
             <div>

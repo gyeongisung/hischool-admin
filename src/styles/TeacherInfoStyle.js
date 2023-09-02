@@ -89,11 +89,30 @@ export const TcMyPageUserInfo = styled.ul`
       align-items: start;
       > div {
         > div {
+          display: flex;
+          gap: 10px;
           margin-top: 10px;
-          input {
-            width: 10.35vw;
+          select {
+            width: 10.1vw;
+            height: 35px;
+            border: 1px solid #bbb;
+            border-radius: 3px;
+            padding-left: 10px;
+            margin-right: 5px;
+            font-size: 18px;
           }
         }
+      }
+    }
+    :nth-of-type(7) {
+      select {
+        width: 10.1vw;
+        height: 35px;
+        border: 1px solid #bbb;
+        border-radius: 3px;
+        padding-left: 10px;
+        margin-right: 5px;
+        font-size: 18px;
       }
     }
   }
