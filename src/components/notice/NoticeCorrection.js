@@ -137,9 +137,7 @@ const NoticeCorrection = props => {
       </label>
       <form onSubmit={handleSubmit}>
         <NoticeWUTitle>
-          <div>
-            <label>제목</label>
-          </div>
+          <label>제목</label>
           <input type="text" value={title} onChange={handleTitleChange} />
         </NoticeWUTitle>
         <NoticeWhiteNoitce>

@@ -30,24 +30,18 @@ const NoticeWUTitle = styled.div`
   background: #fff;
   overflow: auto;
   margin-top: 1vh;
-  div {
-    width: 10%;
+  > label {
+    color: #fff;
+    display: inline-block;
+    text-align: center;
+    width: 10vw;
     background: #176b87;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    > label {
-      color: #fff;
-      display: inline-block;
-      text-align: center;
-      width: 100%;
-    }
   }
-
-  input {
+  > input {
     border: 0;
     margin: 0 auto;
-    width: 89%;
+    width: 72vw;
+    padding: 1vh 0;
   }
 `;
 
