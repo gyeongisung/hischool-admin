@@ -9,9 +9,13 @@ import {
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faExclamation } from "@fortawesome/free-solid-svg-icons";
 import { postEmailCodeConFirm } from "../api/signUpAxios";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { PutNumberList } from "../api/adminHomeAxios";
-import { patchStudentAttend } from "../api/studentListAxios";
+import {
+  getClassInfo,
+  patchGradeClassInfo,
+  patchStudentAttend,
+} from "../api/studentListAxios";
 
 // 교원 승인 확인 모달
 export const TeacherAcceptModal = ({
@@ -132,15 +136,44 @@ export const EmailConFirmModal = ({
 
 // 학반 정보 수정 모달
 export const EditClassModal = ({
+  saveCheckBox,
   editClassModalOpen,
   setEditClassModalOpen,
+  setHandleOk,
 }) => {
+  const today = new Date();
+  const todayYear = today.getFullYear();
+  const [classList, setClassList] = useState("");
+  const [payload, setPayload] = useState({
+    userId: 0,
+    year: todayYear,
+    grade: 0,
+    classNum: 0,
+  });
+
   const handleOk = () => {
+    saveCheckBox.forEach(item => {
+      patchGradeClassInfo(payload, item);
+    });
+    setHandleOk(true);
     setEditClassModalOpen(false);
   };
+
   const closeModal = () => {
     setEditClassModalOpen(false);
   };
+
+  const handleGrade = e => {
+    setPayload({ ...payload, grade: parseInt(e.target.value) });
+  };
+
+  const handleClass = e => {
+    setPayload({ ...payload, classNum: parseInt(e.target.value) });
+  };
+
+  useEffect(() => {
+    getClassInfo(payload.grade, setClassList);
+  }, [payload.grade]);
 
   return (
     <>
@@ -161,28 +194,23 @@ export const EditClassModal = ({
               </span>
             </div>
             <div className="content">
-              <label htmlFor="">
-                <select
-                  name="grade"
-                  id="grade"
-                  // onChange={e => handleYearList(e)}
-                >
+              <label htmlFor="grade">
+                <select id="grade" onChange={e => handleGrade(e)}>
                   <option value="">학년</option>
-                  <option>1학년</option>
-                  <option>2학년</option>
-                  <option>3학년</option>
+                  <option value="1">1학년</option>
+                  <option value="2">2학년</option>
+                  <option value="3">3학년</option>
                 </select>
               </label>
-              <label htmlFor="">
-                <select
-                  name="grade"
-                  id="grade"
-                  // onChange={e => handleYearList(e)}
-                >
+              <label htmlFor="class">
+                <select id="class" onChange={e => handleClass(e)}>
                   <option value="">반</option>
-                  <option>1반</option>
-                  <option>2반</option>
-                  <option>3반</option>
+                  {classList &&
+                    classList.map(item => (
+                      <option value={item} key={item}>
+                        {item}반
+                      </option>
+                    ))}
                 </select>
               </label>
             </div>
