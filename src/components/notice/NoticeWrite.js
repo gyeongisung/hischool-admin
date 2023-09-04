@@ -130,16 +130,14 @@ const NoticeWrite = () => {
       </label>
       <form onSubmit={handleSubmit}>
         <NoticeWUTitle>
-          <div>
-            <label htmlFor="search-title">제목</label>
-            <input
-              type="text"
-              id="search-title"
-              value={title}
-              onChange={handleTitleChange}
-              required
-            />
-          </div>
+          <label htmlFor="search-title">제목</label>
+          <input
+            type="text"
+            id="search-title"
+            value={title}
+            onChange={handleTitleChange}
+            required
+          />
         </NoticeWUTitle>
         <NoticeWhiteNoitce>
           <ReactQuill
