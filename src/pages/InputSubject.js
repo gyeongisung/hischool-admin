@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { useEffect } from "react";
 import { useState } from "react";
 import { faPlusCircle } from "@fortawesome/free-solid-svg-icons";
-import TSubjectPlus from "../components/TSubjectPlus";
+import TSubjectPlus from "../components/subject/TSubjectPlus";
 import {
   getALLMainSubData,
   getALLSubData,
