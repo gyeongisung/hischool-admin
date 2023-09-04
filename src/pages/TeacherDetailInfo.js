@@ -96,43 +96,43 @@ const TeacherDetailInfo = () => {
               <div className="school-info">
                 <TcMyPageUserInfo>
                   <li>
-                    <label>이메일</label>
+                    <label htmlFor="teacher-email">이메일</label>
                     <input
                       type="email"
-                      name="email"
-                      value={userData.email}
+                      id="teacher-email"
+                      defaultValue={userData.email}
                       readOnly
                     />
                   </li>
                   <li>
-                    <label>이름</label>
+                    <label htmlFor="teacher-name">이름</label>
                     <input
                       type="text"
-                      name="tnm"
+                      id="teacher-name"
                       defaultValue={userData.nm}
                       readOnly
                     />
                   </li>
                   <li>
-                    <label>생년월일</label>
+                    <label htmlFor="teacher-birth">생년월일</label>
                     <input
                       type="text"
-                      name="birth"
+                      id="teacher-birth"
                       defaultValue={userData.birth}
                       readOnly
                     />
                   </li>
                   <li>
-                    <label>연락처</label>
+                    <label htmlFor="teacher-phone">연락처</label>
                     <input
                       type="text"
-                      name="phone"
+                      id="teacher-phone"
                       defaultValue={userData.phone}
                       readOnly
                     />
                   </li>
                   <li>
-                    <label>주소</label>
+                    <label htmlFor="address-input">주소</label>
                     <div className="address-wrap">
                       <div>
                         <input
@@ -140,14 +140,13 @@ const TeacherDetailInfo = () => {
                           id="address-input"
                           type="text"
                           required={true}
-                          name="address"
                           defaultValue={userData.address}
                           readOnly
                         />
                       </div>
                       <input
                         type="text"
-                        name="detailAddress"
+                        name="adress-detail"
                         className="detail-address"
                         defaultValue={userData.detailAddr}
                         placeholder="상세 주소를 입력하세요."
@@ -156,22 +155,22 @@ const TeacherDetailInfo = () => {
                     </div>
                   </li>
                   <li>
-                    <label>소속 학교</label>
+                    <label htmlFor="teacher-snm">소속 학교</label>
                     <div>
                       <input
                         type="text"
-                        name="snm"
+                        id="teacher-snm"
                         defaultValue={userData.schoolNm}
                         readOnly
                       />
                       <div>
-                        <select value={userData.grade}>
+                        <select name="user-grade" value={userData.grade}>
                           <option value="1">1학년</option>
                           <option value="2">2학년</option>
                           <option value="3">3학년</option>
                           <option value="0">해당없음</option>
                         </select>
-                        <select value={userData.vanNum}>
+                        <select name="user-vannum" value={userData.vanNum}>
                           {objData.map((item, index) => (
                             <option key={index} value="1">
                               {item.vanNum}반
@@ -183,8 +182,8 @@ const TeacherDetailInfo = () => {
                     </div>
                   </li>
                   <li>
-                    <label>재직여부</label>
-                    <select>
+                    <label htmlFor="enroll-state">재직여부</label>
+                    <select id="enroll-state">
                       <option value="">선택</option>
                       <option value="ENROLL">재직</option>
                       <option value="TRANSFER">전근</option>

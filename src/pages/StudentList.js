@@ -90,6 +90,7 @@ const StudentList = () => {
             <form>
               <input
                 type="text"
+                name="search-bar"
                 placeholder="학생 이름을 입력하세요."
                 value={searchText}
                 onChange={e => setSearchText(e.target.value)}
@@ -150,6 +151,7 @@ const StudentList = () => {
                 <li className="time-table-th">
                   <input
                     type="checkbox"
+                    name="all-check-box"
                     onClick={e => handleAllCheck(e)}
                     className="all-checkbox-btn"
                   />
@@ -170,6 +172,7 @@ const StudentList = () => {
                     <li>
                       <input
                         type="checkbox"
+                        name="check-box"
                         defaultChecked={false}
                         className={`checkbox userId${item.userId}`}
                         onClick={e => handleCheckBox(e)}

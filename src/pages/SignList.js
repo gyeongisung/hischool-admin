@@ -107,6 +107,7 @@ const SignList = () => {
               <li className="time-table-th">
                 <input
                   type="checkbox"
+                  name="all-check-box"
                   onClick={e => handleAllCheck(e)}
                   className="all-checkbox-btn"
                 />
@@ -125,6 +126,7 @@ const SignList = () => {
                 <li>
                   <input
                     type="checkbox"
+                    name="check-box"
                     defaultChecked={false}
                     className={`school-checkbox userId${item.userId}`}
                     onClick={e => handleCheckBox(e)}

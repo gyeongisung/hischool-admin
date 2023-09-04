@@ -14,6 +14,8 @@ const TeacherList = () => {
   const [listData, setListData] = useState([]);
   const [search, setSearch] = useState("");
   const [enrollFilter, setEnrollFilter] = useState("");
+  const [transfer, setTransfer] = useState("");
+  const [leave, setLeave] = useState("");
   const navigate = useNavigate();
 
   const fetchData = () => {
@@ -32,13 +34,21 @@ const TeacherList = () => {
     fetchData();
   };
 
-  const handleFilter = () => {
-    if (enrollFilter === "") {
-      return listData;
-    } else {
-      return listData.filter(item => item.enrollState === enrollFilter);
-    }
-  };
+  // const handleFilter = () => {
+  //   if (enrollFilter === "") {
+  //     return listData;
+  //   } else {
+  //     return listData
+  //       .filter(item => item.enrollState === enrollFilter)
+  //       .map((item, index) => {
+  //         const pageNumber = page;
+  //         const perPage = 16;
+  //         const itemNumber = (pageNumber - 1) * perPage + index + 1;
+  //         return { ...item, itemNumber };
+  //       });
+  //   }
+  // };
+  // console.log(listData);
 
   return (
     <TeacherListWrap>
@@ -51,14 +61,23 @@ const TeacherList = () => {
           <div>
             <select
               value={enrollFilter}
+              name="enroll-state"
               onChange={e => {
                 setEnrollFilter(e.target.value);
               }}
             >
-              <option value="">재직 여부</option>
-              <option value="ENROLL">재직</option>
-              <option value="TRANSFER">전근</option>
-              <option value="LEAVE">퇴직</option>
+              <option name="enroll-state" value="">
+                재직 여부
+              </option>
+              <option name="enroll-state" value="ENROLL">
+                재직
+              </option>
+              <option name="enroll-state" value="TRANSFER">
+                전근
+              </option>
+              <option name="enroll-state" value="LEAVE">
+                퇴직
+              </option>
             </select>
           </div>
           <div>
@@ -66,6 +85,7 @@ const TeacherList = () => {
               <input
                 type="text"
                 placeholder="이름을 입력하세요."
+                name="enroll-state"
                 value={search}
                 onChange={e => setSearch(e.target.value)}
               />
@@ -85,8 +105,8 @@ const TeacherList = () => {
           <li className="list-title-th">재직여부</li>
         </ul>
         <ul className="data-list">
-          {handleFilter().length > 0 &&
-            handleFilter().map((item, index) => (
+          {listData.length > 0 &&
+            listData.map((item, index) => (
               <li className="class" key={item.userId}>
                 <ul>
                   <li>{index + 1}</li>
@@ -108,7 +128,8 @@ const TeacherList = () => {
                   </li>
                   {item.enrollState === "ENROLL" && <li>재직</li>}
                   {item.enrollState === "TRANSFER" && <li>전근</li>}
-                  {item.enrollState === "LEAVE" && <li>퇴직</li>}
+                  {item.enrollState === "LEAVE" && <li>휴직</li>}
+                  {item.enrollState === "GRADUATION" && <li>퇴직</li>}
                 </ul>
               </li>
             ))}

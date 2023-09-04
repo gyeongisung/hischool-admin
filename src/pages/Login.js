@@ -64,6 +64,7 @@ const Login = () => {
           <div>
             <input
               className="login-email"
+              name="user-login"
               onChange={e => handleEmail(e)}
               type="email"
               placeholder="Email"
@@ -72,6 +73,7 @@ const Login = () => {
             {errEmail && <p className="err-message">{errEmail}</p>}
             <input
               className="login-password"
+              name="user-password"
               onChange={e => handlePassWord(e)}
               type="password"
               placeholder="Password"
