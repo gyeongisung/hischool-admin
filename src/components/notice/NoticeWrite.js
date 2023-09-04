@@ -119,10 +119,11 @@ const NoticeWrite = () => {
   return (
     <NoticeWrap>
       <h3>게시판 글쓰기</h3>
-      <label>
+      <label htmlFor="check-box">
         중요 공지
         <input
           type="checkbox"
+          id="check-box"
           checked={isImportant}
           onChange={handleCheckboxChange}
         />
@@ -130,14 +131,15 @@ const NoticeWrite = () => {
       <form onSubmit={handleSubmit}>
         <NoticeWUTitle>
           <div>
-            <label>제목</label>
+            <label htmlFor="search-title">제목</label>
+            <input
+              type="text"
+              id="search-title"
+              value={title}
+              onChange={handleTitleChange}
+              required
+            />
           </div>
-          <input
-            type="text"
-            value={title}
-            onChange={handleTitleChange}
-            required
-          />
         </NoticeWUTitle>
         <NoticeWhiteNoitce>
           <ReactQuill
