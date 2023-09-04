@@ -62,6 +62,10 @@ const StudentList = () => {
   };
 
   useEffect(() => {
+    const allCheckBox = document.querySelectorAll(".checkbox");
+    allCheckBox.forEach(item => {
+      item.checked = false;
+    });
     getStudentData(page, setStudentListData, setTotalPage);
     setHandleOk(false);
   }, [page, handleOk]);
@@ -70,8 +74,10 @@ const StudentList = () => {
     <>
       {editClassModalOpen && (
         <EditClassModal
+          saveCheckBox={saveCheckBox}
           editClassModalOpen={editClassModalOpen}
           setEditClassModalOpen={setEditClassModalOpen}
+          setHandleOk={setHandleOk}
         />
       )}
       {editAttendModalOpen && (

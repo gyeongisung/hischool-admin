@@ -54,3 +54,28 @@ export const getStudentSearchList = async (
     console.log(err);
   }
 };
+
+// 학반 정보 GET
+export const getClassInfo = async (grade, setClassList) => {
+  const today = new Date();
+  const todayYear = today.getFullYear();
+  try {
+    const res = await client.get(`/api/admin/tc/${todayYear}/${grade}`);
+    const result = res.data;
+    setClassList(result);
+  } catch (err) {
+    console.log(err);
+  }
+};
+
+// 학반 정보 변경
+export const patchGradeClassInfo = async (payload, userId) => {
+  try {
+    const res = await client.patch(`/api/admin/user-statement`, {
+      ...payload,
+      userId: userId,
+    });
+  } catch (err) {
+    console.log(err);
+  }
+};
