@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { ISJinput } from "../styles/InputSubjectStyle";
+import { ISJinput } from "../../styles/InputSubjectStyle";
 
 const TSubjectPlus = ({
   id,
