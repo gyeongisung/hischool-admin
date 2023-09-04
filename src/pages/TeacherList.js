@@ -14,16 +14,18 @@ const TeacherList = () => {
   const [listData, setListData] = useState([]);
   const [search, setSearch] = useState("");
   const [enrollFilter, setEnrollFilter] = useState("");
-  const [transfer, setTransfer] = useState("");
-  const [leave, setLeave] = useState("");
   const navigate = useNavigate();
 
   const fetchData = () => {
-    getTeacherList(page, setListData, setCount, search);
+    getTeacherList(page, setListData, setCount, search, enrollFilter);
   };
+
   useEffect(() => {
     fetchData();
-  }, [page, search]);
+    if (enrollFilter) {
+      setPage(1);
+    }
+  }, [page, search, enrollFilter]);
 
   const handleSginClick = () => {
     navigate("/teacherlist/signlist");
@@ -34,20 +36,6 @@ const TeacherList = () => {
     fetchData();
   };
 
-  // const handleFilter = () => {
-  //   if (enrollFilter === "") {
-  //     return listData;
-  //   } else {
-  //     return listData
-  //       .filter(item => item.enrollState === enrollFilter)
-  //       .map((item, index) => {
-  //         const pageNumber = page;
-  //         const perPage = 16;
-  //         const itemNumber = (pageNumber - 1) * perPage + index + 1;
-  //         return { ...item, itemNumber };
-  //       });
-  //   }
-  // };
   // console.log(listData);
 
   return (
@@ -76,6 +64,9 @@ const TeacherList = () => {
                 전근
               </option>
               <option name="enroll-state" value="LEAVE">
+                휴직
+              </option>
+              <option name="enroll-state" value="GRADUATION">
                 퇴직
               </option>
             </select>
@@ -109,7 +100,7 @@ const TeacherList = () => {
             listData.map((item, index) => (
               <li className="class" key={item.userId}>
                 <ul>
-                  <li>{index + 1}</li>
+                  <li>{(page - 1) * 16 + index + 1}</li>
                   <li
                     className="student-name"
                     onClick={() => {

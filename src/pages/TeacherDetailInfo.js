@@ -4,7 +4,7 @@ import {
   TcButtons,
   TcMyPageUserInfo,
 } from "../styles/TeacherInfoStyle";
-import { getTcDetailData, putMyPageData } from "../api/TeacherInfoAxios";
+import { getTcDetailData, getTeacherState, putMyPageData } from "../api/TeacherInfoAxios";
 import { TeacherAcceptModal } from "../components/Modal";
 import { useLocation, useNavigate } from "react-router";
 import { putSignAccept } from "../api/signListAxios";
@@ -21,11 +21,13 @@ const TeacherDetailInfo = () => {
   const [selectFile, setSelectFile] = useState(null);
   const [acceptOk, setAcceptOk] = useState(false);
   const [modalOpen, setModalOpen] = useState(false);
+  const [enrollFilter, setEnrollFilter] = useState("");
   const { state } = useLocation();
   const navigate = useNavigate();
 
   useEffect(() => {
     getTcDetailData(setUserData, state.userId);
+    getTeacherState(setEnrollFilter)
   }, []);
 
   const objData = Object.keys(userData);

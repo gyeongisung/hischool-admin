@@ -120,38 +120,39 @@ const SignList = () => {
               <li className="time-table-th">소속</li>
             </ul>
           </li>
-          {listData.map((item, index) => (
-            <li className="class" key={index}>
-              <ul>
-                <li>
-                  <input
-                    type="checkbox"
-                    name="check-box"
-                    defaultChecked={false}
-                    className={`school-checkbox userId${item.userId}`}
-                    onClick={e => handleCheckBox(e)}
-                  />
-                </li>
-                <li>{index + 1}</li>
-                <li
-                  className="student-name"
-                  onClick={() => {
-                    navigate("/teacherlist/detailinfo", {
-                      state: { userId: item.userId },
-                    });
-                  }}
-                >
-                  {item.nm}
-                </li>
-                <li>{item.birth}</li>
-                <li>{item.phone}</li>
-                <li>{item.email}</li>
-                <li>
-                  {item.grade}학년 {item.vanNum}반
-                </li>
-              </ul>
-            </li>
-          ))}
+          {listData.length > 0 &&
+            listData.map((item, index) => (
+              <li className="class" key={index}>
+                <ul>
+                  <li>
+                    <input
+                      type="checkbox"
+                      name="check-box"
+                      defaultChecked={false}
+                      className={`school-checkbox userId${item.userId}`}
+                      onClick={e => handleCheckBox(e)}
+                    />
+                  </li>
+                  <li>{(page - 1) * 16 + index + 1}</li>
+                  <li
+                    className="student-name"
+                    onClick={() => {
+                      navigate("/teacherlist/detailinfo", {
+                        state: { userId: item.userId },
+                      });
+                    }}
+                  >
+                    {item.nm}
+                  </li>
+                  <li>{item.birth}</li>
+                  <li>{item.phone}</li>
+                  <li>{item.email}</li>
+                  <li>
+                    {item.grade}학년 {item.vanNum}반
+                  </li>
+                </ul>
+              </li>
+            ))}
         </ul>
       </TimeTableDiv>
       <Pagination page={page} setPage={setPage} count={count} />

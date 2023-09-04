@@ -21,3 +21,14 @@ export const putMyPageData = async formData => {
     console.log(err);
   }
 };
+
+export const getTeacherState = async setEnrollFilter => {
+  try {
+    const res = await client.get(`/api/admin/tc/stat`);
+    const reuslt = res.data;
+    console.log(reuslt);
+    setEnrollFilter(reuslt);
+  } catch (err) {
+    console.log(err);
+  }
+};
