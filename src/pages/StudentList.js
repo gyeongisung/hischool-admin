@@ -5,7 +5,11 @@ import {
   StudentListHeader,
 } from "../styles/StudentListStyle";
 import Pagination from "react-js-pagination";
-import { EditAttendModal, EditClassModal } from "../components/Modal";
+import {
+  EditAttendModal,
+  EditClassModal,
+  EditErrorModal,
+} from "../components/Modal";
 import { getStudentData, getStudentSearchList } from "../api/studentListAxios";
 const StudentList = () => {
   const [page, setPage] = useState(1);
@@ -13,6 +17,7 @@ const StudentList = () => {
   const [searchText, setSearchText] = useState("");
   const [saveCheckBox, setSaveCheckBox] = useState([]);
   const [handleOk, setHandleOk] = useState(false);
+  const [editErrModalOpen, setEditErrModalOpen] = useState(false);
   const [editClassModalOpen, setEditClassModalOpen] = useState(false);
   const [editAttendModalOpen, setEditAttendModalOpen] = useState(false);
   const [studentListData, setStudentListData] = useState("");
@@ -49,11 +54,19 @@ const StudentList = () => {
   };
 
   const handleEditClass = () => {
-    setEditClassModalOpen(true);
+    if (saveCheckBox.length > 0) {
+      setEditClassModalOpen(true);
+    } else {
+      setEditErrModalOpen(true);
+    }
   };
 
   const handleEditAttend = () => {
-    setEditAttendModalOpen(true);
+    if (saveCheckBox.length > 0) {
+      setEditAttendModalOpen(true);
+    } else {
+      setEditErrModalOpen(true);
+    }
   };
 
   const handleSearchBtn = e => {
@@ -72,6 +85,9 @@ const StudentList = () => {
 
   return (
     <>
+      {editErrModalOpen && (
+        <EditErrorModal setEditErrModalOpen={setEditErrModalOpen} />
+      )}
       {editClassModalOpen && (
         <EditClassModal
           saveCheckBox={saveCheckBox}
