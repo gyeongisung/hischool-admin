@@ -4,33 +4,33 @@ import {
   TcButtons,
   TcMyPageUserInfo,
 } from "../styles/TeacherInfoStyle";
-import { getTcDetailData, getTeacherState, putMyPageData } from "../api/TeacherInfoAxios";
+import {
+  getTcDetailData,
+  getTeacherGrade,
+  getTeacherState,
+  patchMyPageData,
+} from "../api/TeacherInfoAxios";
 import { TeacherAcceptModal } from "../components/Modal";
 import { useLocation, useNavigate } from "react-router";
 import { putSignAccept } from "../api/signListAxios";
 
 const TeacherDetailInfo = () => {
+  const { state } = useLocation();
+  const defaultGrade = state && state.grade;
   const [userData, setUserData] = useState([]);
-  const [password, setPassword] = useState("");
-  const [passwordConfirm, setPasswordConfirm] = useState("");
-  const [houseAddress, setHouseAddress] = useState({
-    address: "",
-  });
-  const [detailAddress, setDetailAddress] = useState("");
-  const [phone, setPhone] = useState("");
-  const [selectFile, setSelectFile] = useState(null);
   const [acceptOk, setAcceptOk] = useState(false);
   const [modalOpen, setModalOpen] = useState(false);
   const [enrollFilter, setEnrollFilter] = useState("");
-  const { state } = useLocation();
+  const [vanNum, setVanNum] = useState("");
+  const [gradeList, setGradeList] = useState("");
+  const [grade, setGrade] = useState(defaultGrade);
   const navigate = useNavigate();
 
   useEffect(() => {
-    getTcDetailData(setUserData, state.userId);
-    getTeacherState(setEnrollFilter)
-  }, []);
-
-  const objData = Object.keys(userData);
+    getTcDetailData(setUserData, state.userId, setVanNum, setEnrollFilter);
+    // getTeacherState(setEnrollFilter);
+    getTeacherGrade(grade, setGradeList);
+  }, [grade]);
 
   const handleCancel = () => {
     navigate(-1);
@@ -46,29 +46,8 @@ const TeacherDetailInfo = () => {
     e.preventDefault();
     e.persist();
 
-    const userPdata = {
-      phone: phone || userData.phone,
-      address: houseAddress.address || userData.address,
-      detailAddr: detailAddress || userData.detailAddr,
-      pw: password || userData.pw,
-    };
-
-    let formData = new FormData();
-    selectFile && formData.append("pic", selectFile);
-    formData.append("p", JSON.stringify(userPdata));
-
-    if (password !== passwordConfirm) {
-      alert("비밀번호가 일치하지 않습니다.");
-      return;
-    }
-
-    if (!password && !passwordConfirm) {
-      alert("비밀번호를 입력해주세요.");
-      return;
-    }
-
-    putMyPageData(formData);
-    navigate("/home");
+    patchMyPageData(state.userId, enrollFilter, grade, vanNum);
+    // navigate("/home");
   };
 
   // Modal에 확인 버튼 클릭시 유저 삭제
@@ -86,6 +65,24 @@ const TeacherDetailInfo = () => {
     setModalOpen(true);
   };
 
+  const handleGrade = e => {
+    setGrade(parseInt(e.target.value));
+    console.log(e.target.value);
+  };
+
+  const handleVanNum = e => {
+    setVanNum(parseInt(e.target.value));
+    console.log(e.target.value);
+  };
+
+  const handleFilter = e => {
+    setEnrollFilter(e.target.value);
+    console.log(e.target.value);
+  };
+
+  // console.log(userData.enrollState);
+  console.log(enrollFilter);
+  // console.log(vanNum);
   return (
     <MypageDiv onSubmit={handleSubmit}>
       <div>
@@ -166,18 +163,27 @@ const TeacherDetailInfo = () => {
                         readOnly
                       />
                       <div>
-                        <select name="user-grade" value={userData.grade}>
+                        <select
+                          name="user-grade"
+                          value={grade}
+                          onChange={e => handleGrade(e)}
+                        >
                           <option value="1">1학년</option>
                           <option value="2">2학년</option>
                           <option value="3">3학년</option>
                           <option value="0">해당없음</option>
                         </select>
-                        <select name="user-vannum" value={userData.vanNum}>
-                          {objData.map((item, index) => (
-                            <option key={index} value="1">
-                              {item.vanNum}반
-                            </option>
-                          ))}
+                        <select
+                          name="user-vannum"
+                          value={vanNum}
+                          onChange={e => handleVanNum(e)}
+                        >
+                          {gradeList &&
+                            gradeList.map(item => (
+                              <option key={item} value={item}>
+                                {item}반
+                              </option>
+                            ))}
                           <option value="0">해당없음</option>
                         </select>
                       </div>
@@ -185,11 +191,15 @@ const TeacherDetailInfo = () => {
                   </li>
                   <li>
                     <label htmlFor="enroll-state">재직여부</label>
-                    <select id="enroll-state">
-                      <option value="">선택</option>
+                    <select
+                      id="enroll-state"
+                      value={enrollFilter}
+                      onChange={e => handleFilter(e)}
+                    >
                       <option value="ENROLL">재직</option>
                       <option value="TRANSFER">전근</option>
-                      <option value="LEAVE">퇴직</option>
+                      <option value="LEAVE">휴직</option>
+                      <option value="GRADUATION ">퇴직</option>
                     </select>
                   </li>
                 </TcMyPageUserInfo>

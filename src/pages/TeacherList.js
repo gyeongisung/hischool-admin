@@ -105,7 +105,7 @@ const TeacherList = () => {
                     className="student-name"
                     onClick={() => {
                       navigate("/teacherlist/detailinfo", {
-                        state: { userId: item.userId },
+                        state: { userId: item.userId, grade: item.grade },
                       });
                     }}
                   >
