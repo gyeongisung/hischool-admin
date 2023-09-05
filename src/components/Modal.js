@@ -5,6 +5,7 @@ import {
   StudentRecordModalDiv,
   EditClassModalDiv,
   EditAttendModalDiv,
+  EditErrorModalStyle,
 } from "../styles/ModalStyle";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faExclamation } from "@fortawesome/free-solid-svg-icons";
@@ -292,6 +293,34 @@ export const EditAttendModal = ({
           </div>
         </EditAttendModalDiv>
       )}
+    </>
+  );
+};
+
+// 학반 정보 수정, 재학 여부 수정 에러 모달
+export const EditErrorModal = ({ setEditErrModalOpen }) => {
+  const handleOk = () => {
+    setEditErrModalOpen(false);
+  };
+
+  return (
+    <>
+      <EditErrorModalStyle className="modal">
+        <div className="dim"></div>
+        <div className="content-wrap">
+          <div className="header">
+            <FontAwesomeIcon icon={faExclamation} className="warning-icon" />
+            <span></span>
+          </div>
+          <div className="content">
+            <span>선택된 항목이 없습니다.</span>
+            <span>변경할 항목을 선택해주세요.</span>
+          </div>
+          <div className="btns">
+            <button onClick={handleOk}>확인</button>
+          </div>
+        </div>
+      </EditErrorModalStyle>
     </>
   );
 };
