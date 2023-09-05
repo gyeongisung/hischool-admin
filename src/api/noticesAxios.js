@@ -51,9 +51,11 @@ export const delectNoticeData = async noticeId => {
   }
 };
 
-export const patchNoticeHit = async (noticeId) => {
+export const patchNoticeHit = async noticeId => {
   try {
-    const response = await client.patch(`/api/notice/hits?noticeId=${noticeId}`);
+    const response = await client.patch(
+      `/api/notice/hits?noticeId=${noticeId}`,
+    );
     return response;
   } catch (err) {
     console.error(err);

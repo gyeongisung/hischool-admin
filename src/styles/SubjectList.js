@@ -37,6 +37,58 @@ const SubjectListGradeSubject = styled.div`
 const ListGradeSubject = styled.div`
   justify-content: space-between;
   margin: 1vh 5vw;
+  max-height: 76vh;
+  overflow-y: auto;
+`;
+const SWCTitle = styled.div`
+  width: 100%;
+  height: 40px;
+  display: grid;
+  grid-template-columns: 1.25fr 1.25fr 0.25fr;
+  font-size: 18px;
+  color: #fff;
+  justify-content: space-between;
+  align-items: center;
+  background: #176b87;
+  border: 1px solid #bbb;
+  border-radius: 10px;
+  box-shadow: 0px 0.5px 5px 0px rgba(0, 0, 0, 0.2);
+  margin-bottom: 10px;
+  position: sticky;
+  top: 0;
+  z-index: 1;
+  > p {
+    text-align: center;
+  }
+`;
+const SWCinput = styled.div`
+  display: grid;
+  grid-template-columns: 1.25fr 1.25fr 0.25fr;
+  align-items: center;
+  background: #fff;
+  border: 1px solid #bbb;
+  border-radius: 10px;
+  box-shadow: 0px 0.5px 5px 0px rgba(0, 0, 0, 0.2);
+  width: 100%;
+  height: 40px;
+  font-size: 18px;
+  margin-bottom: 10px;
+  > select {
+    margin: 0 auto;
+    border: 1px solid #bbb;
+    border-radius: 3px;
+    width: 7vw;
+    height: 25px;
+    text-align: center;
+  }
+  > button {
+    margin: 0 auto;
+    width: 1vw;
+    text-align: center;
+    height: 25px;
+    background: #fff;
+    cursor: pointer;
+  }
 `;
 
 const SubjectListGradeButton = styled.div`
@@ -113,7 +165,6 @@ const SubjectListDiv = styled.div`
 const ListGradeButton = styled.div`
   font-size: 20px;
   display: flex;
-  justify-content: space-between;
   align-items: center;
   > button {
     width: 4vw;
@@ -201,4 +252,6 @@ export {
   SubjectListWCDiv,
   ListGradeSubject,
   ListGradeButton,
+  SWCTitle,
+  SWCinput,
 };
