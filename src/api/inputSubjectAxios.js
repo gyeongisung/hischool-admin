@@ -3,11 +3,14 @@ import { client } from "./client";
 // 서버로 내신 과목 데이터 전송
 export const postALLData = async (grade, dataToSend) => {
   try {
-    const response = await client.post(`/api/admin/sbj?grade=${parseInt(grade)}`, {
-      list: dataToSend,
-    });
+    const response = await client.post(
+      `/api/admin/sbj?grade=${parseInt(grade)}`,
+      {
+        list: dataToSend,
+      },
+    );
   } catch (error) {
-     console.error("데이터 전송 오류:", error);
+    console.error("데이터 전송 오류:", error);
   }
 };
 
@@ -42,5 +45,14 @@ export const getALLSubListData = async grade => {
   } catch (err) {
     console.log(err);
     return [];
+  }
+};
+
+export const deleteSubList = async scSbjId => {
+  try {
+    const res = await client.delete(`/api/admin/sbj?scSbjId=${scSbjId}`);
+    return res;
+  } catch (err) {
+    console.log(err);
   }
 };

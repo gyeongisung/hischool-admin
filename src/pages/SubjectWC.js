@@ -1,11 +1,10 @@
 import React, { useState, useEffect } from "react";
-import {
-  getALLSubListData,
-} from "../api/inputSubjectAxios";
+import { getALLSubListData } from "../api/inputSubjectAxios";
 import { useParams } from "react-router";
 import {
   ListGradeButton,
   ListGradeSubject,
+  SWCTitle,
   SubjectListWCDiv,
   SubjectListWrap,
 } from "../styles/SubjectList";
@@ -23,6 +22,12 @@ const SubjectWC = () => {
     fetchData();
   }, [gradeId]);
 
+  const updateGradeData = scSbjId => {
+    setGradeData(prevGradeData =>
+      prevGradeData.filter(item => item.scSbjId !== scSbjId),
+    );
+  };
+
   return (
     <SubjectListWrap>
       <h2>{gradeId}학년 과목 수정</h2>
@@ -30,21 +35,20 @@ const SubjectWC = () => {
         <button>수정</button>
       </ListGradeButton>
       <ListGradeSubject>
-        <SubjectListWCDiv>
-          <ul>
-            <li>
-              <ul>
-                <li>번호</li>
-                <li>과목 이름</li>
-                <li>과목 이름</li>
-                <li>삭제</li>
-              </ul>
-            </li>
-            {gradeData.map((item, index) => (
-              <TSubjectUpdate key={index} index={index} item={item[index]} />
-            ))}
-          </ul>
-        </SubjectListWCDiv>
+        <SWCTitle>
+          <p>과목 계열</p>
+          <p>세부 과목</p>
+          <p>삭제</p>
+        </SWCTitle>
+        <div>
+          {gradeData.map((item, index) => (
+            <TSubjectUpdate
+              key={index}
+              item={item}
+              updateGradeData={updateGradeData}
+            />
+          ))}
+        </div>
       </ListGradeSubject>
     </SubjectListWrap>
   );
