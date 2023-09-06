@@ -21,7 +21,7 @@ const TeacherList = () => {
   };
 
   useEffect(() => {
-    fetchData(page);
+    fetchData();
   }, [page, search, enrollFilter]);
 
   const handleSginClick = () => {
@@ -32,8 +32,6 @@ const TeacherList = () => {
     e.preventDefault();
     fetchData();
   };
-
-  // console.log(listData);
 
   return (
     <TeacherListWrap>
