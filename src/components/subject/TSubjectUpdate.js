@@ -3,17 +3,18 @@ import { getALLMainSubData, getALLSubData } from "../../api/inputSubjectAxios";
 import { SWCinput } from "../../styles/SubjectList";
 import { faCircleXmark } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+
 const TSubjectUpdate = ({ item, gradeData, setGradeData }) => {
-  const [mainSubjects, setMainSubjects] = useState([]); //메인과목리스트
-  const [subSubjects, setSubSubjects] = useState([]); //서브과목리스트
-  const [mainSubject, setMainSubject] = useState(item.categoryId); //개별과목
+  const [mainSubjects, setMainSubjects] = useState([]);
+  const [subSubjects, setSubSubjects] = useState([]);
+  const [mainSubject, setMainSubject] = useState(item.categoryId);
   const [subject, setSubject] = useState(item.subjectId);
   const [scSbjId, setScSbjId] = useState(item.scSbjId);
   useEffect(() => {
     setMainSubject(item.categoryId);
     setSubject(item.subjectId);
     setScSbjId(item.scSbjId);
-  }, [gradeData]);
+  }, [gradeData, item.subjectId]);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -29,14 +30,18 @@ const TSubjectUpdate = ({ item, gradeData, setGradeData }) => {
   const handleMainSubChange = e => {
     setMainSubject(e.target.value);
   };
+
   const handleSubChange = e => {
+    console.log("작동 잘 되는데 왜 업데이트가 안돼냐ㅏㅏㅏ");
     setSubject(e.target.value);
+    console.log("여기 사람 죽어요.", e.target.value);
   };
 
   const handleDelete = () => {
     const newGradeData = gradeData.filter(item => item.scSbjId !== scSbjId);
     setGradeData(newGradeData);
   };
+
   return (
     <SWCinput>
       <select
@@ -65,4 +70,5 @@ const TSubjectUpdate = ({ item, gradeData, setGradeData }) => {
     </SWCinput>
   );
 };
+
 export default TSubjectUpdate;

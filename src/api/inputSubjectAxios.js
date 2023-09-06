@@ -48,9 +48,9 @@ export const getALLSubListData = async grade => {
   }
 };
 
-export const deleteSubList = async scSbjId => {
+export const editSubList = async (gradeId, postDataList) => {
   try {
-    const res = await client.delete(`/api/admin/sbj?scSbjId=${scSbjId}`);
+    const res = await client.put(`/api/admin/sbj?grade=${gradeId}`, postDataList);
     return res;
   } catch (err) {
     console.log(err);

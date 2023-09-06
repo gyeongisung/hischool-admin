@@ -1,11 +1,10 @@
 import React, { useState, useEffect } from "react";
-import { getALLSubListData } from "../api/inputSubjectAxios";
-import { useParams } from "react-router";
+import { editSubList, getALLSubListData } from "../api/inputSubjectAxios";
+import { useNavigate, useParams } from "react-router";
 import {
   ListGradeButton,
   ListGradeSubject,
   SWCTitle,
-  SubjectListWCDiv,
   SubjectListWrap,
 } from "../styles/SubjectList";
 import TSubjectUpdate from "../components/subject/TSubjectUpdate";
@@ -13,7 +12,7 @@ import TSubjectUpdate from "../components/subject/TSubjectUpdate";
 const SubjectWC = () => {
   const { gradeId } = useParams();
   const [gradeData, setGradeData] = useState([]);
-  console.log(gradeData);
+  const navigate = useNavigate();
   useEffect(() => {
     const fetchData = async () => {
       const gradeSubjectData = await getALLSubListData(gradeId);
@@ -21,12 +20,23 @@ const SubjectWC = () => {
     };
     fetchData();
   }, [gradeId]);
+  console.log("gradeData", gradeData);
+
+  const handleSaveButtonClick = () => {
+    const postDataList = gradeData.map(item => ({ subjectId: item.subjectId }));
+    try {
+      console.log("postDataList", postDataList);
+      // navigate(-1);
+    } catch (error) {
+      console.error("저장 중 오류 발생:", error);
+    }
+  };
 
   return (
     <SubjectListWrap>
       <h2>{gradeId}학년 과목 수정</h2>
       <ListGradeButton>
-        <button>수정</button>
+        <button onClick={handleSaveButtonClick}>수정</button>
       </ListGradeButton>
       <ListGradeSubject>
         <SWCTitle>
