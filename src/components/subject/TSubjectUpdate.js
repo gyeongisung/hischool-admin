@@ -1,27 +1,26 @@
 import React, { useState, useEffect } from "react";
-import {
-  deleteSubList,
-  getALLMainSubData,
-  getALLSubData,
-} from "../../api/inputSubjectAxios";
+import { getALLMainSubData, getALLSubData } from "../../api/inputSubjectAxios";
 import { SWCinput } from "../../styles/SubjectList";
 import { faCircleXmark } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { useNavigate } from "react-router";
-
-const TSubjectUpdate = ({ item, updateGradeData }) => {
+const TSubjectUpdate = ({
+  item,
+  setListDelete,
+  listDelete,
+  gradeData,
+  setGradeDa
+  a,
+}) => {
   const [mainSubjects, setMainSubjects] = useState([]);
   const [subSubjects, setSubSubjects] = useState([]);
   const [mainSubject, setMainSubject] = useState(item.categoryId);
   const [subject, setSubject] = useState(item.subjectId);
-  const navigate = useNavigate();
   const scSbjId = item.scSbjId;
-
+  const [isDeleting, setIsDeleting] = useState(false);
   useEffect(() => {
     const fetchData = async () => {
       const mainSubjectData = await getALLMainSubData();
       setMainSubjects(mainSubjectData);
-
       if (mainSubject) {
         const subSubjectData = await getALLSubData(mainSubject);
         setSubSubjects(subSubjectData);
@@ -29,25 +28,26 @@ const TSubjectUpdate = ({ item, updateGradeData }) => {
     };
     fetchData();
   }, [mainSubject]);
-
   const handleMainSubChange = e => {
     setMainSubject(e.target.value);
   };
-
   const handleSubChange = e => {
     setSubject(e.target.value);
   };
-
-  const handleDelect = async () => {
-    try {
-      await deleteSubList(scSbjId);
-      console.log("삭제가 됐을 것 같네요.");
-      updateGradeData(scSbjId);
-    } catch (error) {
-      console.error("삭제 중 오류가 발생했습니다.", error);
-    }
+  // const handleDelete = () => {
+  //   if (listDelete.includes(scSbjId)) {
+  //     setListDelete(prevListDelete =>
+  //       prevListDelete.filter(id => id !== scSbjId),
+  //     );
+  //   } else {
+  //     setListDelete(prevListDelete => [...prevListDelete, scSbjId]);
+  //   }
+  //   setIsDeleting(!isDeleting);
+  // };
+  const handleDelete = () => {
+    const newGradeData = gradeData.filter(item => item.scSbjId !== scSbjId);
+    setGradeData(newGradeData);
   };
-
   return (
     <SWCinput>
       <select
@@ -70,11 +70,16 @@ const TSubjectUpdate = ({ item, updateGradeData }) => {
           </option>
         ))}
       </select>
-      <button onClick={handleDelect}>
-        <FontAwesomeIcon icon={faCircleXmark} />
-      </button>
+      {isDeleting ? (
+        <>
+          <button onClick={handleDelete}>취소</button>
+        </>
+      ) : (
+        <button onClick={handleDelete}>
+          <FontAwesomeIcon icon={faCircleXmark} />
+        </button>
+      )}
     </SWCinput>
   );
 };
-
 export default TSubjectUpdate;
