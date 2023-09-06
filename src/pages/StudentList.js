@@ -12,6 +12,7 @@ import {
 } from "../components/Modal";
 import {
   getClassInfo,
+  getFilterStudentList,
   getStudentData,
   getStudentSearchList,
 } from "../api/studentListAxios";
@@ -27,6 +28,8 @@ const StudentList = () => {
   const [studentListData, setStudentListData] = useState("");
   const [grade, setGrade] = useState("");
   const [classNum, setClassNum] = useState("");
+  const [seletedClass, setSelectedClass] = useState("");
+  const [enroll, setEnroll] = useState("");
 
   // 전체 체크박스 선택
   const handleAllCheck = e => {
@@ -80,12 +83,17 @@ const StudentList = () => {
     getStudentSearchList(searchText, page, setStudentListData, setTotalPage);
   };
 
+  console.log(classNum);
   const handleGrade = e => {
     setGrade(e.target.value);
   };
 
   const handleClass = e => {
-    console.log(e.target.value);
+    setSelectedClass(e.target.value);
+  };
+
+  const handleEnroll = e => {
+    setEnroll(e.target.value);
   };
 
   useEffect(() => {
@@ -98,8 +106,20 @@ const StudentList = () => {
   }, [page, handleOk]);
 
   useEffect(() => {
-    getClassInfo(grade, setClassNum);
-  }, [grade]);
+    if (grade) {
+      getClassInfo(grade, setClassNum);
+    }
+    if (grade || seletedClass || enroll) {
+      getFilterStudentList(
+        page,
+        grade,
+        seletedClass,
+        enroll,
+        setStudentListData,
+        setTotalPage,
+      );
+    }
+  }, [grade, seletedClass, enroll]);
 
   return (
     <>
@@ -147,9 +167,9 @@ const StudentList = () => {
                 onChange={e => handleGrade(e)}
               >
                 <option value="">학년</option>
-                <option>1학년</option>
-                <option>2학년</option>
-                <option>3학년</option>
+                <option value="1">1학년</option>
+                <option value="2">2학년</option>
+                <option value="3">3학년</option>
               </select>
               <select
                 name="classNum"
@@ -157,22 +177,19 @@ const StudentList = () => {
                 onChange={e => handleClass(e)}
               >
                 <option value="">반</option>
-                <option>1반</option>
-                <option>2반</option>
-                <option>3반</option>
-                <option>4반</option>
-                <option>5반</option>
+                {classNum &&
+                  classNum.map(item => (
+                    <option key={item} value={item}>
+                      {item}반
+                    </option>
+                  ))}
               </select>
-              <select
-                name="attend"
-                id="attend"
-                // onChange={e => handleYearList(e)}
-              >
+              <select name="attend" id="attend" onChange={e => handleEnroll(e)}>
                 <option value="">학적 구분</option>
-                <option>재학</option>
-                <option>졸업</option>
-                <option>자퇴</option>
-                <option>전학</option>
+                <option value="ENROLL">재학</option>
+                <option value="GRADUATION">졸업</option>
+                <option value="LEAVE">자퇴</option>
+                <option value="TRANSFER">전학</option>
               </select>
             </div>
             <div className="btn-wrap">
