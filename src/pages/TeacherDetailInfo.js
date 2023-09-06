@@ -28,7 +28,6 @@ const TeacherDetailInfo = () => {
 
   useEffect(() => {
     getTcDetailData(setUserData, state.userId, setVanNum, setEnrollFilter);
-    // getTeacherState(setEnrollFilter);
     getTeacherGrade(grade, setGradeList);
   }, [grade]);
 
@@ -196,6 +195,7 @@ const TeacherDetailInfo = () => {
                       value={enrollFilter}
                       onChange={e => handleFilter(e)}
                     >
+                      <option value="">선택</option>
                       <option value="ENROLL">재직</option>
                       <option value="TRANSFER">전근</option>
                       <option value="LEAVE">휴직</option>

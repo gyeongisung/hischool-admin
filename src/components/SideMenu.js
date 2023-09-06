@@ -29,7 +29,7 @@ const SideMenu = () => {
     cookies.remove("refreshToken");
     setTimeout(() => {
       navigate("/");
-    }, 500);
+    }, 300);
   };
 
   useEffect(() => {
