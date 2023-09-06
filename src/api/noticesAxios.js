@@ -61,3 +61,12 @@ export const patchNoticeHit = async noticeId => {
     console.error(err);
   }
 };
+
+export const searchNotice = async (search) => {
+  let endpoint = `/api/notice/search?page=1`;
+  if (search) {
+    endpoint += `&search=${encodeURIComponent(search)}`;
+  }
+  const response = await client.get(endpoint);
+  return response.data;
+};
