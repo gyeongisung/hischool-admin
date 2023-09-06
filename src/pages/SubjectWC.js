@@ -25,6 +25,7 @@ const SubjectWC = () => {
   const handleSaveButtonClick = () => {
     const postDataList = gradeData.map(item => ({ subjectId: item.subjectId }));
     try {
+      editSubList(gradeId, postDataList);
       console.log("postDataList", postDataList);
       // navigate(-1);
     } catch (error) {
