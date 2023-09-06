@@ -3,19 +3,18 @@ import { getALLMainSubData, getALLSubData } from "../../api/inputSubjectAxios";
 import { SWCinput } from "../../styles/SubjectList";
 import { faCircleXmark } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-const TSubjectUpdate = ({
-  item,
-  setListDelete,
-  listDelete,
-  gradeData,
-  setGradeData,
-}) => {
-  const [mainSubjects, setMainSubjects] = useState([]);
-  const [subSubjects, setSubSubjects] = useState([]);
-  const [mainSubject, setMainSubject] = useState(item.categoryId);
+const TSubjectUpdate = ({ item, gradeData, setGradeData }) => {
+  const [mainSubjects, setMainSubjects] = useState([]); //메인과목리스트
+  const [subSubjects, setSubSubjects] = useState([]); //서브과목리스트
+  const [mainSubject, setMainSubject] = useState(item.categoryId); //개별과목
   const [subject, setSubject] = useState(item.subjectId);
-  const scSbjId = item.scSbjId;
-  const [isDeleting, setIsDeleting] = useState(false);
+  const [scSbjId, setScSbjId] = useState(item.scSbjId);
+  useEffect(() => {
+    setMainSubject(item.categoryId);
+    setSubject(item.subjectId);
+    setScSbjId(item.scSbjId);
+  }, [gradeData]);
+
   useEffect(() => {
     const fetchData = async () => {
       const mainSubjectData = await getALLMainSubData();
@@ -33,16 +32,7 @@ const TSubjectUpdate = ({
   const handleSubChange = e => {
     setSubject(e.target.value);
   };
-  // const handleDelete = () => {
-  //   if (listDelete.includes(scSbjId)) {
-  //     setListDelete(prevListDelete =>
-  //       prevListDelete.filter(id => id !== scSbjId),
-  //     );
-  //   } else {
-  //     setListDelete(prevListDelete => [...prevListDelete, scSbjId]);
-  //   }
-  //   setIsDeleting(!isDeleting);
-  // };
+
   const handleDelete = () => {
     const newGradeData = gradeData.filter(item => item.scSbjId !== scSbjId);
     setGradeData(newGradeData);
@@ -69,15 +59,9 @@ const TSubjectUpdate = ({
           </option>
         ))}
       </select>
-      {isDeleting ? (
-        <>
-          <button onClick={handleDelete}>취소</button>
-        </>
-      ) : (
-        <button onClick={handleDelete}>
-          <FontAwesomeIcon icon={faCircleXmark} />
-        </button>
-      )}
+      <button onClick={handleDelete}>
+        <FontAwesomeIcon icon={faCircleXmark} />
+      </button>
     </SWCinput>
   );
 };
