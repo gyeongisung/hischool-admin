@@ -23,7 +23,7 @@ const TeacherList = () => {
   useEffect(() => {
     fetchData();
     if (enrollFilter) {
-      setPage(1);
+      setPage
     }
   }, [page, search, enrollFilter]);
 
