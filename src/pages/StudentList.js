@@ -10,7 +10,11 @@ import {
   EditClassModal,
   EditErrorModal,
 } from "../components/Modal";
-import { getStudentData, getStudentSearchList } from "../api/studentListAxios";
+import {
+  getClassInfo,
+  getStudentData,
+  getStudentSearchList,
+} from "../api/studentListAxios";
 const StudentList = () => {
   const [page, setPage] = useState(1);
   const [totlaPage, setTotalPage] = useState(0);
@@ -21,6 +25,8 @@ const StudentList = () => {
   const [editClassModalOpen, setEditClassModalOpen] = useState(false);
   const [editAttendModalOpen, setEditAttendModalOpen] = useState(false);
   const [studentListData, setStudentListData] = useState("");
+  const [grade, setGrade] = useState("");
+  const [classNum, setClassNum] = useState("");
 
   // 전체 체크박스 선택
   const handleAllCheck = e => {
@@ -74,6 +80,14 @@ const StudentList = () => {
     getStudentSearchList(searchText, page, setStudentListData, setTotalPage);
   };
 
+  const handleGrade = e => {
+    setGrade(e.target.value);
+  };
+
+  const handleClass = e => {
+    console.log(e.target.value);
+  };
+
   useEffect(() => {
     const allCheckBox = document.querySelectorAll(".checkbox");
     allCheckBox.forEach(item => {
@@ -82,6 +96,10 @@ const StudentList = () => {
     getStudentData(page, setStudentListData, setTotalPage);
     setHandleOk(false);
   }, [page, handleOk]);
+
+  useEffect(() => {
+    getClassInfo(grade, setClassNum);
+  }, [grade]);
 
   return (
     <>
@@ -125,7 +143,8 @@ const StudentList = () => {
               <select
                 name="grade"
                 id="grade"
-                // onChange={e => handleYearList(e)}
+                value={grade}
+                onChange={e => handleGrade(e)}
               >
                 <option value="">학년</option>
                 <option>1학년</option>
@@ -135,7 +154,7 @@ const StudentList = () => {
               <select
                 name="classNum"
                 id="classNum"
-                // onChange={e => handleYearList(e)}
+                onChange={e => handleClass(e)}
               >
                 <option value="">반</option>
                 <option>1반</option>
