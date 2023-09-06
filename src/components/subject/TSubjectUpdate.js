@@ -8,8 +8,7 @@ const TSubjectUpdate = ({
   setListDelete,
   listDelete,
   gradeData,
-  setGradeDa
-  a,
+  setGradeData,
 }) => {
   const [mainSubjects, setMainSubjects] = useState([]);
   const [subSubjects, setSubSubjects] = useState([]);
