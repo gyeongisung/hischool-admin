@@ -81,7 +81,7 @@ const AdminHome = () => {
             </Link>
             <span>명</span>
             <span>(승인 대기 인원:</span>
-            <Link to="/signlist">
+            <Link to="/teacherlist/signlist">
               <span className="teacher-num">{memberStatus.tcWaitingNum}</span>
             </Link>
             <span>명)</span>
