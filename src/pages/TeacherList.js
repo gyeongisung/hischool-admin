@@ -21,11 +21,7 @@ const TeacherList = () => {
   };
 
   useEffect(() => {
-    if (enrollFilter) {
-      setPage(1);
-    } else {
-      fetchData(page);
-    }
+    fetchData(page);
   }, [page, search, enrollFilter]);
 
   const handleSginClick = () => {

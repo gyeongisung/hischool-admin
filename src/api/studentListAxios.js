@@ -55,6 +55,49 @@ export const getStudentSearchList = async (
   }
 };
 
+// 학생 필터링
+export const getFilterStudentList = async (
+  page,
+  grade,
+  classNum,
+  enrollState,
+  setStudentListData,
+  setTotalPage,
+) => {
+  try {
+    console.log("안녕");
+    console.log(page, grade, classNum, enrollState);
+    let res;
+    if (grade && !classNum && !enrollState) {
+      console.log("1");
+      res = await client.get(
+        `/api/admin/name-student-list?grade=${grade}&page=${page}`,
+      );
+    } else if (grade && classNum && !enrollState) {
+      console.log("2");
+      res = await client.get(
+        `/api/admin/name-student-list?classNum=${classNum}&grade=${grade}&page=${page}`,
+      );
+    } else if (grade && classNum && enrollState) {
+      console.log("3");
+      res = await client.get(
+        `/api/admin/name-student-list?classNum=${classNum}&grade=${grade}&page=${page}&enrollState=${enrollState}`,
+      );
+    } else if (!grade && !classNum && enrollState) {
+      console.log("4");
+      res = await client.get(
+        `/api/admin/name-student-list?page=${page}&enrollState=${enrollState}`,
+      );
+    }
+    const result = res.data;
+    console.log(result);
+    setStudentListData(result.list);
+    setTotalPage(result.totalCount);
+  } catch (err) {
+    console.log(err);
+  }
+};
+
 // 학반 정보 GET
 export const getClassInfo = async (grade, setClassList) => {
   const today = new Date();
