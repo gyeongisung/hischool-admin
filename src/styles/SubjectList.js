@@ -73,6 +73,7 @@ const SWCinput = styled.div`
   height: 40px;
   font-size: 18px;
   margin-bottom: 10px;
+
   > select {
     margin: 0 auto;
     border: 1px solid #bbb;
@@ -81,13 +82,16 @@ const SWCinput = styled.div`
     height: 25px;
     text-align: center;
   }
+
   > button {
     margin: 0 auto;
-    width: 1vw;
+    min-width: 20px;
+    border: none;
     text-align: center;
     height: 25px;
     background: #fff;
     cursor: pointer;
+    width: auto;
   }
 `;
 
