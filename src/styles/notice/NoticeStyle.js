@@ -65,7 +65,7 @@ const NoticeInput = styled.div`
   margin-bottom: 10px;
   display: flex;
   justify-content: space-between;
-  > div {
+  > form {
     input {
       border: 1px solid #bbb;
       border-radius: 3px;
