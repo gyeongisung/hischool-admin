@@ -27,15 +27,36 @@ const TSubjectUpdate = ({ item, gradeData, setGradeData }) => {
     };
     fetchData();
   }, [mainSubject]);
-  const handleMainSubChange = e => {
-    setMainSubject(e.target.value);
-  };
 
-  const handleSubChange = e => {
-    console.log("작동 잘 되는데 왜 업데이트가 안돼냐ㅏㅏㅏ");
-    setSubject(e.target.value);
-    console.log("여기 사람 죽어요.", e.target.value);
-  };
+ const handleMainSubChange = e => {
+   const newMainSubject = e.target.value;
+   setMainSubject(newMainSubject);
+   const newGradeData = gradeData.map(item => {
+     if (item.scSbjId === scSbjId) {
+       return {
+         ...item,
+         categoryId: newMainSubject,
+       };
+     }
+     return item;
+   });
+   setGradeData(newGradeData);
+ };
+
+ const handleSubChange = e => {
+   const newSubject = e.target.value;
+   setSubject(newSubject);
+   const newGradeData = gradeData.map(item => {
+     if (item.scSbjId === scSbjId) {
+       return {
+         ...item,
+         subjectId: newSubject,
+       };
+     }
+     return item;
+   });
+   setGradeData(newGradeData);
+ };
 
   const handleDelete = () => {
     const newGradeData = gradeData.filter(item => item.scSbjId !== scSbjId);

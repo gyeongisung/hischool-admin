@@ -18,11 +18,8 @@ const NoticeWrite = () => {
   const [isImportant, setIsImportant] = useState(false);
   const navigate = useNavigate();
 
-  // ReactQull 태그 reference 저장
   const quillRef = React.useRef(null);
 
-  // 툴바 설정하기
-  // 화면이 갱신될때마다 새로 정의할 필요가 없음.
   const modules = useMemo(
     () => ({
       toolbar: {
@@ -100,8 +97,7 @@ const NoticeWrite = () => {
       imptyn: parseInt(isImportant ? 1 : 0),
     };
     try {
-      await postNoticeData(dataToSend); // postNoticeData 함수 호출
-      console.log("글 등록 성공");
+      await postNoticeData(dataToSend);
     } catch (error) {
       console.error("글 등록 오류:", error);
     }

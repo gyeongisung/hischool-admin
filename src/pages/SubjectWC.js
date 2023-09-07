@@ -20,7 +20,6 @@ const SubjectWC = () => {
     };
     fetchData();
   }, [gradeId]);
-  console.log("gradeData", gradeData);
 
   const handleSaveButtonClick = () => {
     const postDataList = gradeData.map(item => ({ subjectId: item.subjectId }));

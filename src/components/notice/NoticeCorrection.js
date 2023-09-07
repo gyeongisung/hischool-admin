@@ -118,7 +118,7 @@ const NoticeCorrection = props => {
         imptyn: isImportant ? 1 : 0,
       };
       await patchNoticeData(dataToSend);
-      navigate(-1); // 성공 시 이전 페이지로 이동
+      navigate(-1); 
     } catch (error) {
       console.error("글 수정 오류:", error);
     }

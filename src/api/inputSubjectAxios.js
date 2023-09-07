@@ -11,6 +11,9 @@ export const postALLData = async (grade, dataToSend) => {
     );
   } catch (error) {
     console.error("데이터 전송 오류:", error);
+     if (error.response && error.response.status === 500) {
+       alert("서버 내부 오류가 발생했습니다. 이미 있는 과목이거나, 서버 전송 오류입니다.");
+     }
   }
 };
 

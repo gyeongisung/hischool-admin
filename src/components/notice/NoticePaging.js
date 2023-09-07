@@ -1,12 +1,7 @@
 import Pagination from "react-js-pagination";
 import { PagiWrap } from "../../styles/PagiStyle";
 
-const NoticePaging = ({
-  currentPage,
-  setCurrentPage,
-  totalCount,
-}) => {
-
+const NoticePaging = ({ currentPage, setCurrentPage, totalCount }) => {
   return (
     <PagiWrap>
       <Pagination
