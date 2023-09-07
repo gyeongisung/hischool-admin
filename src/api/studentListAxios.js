@@ -11,6 +11,7 @@ export const getStudentData = async (
   setTotalPage,
 ) => {
   try {
+    console.log(page, grade, classNum, enrollState, searchText);
     let res;
     if (searchText) {
       if (grade && classNum && enrollState) {
@@ -60,6 +61,7 @@ export const getStudentData = async (
       }
     }
     const result = res.data;
+    console.log(result);
     setStudentListData(result.list);
     setTotalPage(result.totalCount);
   } catch (err) {
