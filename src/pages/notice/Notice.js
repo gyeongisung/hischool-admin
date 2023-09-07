@@ -54,6 +54,7 @@ const Notice = () => {
   const handleSearch = async () => {
     try {
       await searchNotice(search, 1, setSearchedNotice, setSearchTotal);
+      setCurrentPage(1);
     } catch (error) {
       console.error(error);
     }
@@ -119,9 +120,9 @@ const Notice = () => {
                   <li>{notice.hits}</li>
                 </ul>
               ))}
-              {combinedNoticesSearch.map((notice, index) => (
+              {combinedNoticesSearch.map((notice) => (
                 <ul key={notice.noticeId}>
-                  <li>{searchTotal - (index + 10 * (currentPage - 1))}</li>
+                  <li>{notice.noticeId}</li>
                   <li>
                     <Link to={`/notice/${notice.noticeId}`}>
                       {notice.title}
@@ -150,9 +151,9 @@ const Notice = () => {
                   <li>{notice.hits}</li>
                 </ul>
               ))}
-              {combinedNotices.map((notice, index) => (
+              {combinedNotices.map((notice) => (
                 <ul key={notice.noticeId}>
-                  <li>{totalCount - (index + 10 * (currentPage - 1))}</li>
+                  <li>{notice.noticeId}</li>
                   <li>
                     <Link to={`/notice/${notice.noticeId}`}>
                       {notice.title}
