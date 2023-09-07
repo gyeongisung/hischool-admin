@@ -10,12 +10,7 @@ import {
   EditClassModal,
   EditErrorModal,
 } from "../components/Modal";
-import {
-  getClassInfo,
-  getFilterStudentList,
-  getStudentData,
-  getStudentSearchList,
-} from "../api/studentListAxios";
+import { getClassInfo, getStudentData } from "../api/studentListAxios";
 const StudentList = () => {
   const [page, setPage] = useState(1);
   const [totlaPage, setTotalPage] = useState(0);
@@ -62,6 +57,7 @@ const StudentList = () => {
     }
   };
 
+  // 학반 정보 변경
   const handleEditClass = () => {
     if (saveCheckBox.length > 0) {
       setEditClassModalOpen(true);
@@ -70,6 +66,7 @@ const StudentList = () => {
     }
   };
 
+  // 학적 구분 변경
   const handleEditAttend = () => {
     if (saveCheckBox.length > 0) {
       setEditAttendModalOpen(true);
@@ -78,22 +75,34 @@ const StudentList = () => {
     }
   };
 
+  // 검색 버튼 클릭
   const handleSearchBtn = e => {
     e.preventDefault();
-    getStudentSearchList(searchText, page, setStudentListData, setTotalPage);
+    setPage(1);
+    getStudentData(
+      page,
+      grade,
+      seletedClass,
+      enroll,
+      searchText,
+      setStudentListData,
+      setTotalPage,
+    );
   };
 
-  console.log(classNum);
   const handleGrade = e => {
     setGrade(e.target.value);
+    setPage(1);
   };
 
   const handleClass = e => {
     setSelectedClass(e.target.value);
+    setPage(1);
   };
 
   const handleEnroll = e => {
     setEnroll(e.target.value);
+    setPage(1);
   };
 
   useEffect(() => {
@@ -101,25 +110,22 @@ const StudentList = () => {
     allCheckBox.forEach(item => {
       item.checked = false;
     });
-    getStudentData(page, setStudentListData, setTotalPage);
-    setHandleOk(false);
-  }, [page, handleOk]);
-
-  useEffect(() => {
     if (grade) {
       getClassInfo(grade, setClassNum);
+    } else if (!grade) {
+      setClassNum("");
     }
-    if (grade || seletedClass || enroll) {
-      getFilterStudentList(
-        page,
-        grade,
-        seletedClass,
-        enroll,
-        setStudentListData,
-        setTotalPage,
-      );
-    }
-  }, [grade, seletedClass, enroll]);
+    getStudentData(
+      page,
+      grade,
+      seletedClass,
+      enroll,
+      searchText,
+      setStudentListData,
+      setTotalPage,
+    );
+    setHandleOk(false);
+  }, [page, grade, seletedClass, enroll, handleOk]);
 
   return (
     <>
