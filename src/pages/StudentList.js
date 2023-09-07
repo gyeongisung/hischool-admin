@@ -114,6 +114,7 @@ const StudentList = () => {
       getClassInfo(grade, setClassNum);
     } else if (!grade) {
       setClassNum("");
+      setSelectedClass("");
     }
     getStudentData(
       page,
