@@ -145,6 +145,7 @@ const NoticeBoard = styled.div`
           text-align: start;
           padding-left: 30px;
           cursor: pointer;
+          overflow: hidden;
         }
       }
     }

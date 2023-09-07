@@ -3,17 +3,16 @@ import { PagiWrap } from "../../styles/PagiStyle";
 
 const NoticePaging = ({
   currentPage,
-  totalNoticeCount,
   setCurrentPage,
+  totalCount,
 }) => {
-  console.log(currentPage, totalNoticeCount);
 
   return (
     <PagiWrap>
       <Pagination
         activePage={currentPage}
-        itemsCountPerPage={10}
-        totalItemsCount={totalNoticeCount}
+        itemsCountPerPage={14}
+        totalItemsCount={totalCount}
         pageRangeDisplayed={5}
         prevPageText={"‹"}
         nextPageText={"›"}

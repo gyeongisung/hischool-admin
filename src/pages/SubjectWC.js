@@ -26,11 +26,14 @@ const SubjectWC = () => {
     const postDataList = gradeData.map(item => ({ subjectId: item.subjectId }));
     try {
       editSubList(gradeId, postDataList);
-      console.log("postDataList", postDataList);
-      // navigate(-1);
+      navigate(-1);
     } catch (error) {
       console.error("저장 중 오류 발생:", error);
     }
+  };
+  
+  const handleback = () => {
+    navigate(-1);
   };
 
   return (
@@ -38,6 +41,7 @@ const SubjectWC = () => {
       <h2>{gradeId}학년 과목 수정</h2>
       <ListGradeButton>
         <button onClick={handleSaveButtonClick}>수정</button>
+        <button onClick={handleback}>취소</button>
       </ListGradeButton>
       <ListGradeSubject>
         <SWCTitle>

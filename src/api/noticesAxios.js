@@ -1,11 +1,15 @@
 import { client } from "./client";
 
 // 공지사항 리스트
-export const getNoticeList = async setNoticeData => {
+export const getNoticeList = async (setNotice, setTotalCount, currentPage) => {
   try {
-    const res = await client.get(`/api/notice`, { timeout: 1000 });
-    const result = res.data;
-    setNoticeData(result);
+    const res = await client.get(`/api/notice?page=${currentPage}`, {
+      timeout: 1000,
+    });
+    const result = res.data.list;
+    setNotice(result);
+    const totalCount = res.data.total;
+    setTotalCount(totalCount);
   } catch (err) {
     console.error(err);
   }
@@ -62,11 +66,24 @@ export const patchNoticeHit = async noticeId => {
   }
 };
 
-export const searchNotice = async (search) => {
-  let endpoint = `/api/notice/search?page=1`;
-  if (search) {
-    endpoint += `&search=${encodeURIComponent(search)}`;
+export const searchNotice = async (
+  search,
+  currentPage,
+  setSearchedNotice,
+  setSearchTotal,
+) => {
+  try {
+    let endpoint = `/api/notice/search?`;
+    if (search) {
+      endpoint += `search=${encodeURIComponent(search)}&`;
+    }
+    endpoint += `page=${currentPage}`;
+    const res = await client.get(endpoint);
+    console.log("res", res.data);
+    setSearchedNotice(search ? res.data.list : []);
+    setSearchTotal(search ? res.data.searchTotal : []);
+    return res.data;
+  } catch (err) {
+    console.log(err);
   }
-  const response = await client.get(endpoint);
-  return response.data;
 };
