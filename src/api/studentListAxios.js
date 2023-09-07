@@ -3,16 +3,67 @@ import { client } from "../api/client";
 // 학생관리 리스트
 export const getStudentData = async (
   page,
+  grade,
+  classNum,
+  enrollState,
+  searchText,
   setStudentListData,
   setTotalPage,
 ) => {
   try {
-    const res = await client.get(`/api/admin/student-list?page=${page}`);
+    let res;
+    if (searchText) {
+      if (grade && classNum && enrollState) {
+        res = await client.get(
+          `/api/admin/student-list?search=${searchText}&classNum=${classNum}&grade=${grade}&page=${page}&enrollState=${enrollState}`,
+        );
+      } else if (grade && !classNum && enrollState) {
+        res = await client.get(
+          `/api/admin/student-list?search=${searchText}&grade=${grade}&page=${page}&enrollState=${enrollState}`,
+        );
+      } else if (grade && !classNum && !enrollState) {
+        res = await client.get(
+          `/api/admin/student-list?search=${searchText}&grade=${grade}&page=${page}`,
+        );
+      } else if (!grade && !classNum && enrollState) {
+        res = await client.get(
+          `/api/admin/student-list?search=${searchText}&page=${page}&enrollState=${enrollState}`,
+        );
+      } else if (!grade && !classNum && !enrollState) {
+        res = await client.get(
+          `/api/admin/student-list?search=${searchText}&page=${page}`,
+        );
+      }
+    } else {
+      if (grade && !classNum && !enrollState) {
+        res = await client.get(
+          `/api/admin/student-list?grade=${grade}&page=${page}`,
+        );
+      } else if (grade && classNum && !enrollState) {
+        res = await client.get(
+          `/api/admin/student-list?classNum=${classNum}&grade=${grade}&page=${page}`,
+        );
+      } else if (grade && classNum && enrollState) {
+        res = await client.get(
+          `/api/admin/student-list?classNum=${classNum}&grade=${grade}&page=${page}&enrollState=${enrollState}`,
+        );
+      } else if (!grade && !classNum && enrollState) {
+        res = await client.get(
+          `/api/admin/student-list?page=${page}&enrollState=${enrollState}`,
+        );
+      } else if (grade && !classNum && enrollState) {
+        res = await client.get(
+          `/api/admin/student-list?grade=${grade}&page=${page}&enrollState=${enrollState}`,
+        );
+      } else {
+        res = await client.get(`/api/admin/student-list?page=${page}`);
+      }
+    }
     const result = res.data;
     setStudentListData(result.list);
     setTotalPage(result.totalCount);
   } catch (err) {
-    console.error(err);
+    console.log(err);
   }
 };
 
@@ -30,69 +81,6 @@ export const patchStudentAttend = async (saveCheckBox, attendState) => {
       res = client.patch(`/api/admin/leave-user?userId=${saveCheckBox}`);
     }
     const result = res.data;
-  } catch (err) {
-    console.log(err);
-  }
-};
-
-// 학생 검색
-export const getStudentSearchList = async (
-  searchText,
-  page,
-  setStudentListData,
-  setTotalPage,
-) => {
-  try {
-    const res = await client.get(
-      `/api/admin/name-student-list?search=${searchText}&page=${page}`,
-    );
-    const result = res.data;
-    console.log(result);
-    setStudentListData(result.list);
-    setTotalPage(result.totalCount);
-  } catch (err) {
-    console.log(err);
-  }
-};
-
-// 학생 필터링
-export const getFilterStudentList = async (
-  page,
-  grade,
-  classNum,
-  enrollState,
-  setStudentListData,
-  setTotalPage,
-) => {
-  try {
-    console.log("안녕");
-    console.log(page, grade, classNum, enrollState);
-    let res;
-    if (grade && !classNum && !enrollState) {
-      console.log("1");
-      res = await client.get(
-        `/api/admin/name-student-list?grade=${grade}&page=${page}`,
-      );
-    } else if (grade && classNum && !enrollState) {
-      console.log("2");
-      res = await client.get(
-        `/api/admin/name-student-list?classNum=${classNum}&grade=${grade}&page=${page}`,
-      );
-    } else if (grade && classNum && enrollState) {
-      console.log("3");
-      res = await client.get(
-        `/api/admin/name-student-list?classNum=${classNum}&grade=${grade}&page=${page}&enrollState=${enrollState}`,
-      );
-    } else if (!grade && !classNum && enrollState) {
-      console.log("4");
-      res = await client.get(
-        `/api/admin/name-student-list?page=${page}&enrollState=${enrollState}`,
-      );
-    }
-    const result = res.data;
-    console.log(result);
-    setStudentListData(result.list);
-    setTotalPage(result.totalCount);
   } catch (err) {
     console.log(err);
   }
