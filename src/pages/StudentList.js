@@ -112,19 +112,30 @@ const StudentList = () => {
     });
     if (grade) {
       getClassInfo(grade, setClassNum);
+      getStudentData(
+        page,
+        grade,
+        seletedClass,
+        enroll,
+        searchText,
+        setStudentListData,
+        setTotalPage,
+      );
     } else if (!grade) {
       setClassNum("");
       setSelectedClass("");
+      if (grade === "" && seletedClass === "") {
+        getStudentData(
+          page,
+          grade,
+          seletedClass,
+          enroll,
+          searchText,
+          setStudentListData,
+          setTotalPage,
+        );
+      }
     }
-    getStudentData(
-      page,
-      grade,
-      seletedClass,
-      enroll,
-      searchText,
-      setStudentListData,
-      setTotalPage,
-    );
     setHandleOk(false);
   }, [page, grade, seletedClass, enroll, handleOk]);
 
