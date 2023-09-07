@@ -8,6 +8,7 @@ export const getTeacherList = async (
   enrollFilter,
 ) => {
   try {
+    console.log(page, search, enrollFilter);
     const res = await client.get(
       `/api/admin/tc/all?page=${page}&size=16&sort=&search=${search}&enrollState=${enrollFilter}`,
     );
@@ -15,7 +16,7 @@ export const getTeacherList = async (
     setListData(result);
     const totalCount = res.data.totalCount;
     setCount(totalCount);
-    console.log(totalCount);
+    console.log(result);
   } catch (err) {
     console.log(err);
   }

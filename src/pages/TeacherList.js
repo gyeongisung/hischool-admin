@@ -33,6 +33,11 @@ const TeacherList = () => {
     fetchData();
   };
 
+  const handleEnrollFiiter = e => {
+    setEnrollFilter(e.target.value);
+    setPage(1);
+  };
+
   return (
     <TeacherListWrap>
       <TeacherListTitle>
@@ -45,9 +50,7 @@ const TeacherList = () => {
             <select
               value={enrollFilter}
               name="enroll-state"
-              onChange={e => {
-                setEnrollFilter(e.target.value);
-              }}
+              onChange={handleEnrollFiiter}
             >
               <option name="enroll-state" value="">
                 재직 여부
