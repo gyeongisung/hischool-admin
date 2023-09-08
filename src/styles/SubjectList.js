@@ -20,8 +20,9 @@ const SubjectListWrap = styled.div`
         width: 8vw;
         height: 24px;
         line-height: 1;
-        background: #fff;
-        border: 1px solid #bbb;
+        background: #64ccc5;
+        border: 1px solid #64ccc5;
+        color: #f7f7f7;
         border-radius: 3px;
         margin-right: 2.9vw;
         cursor: pointer;
@@ -73,7 +74,6 @@ const SWCinput = styled.div`
   height: 40px;
   font-size: 18px;
   margin-bottom: 10px;
-
   > select {
     margin: 0 auto;
     border: 1px solid #bbb;
@@ -82,7 +82,6 @@ const SWCinput = styled.div`
     height: 25px;
     text-align: center;
   }
-
   > button {
     margin: 0 auto;
     min-width: 20px;
@@ -170,6 +169,12 @@ const ListGradeButton = styled.div`
   font-size: 20px;
   display: flex;
   align-items: center;
+  justify-content: flex-end;
+  margin: 0 5vw;
+  .handleWc {
+    color: #fff;
+    background: #176b87;
+  }
   > button {
     width: 4vw;
     height: 27px;
@@ -179,6 +184,7 @@ const ListGradeButton = styled.div`
     border-radius: 3px;
     line-height: 1;
     cursor: pointer;
+    margin-left: 0.5vw;
     .icon {
       margin-left: 5px;
     }

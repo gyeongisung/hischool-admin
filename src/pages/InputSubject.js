@@ -46,6 +46,12 @@ const InputSubject = () => {
       alert("학년을 선택해주세요.");
       return;
     }
+    for (const student of lastSavedData) {
+      if (!student.subjectId) {
+        alert("세부 과목을 선택해주세요.");
+        return;
+      }
+    }
     if (lastSavedData) {
       const dataToSend = lastSavedData.map(item => ({
         subjectId: parseInt(item.subjectId) || 0,

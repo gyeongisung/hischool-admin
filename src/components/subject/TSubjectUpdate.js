@@ -4,7 +4,11 @@ import { SWCinput } from "../../styles/SubjectList";
 import { faCircleXmark } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-const TSubjectUpdate = ({ item, gradeData, setGradeData }) => {
+const TSubjectUpdate = ({
+  item,
+  gradeData,
+  setGradeData,
+}) => {
   const [mainSubjects, setMainSubjects] = useState([]);
   const [subSubjects, setSubSubjects] = useState([]);
   const [mainSubject, setMainSubject] = useState(item.categoryId);
@@ -28,35 +32,35 @@ const TSubjectUpdate = ({ item, gradeData, setGradeData }) => {
     fetchData();
   }, [mainSubject]);
 
- const handleMainSubChange = e => {
-   const newMainSubject = e.target.value;
-   setMainSubject(newMainSubject);
-   const newGradeData = gradeData.map(item => {
-     if (item.scSbjId === scSbjId) {
-       return {
-         ...item,
-         categoryId: newMainSubject,
-       };
-     }
-     return item;
-   });
-   setGradeData(newGradeData);
- };
+  const handleMainSubChange = e => {
+    const newMainSubject = e.target.value;
+    setMainSubject(newMainSubject);
+    const newGradeData = gradeData.map(item => {
+      if (item.scSbjId === scSbjId) {
+        return {
+          ...item,
+          categoryId: newMainSubject,
+        };
+      }
+      return item;
+    });
+    setGradeData(newGradeData);
+  };
 
- const handleSubChange = e => {
-   const newSubject = e.target.value;
-   setSubject(newSubject);
-   const newGradeData = gradeData.map(item => {
-     if (item.scSbjId === scSbjId) {
-       return {
-         ...item,
-         subjectId: newSubject,
-       };
-     }
-     return item;
-   });
-   setGradeData(newGradeData);
- };
+  const handleSubChange = e => {
+    const newSubject = e.target.value;
+    setSubject(newSubject);
+    const newGradeData = gradeData.map(item => {
+      if (item.scSbjId === scSbjId) {
+        return {
+          ...item,
+          subjectId: newSubject,
+        };
+      }
+      return item;
+    });
+    setGradeData(newGradeData);
+  };
 
   const handleDelete = () => {
     const newGradeData = gradeData.filter(item => item.scSbjId !== scSbjId);
