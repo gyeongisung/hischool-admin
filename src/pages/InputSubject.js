@@ -12,6 +12,7 @@ import {
 import {
   ISRButtonWrapper,
   InputSubJectWrap,
+  SJBoard,
   SJButton,
   SJHeader,
   SJTitle,
@@ -122,7 +123,7 @@ const InputSubject = () => {
         <p>과목계열</p>
         <p>세부과목</p>
       </SJTitle>
-      <div>
+      <SJBoard>
         {studentsData.map((item, index) => (
           <TSubjectPlus
             key={index}
@@ -133,7 +134,7 @@ const InputSubject = () => {
             updateLastSavedData={updateLastSavedData}
           />
         ))}
-      </div>
+      </SJBoard>
       <ISRButtonWrapper>
         <button onClick={handleAddButtonClick}>
           항목 추가

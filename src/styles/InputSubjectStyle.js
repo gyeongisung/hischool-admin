@@ -58,6 +58,9 @@ const SJHeader = styled.div`
   align-items: end;
   margin-bottom: 15px;
   div {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
     h3 {
       font-size: 30px;
       margin-right: 10px;
@@ -111,6 +114,13 @@ const SJTitle = styled.div`
     text-align: center;
   }
 `;
+const SJBoard = styled.div`
+  width: 100%;
+  position: relative;
+  height: 68vh;
+  overflow: auto;
+  margin-bottom: 2vh;
+`;
 
 export {
   ISRButtonWrapper,
@@ -119,4 +129,5 @@ export {
   SJHeader,
   SJButton,
   SJTitle,
+  SJBoard,
 };
