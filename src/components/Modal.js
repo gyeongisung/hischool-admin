@@ -350,7 +350,7 @@ export const StudentAcceptModal = ({
               <span></span>
             </div>
             <div className="content">
-              <span>해당 학생을 승인 하시겠습니까?</span>
+              <span>해당 교원을 승인 하시겠습니까?</span>
             </div>
             <div className="btns">
               <button onClick={handleOk}>확인</button>
