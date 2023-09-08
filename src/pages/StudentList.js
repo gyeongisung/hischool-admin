@@ -106,11 +106,6 @@ const StudentList = () => {
   };
 
   useEffect(() => {
-    document.querySelector(".all-checkbox-btn").checked = false;
-    const allCheckBox = document.querySelectorAll(".checkbox");
-    allCheckBox.forEach(item => {
-      item.checked = false;
-    });
     if (grade) {
       getClassInfo(grade, setClassNum);
       getStudentData(
@@ -137,8 +132,17 @@ const StudentList = () => {
         );
       }
     }
+
     setHandleOk(false);
   }, [page, grade, seletedClass, enroll, handleOk]);
+
+  useEffect(() => {
+    document.querySelector(".all-checkbox-btn").checked = false;
+    const allCheckBox = document.querySelectorAll(".checkbox");
+    allCheckBox.forEach(item => {
+      item.checked = false;
+    });
+  }, [studentListData]);
 
   return (
     <>
