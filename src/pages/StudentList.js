@@ -106,6 +106,7 @@ const StudentList = () => {
   };
 
   useEffect(() => {
+    document.querySelector(".all-checkbox-btn").checked = false;
     const allCheckBox = document.querySelectorAll(".checkbox");
     allCheckBox.forEach(item => {
       item.checked = false;
