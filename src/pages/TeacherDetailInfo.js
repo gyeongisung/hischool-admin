@@ -46,7 +46,7 @@ const TeacherDetailInfo = () => {
     e.persist();
 
     patchMyPageData(state.userId, enrollFilter, grade, vanNum);
-    // navigate("/home");
+    navigate(-1);
   };
 
   // Modal에 확인 버튼 클릭시 유저 삭제
