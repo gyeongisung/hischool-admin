@@ -1,12 +1,19 @@
 import Pagination from "react-js-pagination";
 import { PagiWrap } from "../../styles/PagiStyle";
 
-const NoticePaging = ({ currentPage, setCurrentPage, totalCount }) => {
+const NoticePaging = ({
+  currentPage,
+  setCurrentPage,
+  totalCount,
+  last4Important,
+}) => {
+  let itemsCount = 14 - Math.min(last4Important.length);
+
   return (
     <PagiWrap>
       <Pagination
         activePage={currentPage}
-        itemsCountPerPage={14}
+        itemsCountPerPage={itemsCount}
         totalItemsCount={totalCount}
         pageRangeDisplayed={5}
         prevPageText={"‹"}

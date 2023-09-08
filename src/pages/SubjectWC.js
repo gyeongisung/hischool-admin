@@ -21,16 +21,22 @@ const SubjectWC = () => {
     fetchData();
   }, [gradeId]);
 
-  const handleSaveButtonClick = () => {
+  const handleSaveButtonClick = async () => {
+    for (const student of gradeData) {
+      if (!student.subjectId) {
+        alert("세부 과목을 선택해주세요.");
+        return;
+      }
+    }
     const postDataList = gradeData.map(item => ({ subjectId: item.subjectId }));
     try {
-      editSubList(gradeId, postDataList);
+      await editSubList(gradeId, postDataList);
       navigate(-1);
     } catch (error) {
       console.error("저장 중 오류 발생:", error);
     }
   };
-  
+
   const handleback = () => {
     navigate(-1);
   };
@@ -39,7 +45,9 @@ const SubjectWC = () => {
     <SubjectListWrap>
       <h2>{gradeId}학년 과목 수정</h2>
       <ListGradeButton>
-        <button onClick={handleSaveButtonClick}>수정</button>
+        <button className="handleWc" onClick={handleSaveButtonClick}>
+          수정
+        </button>
         <button onClick={handleback}>취소</button>
       </ListGradeButton>
       <ListGradeSubject>

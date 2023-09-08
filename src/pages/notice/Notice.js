@@ -24,17 +24,14 @@ const Notice = () => {
   const importantsearch = searchedNotice.filter(notice => notice.imptYn === 1);
   const normalsearch = searchedNotice.filter(notice => notice.imptYn === 0);
 
-  const last4Important = important
-    .slice(-4)
+  const lastImportant = important
+    .slice(-important.length)
     .sort((a, b) => b.noticeId - a.noticeId);
-  const last4Importantsearch = importantsearch
-    .slice(-4)
+  const lastImportantsearch = importantsearch
+    .slice(-importantsearch.length)
     .sort((a, b) => b.noticeId - a.noticeId);
 
-  const otherImportant = important.slice(0, -4);
-  const combinedNotices = [...otherImportant, ...normal];
-  const otherImportantsearch = important.slice(0, -4);
-  const combinedNoticesSearch = [...otherImportantsearch, ...normalsearch];
+  const totalItemsCount = totalCount - lastImportant.length;
 
   useEffect(() => {
     function fetchData() {
@@ -105,7 +102,7 @@ const Notice = () => {
         <div className="notice-list">
           {searchedNotice.length > 0 ? (
             <>
-              {last4Importantsearch.map(notice => (
+              {lastImportantsearch.map(notice => (
                 <ul key={notice.noticeId} className="important-notice">
                   <li>
                     <span>중요</span>
@@ -120,7 +117,7 @@ const Notice = () => {
                   <li>{notice.hits}</li>
                 </ul>
               ))}
-              {combinedNoticesSearch.map((notice) => (
+              {normalsearch.map(notice => (
                 <ul key={notice.noticeId}>
                   <li>{notice.noticeId}</li>
                   <li>
@@ -136,7 +133,7 @@ const Notice = () => {
             </>
           ) : (
             <>
-              {last4Important.map(notice => (
+              {lastImportant.map(notice => (
                 <ul key={notice.noticeId} className="important-notice">
                   <li>
                     <span>중요</span>
@@ -151,7 +148,7 @@ const Notice = () => {
                   <li>{notice.hits}</li>
                 </ul>
               ))}
-              {combinedNotices.map((notice) => (
+              {normal.map(notice => (
                 <ul key={notice.noticeId}>
                   <li>{notice.noticeId}</li>
                   <li>
@@ -172,7 +169,8 @@ const Notice = () => {
         <NoticePaging
           currentPage={currentPage}
           setCurrentPage={setCurrentPage}
-          totalCount={searchedNotice.length > 0 ? searchTotal : totalCount}
+          totalCount={searchedNotice.length > 0 ? searchTotal : totalItemsCount}
+          last4Important={searchedNotice.length > 0 ? 0 : lastImportant}
         />
       </PaginationContainer>
     </NoticeWrap>
