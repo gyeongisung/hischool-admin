@@ -8,6 +8,7 @@ import { getMainNoticeList } from "../../api/adminHomeAxios";
 const HomeNotice = () => {
   const navigate = useNavigate();
   const [noticeList, setNoticeList] = useState([]);
+  console.log(noticeList);
 
   // 공지사항 개수 제한
   const maxVisibleLists = 13;

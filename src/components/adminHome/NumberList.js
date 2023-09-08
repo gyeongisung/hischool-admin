@@ -65,6 +65,7 @@ const NumberList = () => {
                         type="text"
                         placeholder="행정실 번호"
                         value={numberList.admNum}
+                        maxLength={12}
                         onChange={e =>
                           setNumberList({
                             ...numberList,
@@ -86,6 +87,7 @@ const NumberList = () => {
                       <input
                         type="text"
                         placeholder="교무실 번호"
+                        maxLength={12}
                         value={numberList.tcNum}
                         onChange={e =>
                           setNumberList({
@@ -108,6 +110,7 @@ const NumberList = () => {
                       <input
                         type="text"
                         placeholder="교장실 번호"
+                        maxLength={12}
                         value={numberList.prcpNum}
                         onChange={e =>
                           setNumberList({
@@ -132,6 +135,7 @@ const NumberList = () => {
                       <input
                         type="text"
                         placeholder="관리실 번호"
+                        maxLength={12}
                         value={numberList.mainNum}
                         onChange={e =>
                           setNumberList({
@@ -154,6 +158,7 @@ const NumberList = () => {
                       <input
                         type="text"
                         placeholder="기계실 번호"
+                        maxLength={12}
                         value={numberList.machineNum}
                         onChange={e =>
                           setNumberList({
@@ -176,6 +181,7 @@ const NumberList = () => {
                       <input
                         type="text"
                         placeholder="팩스 번호"
+                        maxLength={12}
                         value={numberList.faxNum}
                         onChange={e =>
                           setNumberList({
