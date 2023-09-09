@@ -41,10 +41,7 @@ const TeacherDetailInfo = () => {
   };
 
   // 회원정보 수정 함수
-  const handlePatch = e => {
-    e.preventDefault();
-    e.persist();
-
+  const handlePatch = () => {
     patchMyPageData(state.userId, enrollFilter, grade, vanNum);
     navigate(-1);
   };

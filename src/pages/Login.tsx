@@ -8,34 +8,34 @@ import {
 import { useNavigate } from "react-router-dom";
 import { fetchLogin } from "../api/client";
 
-const Login = () => {
-  const [email, setEmail] = useState("");
-  const [errEmail, setErrEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [errPassword, setErrPassword] = useState("");
-  const [isLoginDisabled, setIsLoginDisabled] = useState(true);
-  const [errConfirm, setErrConfirm] = useState(false);
+const Login: React.FC = () => {
+  const [email, setEmail] = useState<string>("");
+  const [errEmail, setErrEmail] = useState<string>("");
+  const [password, setPassword] = useState<string>("");
+  const [errPassword, setErrPassword] = useState<string>("");
+  const [isLoginDisabled, setIsLoginDisabled] = useState<boolean>(true);
+  const [errConfirm, setErrConfirm] = useState<boolean>(false);
   const navigate = useNavigate();
 
   const checkEmail = () => {
     const regex =
       /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/i;
-    const isValid = regex.test(email);
+    const isValid: boolean = regex.test(email);
     setErrEmail(isValid ? "" : "이메일 주소가 형식에 맞지 않습니다.");
   };
 
   const checkPass = () => {
     const regex =
       /^(?=.*[A-Za-z])(?=.*\d)(?=.*[$@$!%*#?&])[A-Za-z\d$@$!%*#?&]{8,16}$/g;
-    const isValid = regex.test(password);
+    const isValid: boolean = regex.test(password);
     setErrPassword(isValid ? "" : "비밀번호가 형식에 맞지 않습니다.");
     setIsLoginDisabled(!isValid);
   };
 
   // // 유저 선택 및 로그인 버튼 함수
-  const handleSubmit = async e => {
+  const handleSubmit = async (e: React.FormEvent<HTMLButtonElement>) => {
     e.preventDefault();
-    const role = await fetchLogin(email, password);
+    const role: string = await fetchLogin(email, password);
     if (!isLoginDisabled) {
       if (role === "ROLE_ADMIN") {
         navigate("/home");
@@ -45,11 +45,11 @@ const Login = () => {
     }
   };
 
-  const handleEmail = e => {
+  const handleEmail = (e: React.ChangeEvent<HTMLInputElement>) => {
     setEmail(e.target.value);
   };
 
-  const handlePassWord = e => {
+  const handlePassWord = (e: React.ChangeEvent<HTMLInputElement>) => {
     setPassword(e.target.value);
   };
 
