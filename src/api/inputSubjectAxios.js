@@ -11,9 +11,11 @@ export const postALLData = async (grade, dataToSend) => {
     );
   } catch (error) {
     console.error("데이터 전송 오류:", error);
-     if (error.response && error.response.status === 500) {
-       alert("서버 내부 오류가 발생했습니다. 이미 있는 과목이거나, 서버 전송 오류입니다.");
-     }
+    if (error.response && error.response.status === 500) {
+      alert(
+        "서버 내부 오류가 발생했습니다. 이미 있는 과목이거나, 서버 전송 오류입니다.",
+      );
+    }
   }
 };
 
@@ -53,7 +55,10 @@ export const getALLSubListData = async grade => {
 
 export const editSubList = async (gradeId, postDataList) => {
   try {
-    const res = await client.put(`/api/admin/sbj?grade=${gradeId}`, postDataList);
+    const res = await client.put(
+      `/api/admin/sbj?grade=${gradeId}`,
+      postDataList,
+    );
     return res;
   } catch (err) {
     console.log(err);
