@@ -310,6 +310,12 @@ export const HomeNoticeWrap = styled.div`
         }
       }
     }
+    .list-title {
+      padding: 0 10px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
   }
 `;
 

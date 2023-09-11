@@ -10,20 +10,31 @@ import dayGridPlugin from "@fullcalendar/daygrid";
 import { getAllMemberStatus, getSchedule } from "../api/adminHomeAxios";
 import HomeNotice from "../components/adminHome/HomeNotice";
 import NumberList from "../components/adminHome/NumberList";
+import { CalendarApi } from "@fullcalendar/core";
+
+export interface StatusType {
+  tcNum: number;
+  tcWaitingNum: number;
+  stdNum: number;
+}
 
 const AdminHome = () => {
-  const calRef = useRef(null);
+  const calRef = useRef<FullCalendar>(null);
   const [scheduleData, setScheduleData] = useState([]);
-  const [memberStatus, setMemberStatus] = useState("");
+  const [memberStatus, setMemberStatus] = useState({
+    tcNum: 0,
+    tcWaitingNum: 0,
+    stdNum: 0,
+  });
 
   // 현재 기준 캘린더 날짜
   const today = new Date();
-  const todayYear = today.getFullYear();
-  const todayMonth = (today.getMonth() + 1).toString();
-  const monthEndDate = new Date(todayYear, todayMonth, 0).getDate();
-  const todayStartDate =
+  const todayYear: number = today.getFullYear();
+  const todayMonth: string = (today.getMonth() + 1).toString();
+  const monthEndDate = new Date(todayYear, parseInt(todayMonth), 0).getDate();
+  const todayStartDate: string | number =
     todayYear + (todayMonth.length <= 1 ? "0" + todayMonth : todayMonth) + "01";
-  const todayEndDate =
+  const todayEndDate: string | number =
     todayYear +
     (todayMonth.length <= 1 ? "0" + todayMonth : todayMonth) +
     monthEndDate;
@@ -34,10 +45,15 @@ const AdminHome = () => {
   // 캘린더 월 변경
   const handleDatesSet = () => {
     if (calRef.current) {
-      const calApi = calRef.current.getApi();
-      const currentYear = calApi.getDate().getYear() + 1900;
-      const currentMonth = (calApi.getDate().getMonth() + 1).toString();
-      const endDateDay = new Date(currentYear, currentMonth, 0).getDate();
+      const calApi: CalendarApi = calRef.current.getApi();
+      const currentYear = calApi.getDate().getFullYear();
+      const currentMonth: string = (calApi.getDate().getMonth() + 1).toString();
+      const endDateDay = new Date(
+        currentYear,
+        parseInt(currentMonth),
+        0,
+      ).getDate();
+
       const startDate =
         currentYear +
         (currentMonth.length <= 1 ? "0" + currentMonth : currentMonth) +

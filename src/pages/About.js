@@ -32,15 +32,11 @@ const About = () => {
           </span>
           <br />
           <span>
-            고등학생과 담임 교사가 직접{" "}
-            <strong>내신 성적과 모의고사 성적을 관리</strong>하고, <br />
+            고등학생과 담임 교사가 직접
+            <strong> 내신 성적과 모의고사 성적을 관리</strong>하고, <br />
             이를 바탕으로 원활한 <strong>대입 상담 및 계획</strong>이 이루어질
             수 있도록 돕는 <strong>‘고등학교 통합성적관리 플랫폼’</strong>
             입니다.
-          </span>
-          <br />
-          <span className="info-message">
-            ※ 커뮤니티 기능은 추후 업데이트될 예정입니다.
           </span>
         </p>
       </div>
@@ -59,19 +55,49 @@ const About = () => {
               <span>팀 노션</span>
             </a>
             <a
-              href="https://www.canva.com/design/DAFq6ul3FIQ/FWsmdrQ-RLDoM2DY87YasA/view?utm_content=DAFq6ul3FIQ&utm_campaign=designshare&utm_medium=link&utm_source=publishsharelink"
+              href="https://www.canva.com/design/DAFuBTKIQvg/pB7e-eaxjBTsrvQCV67IGQ/view?utm_content=DAFuBTKIQvg&utm_campaign=designshare&utm_medium=link&utm_source=publishsharelink"
               rel="noreferrer"
               target="_blank"
             >
               <span>
                 <img src={canvaImg} alt="캔바 아이콘" />
               </span>
-              <span>프로젝트 발표 자료</span>
+              <span>프로젝트 발표 자료(3차)</span>
             </a>
           </p>
         </div>
         <h4>Front-end</h4>
         <div className="front-wrap">
+          <div>
+            <div className="member-detail-wrap">
+              <img src={developer2} alt="견기성 이미지" />
+              <div>
+                <div>
+                  <span className="member-name">견기성</span>
+                  <div className="icons">
+                    <a
+                      href="https://github.com/gyeongisung"
+                      rel="noreferrer"
+                      target="_blank"
+                    >
+                      <img
+                        src={githubImg}
+                        alt="깃허브 바로가기"
+                        className="github"
+                      />
+                    </a>
+                  </div>
+                </div>
+                <span className="roles">
+                  스토리보드 / 로그인 / 회원가입 / <br />
+                  마이페이지 / 학생 관리/ 가입 승인리스트/ <br />
+                  학생 생활기록부 - 출결현황 / <br />
+                  관리자 교원관리 / 승인대기명단 / <br />
+                  교원 상세페이지
+                </span>
+              </div>
+            </div>
+          </div>
           <div>
             <div className="member-detail-wrap">
               <img src={developer1} alt="박주희 이미지" />
@@ -95,34 +121,10 @@ const About = () => {
                 <span className="roles">
                   기획 총괄 / 헤더, 사이드 메뉴 /<br />
                   학생 메인 / 내신 점수 / 모의고사 점수 /<br />
-                  급식표 / 선생님 메인 / 성적 관리
-                </span>
-              </div>
-            </div>
-          </div>
-          <div>
-            <div className="member-detail-wrap">
-              <img src={developer2} alt="견기성 이미지" />
-              <div>
-                <div>
-                  <span className="member-name">견기성</span>
-                  <div className="icons">
-                    <a
-                      href="https://github.com/gyeongisung"
-                      rel="noreferrer"
-                      target="_blank"
-                    >
-                      <img
-                        src={githubImg}
-                        alt="깃허브 바로가기"
-                        className="github"
-                      />
-                    </a>
-                  </div>
-                </div>
-                <span className="roles">
-                  스토리보드 / 로그인 / 회원가입 / <br />
-                  마이페이지 / 학생 관리/ 가입 승인리스트
+                  급식표 / 선생님 메인 / 성적 관리 / <br />
+                  학생 생활기록부 - 성적현황, 진로지도 / <br />
+                  관리자 메인 / 학생관리
+                  <br />
                 </span>
               </div>
             </div>
@@ -149,7 +151,8 @@ const About = () => {
                 </div>
                 <span className="roles">
                   Figma / 모의고사 성적 입력 / <br />
-                  내신 성적 입력 / 과목 정보 입력
+                  내신 성적 입력 / 과목 정보 입력 / <br />
+                  공지사항 / 과목관리
                 </span>
               </div>
             </div>
@@ -160,13 +163,13 @@ const About = () => {
         <div className="back-wrap">
           <div>
             <div className="member-detail-wrap">
-              <img src={developer4} alt="성수천 이미지" />
+              <img src={developer7} alt="석민경 이미지" />
               <div>
                 <div>
-                  <span className="member-name">성수천</span>
+                  <span className="member-name">석민경</span>
                   <div className="icons">
                     <a
-                      href="https://github.com/sucheo"
+                      href="https://github.com/Kimsukkyung0"
                       rel="noreferrer"
                       target="_blank"
                     >
@@ -179,8 +182,10 @@ const About = () => {
                   </div>
                 </div>
                 <span className="roles">
-                  선생님 메인 / 급식표 / 과목 정보 입력 /<br />
-                  내신 성적 입력 / 모의고사 성적 입력
+                  학생 메인 / 내신 점수 / 모의고사 점수 /<br />
+                  주간, 월간 급식표 / 시간표 / <br />
+                  관리자 교원 승인, 재직상태 관리 / <br />
+                  학교별 수강과목관리
                 </span>
               </div>
             </div>
@@ -206,7 +211,10 @@ const About = () => {
                   </div>
                 </div>
                 <span className="roles">
-                  로그인 / 회원가입
+                  로그인(비밀번호 찾기, 이메일 중복확인) / <br />
+                  회원가입(학교 조회, 반 정보 조회) / <br />
+                  관리자 로그인, 마이페이지 / 사이드 메뉴 / <br />
+                  학생 석차, 등급 자동 계산
                   <br />
                 </span>
               </div>
@@ -233,21 +241,23 @@ const About = () => {
                   </div>
                 </div>
                 <span className="roles">
-                  Notion / 마이페이지 / 학생 관리 <br />
-                  가입 대기 명단 / 성적 관리
+                  Notion / 마이페이지 / 학생 관리 /<br />
+                  가입 대기 명단 / 성적 관리 /<br />
+                  관리자 학반정보, 재학여부 변경 <br />
+                  학생 검색 및 페이징 처리
                 </span>
               </div>
             </div>
           </div>
           <div>
             <div className="member-detail-wrap">
-              <img src={developer7} alt="석민경 이미지" />
+              <img src={developer4} alt="성수천 이미지" />
               <div>
                 <div>
-                  <span className="member-name">석민경</span>
+                  <span className="member-name">성수천</span>
                   <div className="icons">
                     <a
-                      href="https://github.com/Kimsukkyung0"
+                      href="https://github.com/sucheo"
                       rel="noreferrer"
                       target="_blank"
                     >
@@ -260,8 +270,10 @@ const About = () => {
                   </div>
                 </div>
                 <span className="roles">
-                  학생 메인 / 내신 점수 / 모의고사 점수 /<br />
-                  주간, 월간 급식표 / 시간표
+                  선생님 메인 / 급식표 / 과목 정보 입력 /<br />
+                  내신 성적 입력 / 모의고사 성적 입력 /<br />
+                  학사일정 API / 공지사항 /<br />
+                  생활기록부 - 진로지도
                 </span>
               </div>
             </div>

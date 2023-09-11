@@ -132,11 +132,11 @@ const StudentList = () => {
         );
       }
     }
-
     setHandleOk(false);
   }, [page, grade, seletedClass, enroll, handleOk]);
 
   useEffect(() => {
+    setSaveCheckBox([]);
     document.querySelector(".all-checkbox-btn").checked = false;
     const allCheckBox = document.querySelectorAll(".checkbox");
     allCheckBox.forEach(item => {
@@ -183,12 +183,7 @@ const StudentList = () => {
           </div>
           <div className="right-wrap">
             <div className="filter-wrap">
-              <select
-                name="grade"
-                id="grade"
-                value={grade}
-                onChange={e => handleGrade(e)}
-              >
+              <select name="grade" value={grade} onChange={e => handleGrade(e)}>
                 <option value="">학년</option>
                 <option value="1">1학년</option>
                 <option value="2">2학년</option>

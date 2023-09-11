@@ -5,10 +5,49 @@ import { faChevronRight } from "@fortawesome/free-solid-svg-icons";
 import { HomeNoticeWrap } from "../../styles/AdminHomeStyle";
 import { getMainNoticeList } from "../../api/adminHomeAxios";
 
+export interface NoticeType {
+  imptList: [
+    {
+      noticeId: number;
+      imptYn: number;
+      title: string;
+      createdAt: string;
+      hits: number;
+    },
+  ];
+  normalList: [
+    {
+      noticeId: number;
+      imptYn: number;
+      title: string;
+      createdAt: string;
+      hits: number;
+    },
+  ];
+}
+
 const HomeNotice = () => {
   const navigate = useNavigate();
-  const [noticeList, setNoticeList] = useState([]);
-  console.log(noticeList);
+  const [noticeList, setNoticeList] = useState<NoticeType>({
+    imptList: [
+      {
+        noticeId: 0,
+        imptYn: 0,
+        title: "",
+        createdAt: "",
+        hits: 0,
+      },
+    ],
+    normalList: [
+      {
+        noticeId: 0,
+        imptYn: 0,
+        title: "",
+        createdAt: ",",
+        hits: 0,
+      },
+    ],
+  });
 
   // 공지사항 개수 제한
   const maxVisibleLists = 13;
@@ -52,7 +91,7 @@ const HomeNotice = () => {
             noticeList.normalList.slice(0, normalListViewCount).map(item => (
               <ul key={item.noticeId}>
                 <li>{item.noticeId}</li>
-                <li>
+                <li className="list-title">
                   <Link to={`/notice/${item.noticeId}`}>{item.title}</Link>
                 </li>
                 <li>{item.createdAt}</li>
