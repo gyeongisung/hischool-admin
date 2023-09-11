@@ -82,7 +82,7 @@ const InputSubject = () => {
             const subData = await getALLSubData(mainSubject.categoryId);
             return {
               mainsubject: mainSubject.categoryNm,
-              data: subData.map(subSubject => ({
+              data: subData[grade].map(subSubject => ({
                 subsubject: subSubject.subjectNm,
                 subjectid: subSubject.subjectId,
               })),
@@ -96,7 +96,7 @@ const InputSubject = () => {
       }
     }
     fetchData();
-  }, []);
+  }, [grade]);
 
   const handleGrade = e => {
     setGrade(e.target.value);
