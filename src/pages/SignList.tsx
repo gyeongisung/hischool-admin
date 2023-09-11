@@ -5,26 +5,40 @@ import {
   TimeTableDiv,
 } from "../styles/SignListStyle";
 import { useNavigate } from "react-router";
-import {
-  getSignListData,
-  putSignAccept,
-} from "../api/signListAxios";
+import { getSignListData, putSignAccept } from "../api/signListAxios";
 import { StudentAcceptModal } from "../components/Modal";
 import Pagination from "../components/Paging";
 
-const SignList = () => {
-  const [listData, setListData] = useState([]);
-  const [acceptOk, setAcceptOk] = useState(false);
-  const [modalOpen, setModalOpen] = useState(false);
-  const [saveCheckBox, setSaveCheckBox] = useState([]);
-  const [page, setPage] = useState(1);
-  const [count, setCount] = useState(0);
+export interface SignListData {
+  userId: number;
+  schoolNm: string;
+  grade: string;
+  vanNum: string;
+  email: string;
+  nm: string;
+  birth: string;
+  phone: string;
+  address: string;
+  detailAddr: string;
+  role: string;
+  aprYn: number;
+  enrollState: string;
+}
+
+const SignList: React.FC = () => {
+  const [listData, setListData] = useState<SignListData[]>([]);
+  const [acceptOk, setAcceptOk] = useState<boolean>(false);
+  const [modalOpen, setModalOpen] = useState<boolean>(false);
+  const [saveCheckBox, setSaveCheckBox] = useState<number[]>([]);
+  const [page, setPage] = useState<number>(1);
+  const [count, setCount] = useState<number>(0);
   const navigate = useNavigate();
-  let resultIdArray = saveCheckBox;
+  let resultIdArray: number[] = saveCheckBox;
 
   // 전체 체크박스 선택
-  const handleAllCheck = e => {
-    const allCheckBox = document.querySelectorAll(".school-checkbox");
+  const handleAllCheck = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const allCheckBox =
+      document.querySelectorAll<HTMLInputElement>(".school-checkbox");
     resultIdArray = [];
     if (e.target.checked === true) {
       allCheckBox.forEach(item => {
@@ -41,7 +55,7 @@ const SignList = () => {
   };
 
   // 개별 체크박스 선택
-  const handleCheckBox = e => {
+  const handleCheckBox = (e: React.ChangeEvent<HTMLInputElement>) => {
     const clickList = e.currentTarget;
     const userId = parseInt(clickList.classList[1].slice(6));
     if (e.target.checked === true) {
@@ -63,9 +77,10 @@ const SignList = () => {
   }, [page, acceptOk]);
 
   useEffect(() => {
-    document.querySelector(".all-checkbox-btn").checked = false;
+    document.querySelector<HTMLInputElement>(".all-checkbox-btn")!.checked =
+      false;
     document
-      .querySelectorAll(".school-checkbox")
+      .querySelectorAll<HTMLInputElement>(".school-checkbox")
       .forEach(item => (item.checked = false));
     setSaveCheckBox([]);
   }, [listData]);
@@ -84,7 +99,6 @@ const SignList = () => {
         <StudentAcceptModal
           modalOpen={modalOpen}
           setModalOpen={setModalOpen}
-          resultIdArray={resultIdArray}
           setAcceptOk={setAcceptOk}
         />
       )}
@@ -96,7 +110,7 @@ const SignList = () => {
           <button type="submit" onClick={handleOk}>
             승인
           </button>
-          <button onClick={handleCancel}>취소</button>
+          <button onChange={handleCancel}>취소</button>
         </div>
       </StudentListTitle>
       <TimeTableDiv>
@@ -107,7 +121,7 @@ const SignList = () => {
                 <input
                   type="checkbox"
                   name="all-check-box"
-                  onClick={e => handleAllCheck(e)}
+                  onChange={e => handleAllCheck(e)}
                   className="all-checkbox-btn"
                 />
               </li>
@@ -129,7 +143,7 @@ const SignList = () => {
                       name="check-box"
                       defaultChecked={false}
                       className={`school-checkbox userId${item.userId}`}
-                      onClick={e => handleCheckBox(e)}
+                      onChange={e => handleCheckBox(e)}
                     />
                   </li>
                   <li>{(page - 1) * 16 + index + 1}</li>

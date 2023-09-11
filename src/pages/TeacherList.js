@@ -113,7 +113,7 @@ const TeacherList = () => {
                   <li>{item.phone}</li>
                   <li>{item.email}</li>
                   <li>
-                    {item.grade}학년 {item.vanNum}반
+                    {item.grade > 0 ? `${item.grade}학년 ${item.vanNum}반` : ""}
                   </li>
                   {item.enrollState === "ENROLL" && <li>재직</li>}
                   {item.enrollState === "TRANSFER" && <li>전근</li>}

@@ -20,7 +20,6 @@ export const getTcDetailData = async (
 export const patchMyPageData = async (userId, enrollFilter, grade, vanNum) => {
   const today = new Date();
   const todayYear = today.getFullYear();
-  console.log(userId, enrollFilter, grade, vanNum, todayYear);
   try {
     const res = await client.patch(`/api/admin/tc`, {
       userId: userId,
@@ -29,9 +28,7 @@ export const patchMyPageData = async (userId, enrollFilter, grade, vanNum) => {
       grade: grade,
       classNum: vanNum,
     });
-    console.log(res.data);
     const result = res.data;
-    console.log(result);
   } catch (err) {
     console.log(err);
   }

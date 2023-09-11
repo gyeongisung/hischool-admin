@@ -8,8 +8,10 @@ export const getTeacherList = async (
   enrollFilter,
 ) => {
   try {
-    console.log(page, search, enrollFilter);
     const res = await client.get(
+      `/api/admin/tc/all?page=${page}&size=16&sort=&search=${search}&enrollState=${enrollFilter}`,
+    );
+    console.log(
       `/api/admin/tc/all?page=${page}&size=16&sort=&search=${search}&enrollState=${enrollFilter}`,
     );
     const result = res.data.list;

@@ -7,7 +7,6 @@ import {
 import {
   getTcDetailData,
   getTeacherGrade,
-  getTeacherState,
   patchMyPageData,
 } from "../api/TeacherInfoAxios";
 import { TeacherAcceptModal } from "../components/Modal";
@@ -22,7 +21,7 @@ const TeacherDetailInfo = () => {
   const [modalOpen, setModalOpen] = useState(false);
   const [enrollFilter, setEnrollFilter] = useState("");
   const [vanNum, setVanNum] = useState("");
-  const [gradeList, setGradeList] = useState("");
+  const [gradeList, setGradeList] = useState([]);
   const [grade, setGrade] = useState(defaultGrade);
   const navigate = useNavigate();
 
@@ -40,13 +39,17 @@ const TeacherDetailInfo = () => {
     e.preventDefault();
   };
 
-  // 회원정보 수정 함수
+  // 교원 정보 수정 함수
   const handlePatch = () => {
-    patchMyPageData(state.userId, enrollFilter, grade, vanNum);
-    navigate(-1);
+    if (enrollFilter !== "") {
+      patchMyPageData(state.userId, enrollFilter, grade, vanNum);
+      navigate(-1);
+    } else {
+      alert("재직여부를 선택해주세요.");
+    }
   };
 
-  // Modal에 확인 버튼 클릭시 유저 삭제
+  // Modal에 확인 버튼 클릭시 교원 승인
   useEffect(() => {
     if (acceptOk === true) {
       setModalOpen(false);
@@ -56,29 +59,23 @@ const TeacherDetailInfo = () => {
     }
   }, [acceptOk]);
 
-  // 유저 삭제 모달 오픈 함수
+  // 교원 승인 모달 오픈 함수
   const handleSignModalOpen = () => {
     setModalOpen(true);
   };
 
   const handleGrade = e => {
     setGrade(parseInt(e.target.value));
-    console.log(e.target.value);
   };
 
   const handleVanNum = e => {
     setVanNum(parseInt(e.target.value));
-    console.log(e.target.value);
   };
 
   const handleFilter = e => {
     setEnrollFilter(e.target.value);
-    console.log(e.target.value);
   };
 
-  // console.log(userData.enrollState);
-  console.log(enrollFilter);
-  // console.log(vanNum);
   return (
     <MypageDiv onSubmit={handleSubmit}>
       <div>
@@ -174,13 +171,15 @@ const TeacherDetailInfo = () => {
                           value={vanNum}
                           onChange={e => handleVanNum(e)}
                         >
-                          {gradeList &&
+                          {gradeList && gradeList > 0 ? (
                             gradeList.map(item => (
                               <option key={item} value={item}>
                                 {item}반
                               </option>
-                            ))}
-                          <option value="0">해당없음</option>
+                            ))
+                          ) : (
+                            <option value="0">해당없음</option>
+                          )}
                         </select>
                       </div>
                     </div>
