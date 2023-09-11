@@ -5,10 +5,27 @@ import { faPencil } from "@fortawesome/free-solid-svg-icons";
 import { SaveNumverModal } from "../Modal";
 import { getNumberList } from "../../api/adminHomeAxios";
 
+export interface ListType {
+  admNum: string;
+  tcNum: string;
+  prcpNum: string;
+  mainNum: string;
+  machineNum: string;
+  faxNum: string;
+}
+
 const NumberList = () => {
   const [modalOpen, setModalOpen] = useState(false);
   const [editMode, setEditMode] = useState(false);
-  const [numberList, setNumberList] = useState([]);
+
+  const [numberList, setNumberList] = useState<ListType>({
+    admNum: "",
+    tcNum: "",
+    prcpNum: "",
+    mainNum: "",
+    machineNum: "",
+    faxNum: "",
+  });
 
   const handleEditNumber = () => {
     if (editMode) {

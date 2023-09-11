@@ -5,10 +5,49 @@ import { faChevronRight } from "@fortawesome/free-solid-svg-icons";
 import { HomeNoticeWrap } from "../../styles/AdminHomeStyle";
 import { getMainNoticeList } from "../../api/adminHomeAxios";
 
+export interface NoticeType {
+  imptList: [
+    {
+      noticeId: number;
+      imptYn: number;
+      title: string;
+      createdAt: string;
+      hits: number;
+    },
+  ];
+  normalList: [
+    {
+      noticeId: number;
+      imptYn: number;
+      title: string;
+      createdAt: string;
+      hits: number;
+    },
+  ];
+}
+
 const HomeNotice = () => {
   const navigate = useNavigate();
-  const [noticeList, setNoticeList] = useState([]);
-  console.log(noticeList);
+  const [noticeList, setNoticeList] = useState<NoticeType>({
+    imptList: [
+      {
+        noticeId: 0,
+        imptYn: 0,
+        title: "",
+        createdAt: "",
+        hits: 0,
+      },
+    ],
+    normalList: [
+      {
+        noticeId: 0,
+        imptYn: 0,
+        title: "",
+        createdAt: ",",
+        hits: 0,
+      },
+    ],
+  });
 
   // 공지사항 개수 제한
   const maxVisibleLists = 13;
