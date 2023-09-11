@@ -62,7 +62,7 @@ const About = () => {
               <span>
                 <img src={canvaImg} alt="캔바 아이콘" />
               </span>
-              <span>프로젝트 발표 자료</span>
+              <span>프로젝트 발표 자료(3차)</span>
             </a>
           </p>
         </div>
