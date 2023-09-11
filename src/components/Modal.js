@@ -153,11 +153,15 @@ export const EditClassModal = ({
   });
 
   const handleOk = () => {
-    saveCheckBox.forEach(item => {
-      patchGradeClassInfo(payload, item);
-    });
-    setHandleOk(true);
-    setEditClassModalOpen(false);
+    if (payload.grade === 0 || payload.classNum === 0) {
+      alert("학년, 반 정보를 다시 확인해주세요");
+    } else {
+      saveCheckBox.forEach(item => {
+        patchGradeClassInfo(payload, item);
+      });
+      setHandleOk(true);
+      setEditClassModalOpen(false);
+    }
   };
 
   const closeModal = () => {
@@ -197,7 +201,7 @@ export const EditClassModal = ({
             <div className="content">
               <label htmlFor="grade">
                 <select id="grade" onChange={e => handleGrade(e)}>
-                  <option value="">학년</option>
+                  <option value="0">학년</option>
                   <option value="1">1학년</option>
                   <option value="2">2학년</option>
                   <option value="3">3학년</option>
@@ -205,8 +209,9 @@ export const EditClassModal = ({
               </label>
               <label htmlFor="class">
                 <select id="class" onChange={e => handleClass(e)}>
-                  <option value="">반</option>
+                  <option value="0">반</option>
                   {classList &&
+                    classList.length > 1 &&
                     classList.map(item => (
                       <option value={item} key={item}>
                         {item}반
@@ -272,10 +277,10 @@ export const EditAttendModal = ({
               <span className="description">변경할 학적을 선택해주세요.</span>
             </div>
             <div className="content">
-              <label htmlFor="">
+              <label htmlFor="selected-attend">
                 <select
                   name="grade"
-                  id="grade"
+                  id="selected-attend"
                   onChange={e => setAttendState(e.target.value)}
                 >
                   <option value="">학적 선택</option>
