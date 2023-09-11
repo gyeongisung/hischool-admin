@@ -49,7 +49,7 @@ const TeacherDetailInfo = () => {
     }
   };
 
-  // Modal에 확인 버튼 클릭시 교원 승인
+  // Modal 확인 버튼 클릭시 교원 승인
   useEffect(() => {
     if (acceptOk === true) {
       setModalOpen(false);
@@ -171,14 +171,14 @@ const TeacherDetailInfo = () => {
                           value={vanNum}
                           onChange={e => handleVanNum(e)}
                         >
-                          {gradeList && gradeList > 0 ? (
+                          {gradeList && gradeList[0] == 0 ? (
+                            <option value="0">해당없음</option>
+                          ) : (
                             gradeList.map(item => (
                               <option key={item} value={item}>
                                 {item}반
                               </option>
                             ))
-                          ) : (
-                            <option value="0">해당없음</option>
                           )}
                         </select>
                       </div>
