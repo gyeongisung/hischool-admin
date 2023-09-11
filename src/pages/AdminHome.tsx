@@ -19,7 +19,7 @@ export interface StatusType {
 }
 
 const AdminHome = () => {
-  const calRef = useRef<FullCalendar | null>(null);
+  const calRef = useRef<FullCalendar>(null);
   const [scheduleData, setScheduleData] = useState([]);
   const [memberStatus, setMemberStatus] = useState({
     tcNum: 0,
@@ -46,13 +46,14 @@ const AdminHome = () => {
   const handleDatesSet = () => {
     if (calRef.current) {
       const calApi: CalendarApi = calRef.current.getApi();
-      const currentYear = calApi.getDate().getFullYear() + 1900;
+      const currentYear = calApi.getDate().getFullYear();
       const currentMonth: string = (calApi.getDate().getMonth() + 1).toString();
       const endDateDay = new Date(
         currentYear,
         parseInt(currentMonth),
         0,
       ).getDate();
+
       const startDate =
         currentYear +
         (currentMonth.length <= 1 ? "0" + currentMonth : currentMonth) +

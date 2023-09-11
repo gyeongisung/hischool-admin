@@ -91,7 +91,7 @@ const HomeNotice = () => {
             noticeList.normalList.slice(0, normalListViewCount).map(item => (
               <ul key={item.noticeId}>
                 <li>{item.noticeId}</li>
-                <li>
+                <li className="list-title">
                   <Link to={`/notice/${item.noticeId}`}>{item.title}</Link>
                 </li>
                 <li>{item.createdAt}</li>
