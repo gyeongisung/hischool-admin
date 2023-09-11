@@ -14,6 +14,7 @@ const TSubjectUpdate = ({
   const [mainSubject, setMainSubject] = useState(item.categoryId);
   const [subject, setSubject] = useState(item.subjectId);
   const [scSbjId, setScSbjId] = useState(item.scSbjId);
+  
   useEffect(() => {
     setMainSubject(item.categoryId);
     setSubject(item.subjectId);

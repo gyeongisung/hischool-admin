@@ -146,6 +146,10 @@ const NoticeBoard = styled.div`
           padding-left: 30px;
           cursor: pointer;
           overflow: hidden;
+          > a {
+            display: inline-block;
+            width: 100%;
+          }
         }
       }
     }
@@ -220,21 +224,23 @@ const NoticeDetailInformation = styled.div`
     display: flex;
     gap: 1vh;
     align-items: center;
-    :nth-of-type(2) {
-      position: relative;
-      margin-left: 2px;
-      padding-left: 10px;
-    }
-    :nth-of-type(2)::after {
-      position: absolute;
-      left: 0;
-      top: 3px;
-      content: "";
-      top: 50%;
-      transform: translateY(-50%);
-      width: 1px;
-      height: 15px;
-      background-color: black;
+    > p {
+      :nth-of-type(2) {
+        position: relative;
+        margin-left: 2px;
+        padding-left: 10px;
+      }
+      :nth-of-type(2)::after {
+        position: absolute;
+        left: 0;
+        top: 3px;
+        content: "";
+        top: 50%;
+        transform: translateY(-50%);
+        width: 1px;
+        height: 15px;
+        background-color: black;
+      }
     }
   }
 `;

@@ -42,9 +42,16 @@ const NoticeDetail = () => {
   const handleCencle = () => {
     navigate("/notice");
   };
-  const handleDelect = () => {
-    delectNoticeData(noticeId);
-    navigate(-1);
+  const handleDelect = async () => {
+    const confirmation = window.confirm("정말로 삭제하시겠습니까?");
+    if (confirmation) {
+      try {
+        await delectNoticeData(noticeId);
+        navigate(-1);
+      } catch (error) {
+        console.error("삭제 오류:", error);
+      }
+    }
   };
 
   const handleEditClick = () => {
@@ -59,7 +66,7 @@ const NoticeDetail = () => {
         <p>{notice.title}</p>
       </NoticeDetailITitle>
       <NoticeDetailInformation>
-        <div>관리자{notice.userId}</div>
+        <div>관리자</div>
         <div>
           <p>{notice.hits}</p>
           <p>{notice.createdAt.split("T", 1)}</p>
