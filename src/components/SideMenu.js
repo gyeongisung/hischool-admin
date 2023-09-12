@@ -28,7 +28,7 @@ const SideMenu = () => {
     cookies.remove("accessToken");
     cookies.remove("refreshToken");
     setTimeout(() => {
-      navigate("/");
+      navigate("/admin/");
     }, 300);
   };
 
@@ -39,7 +39,7 @@ const SideMenu = () => {
   return (
     <SideMenuWrap>
       <div className="user-info-wrap">
-        <div className="main-logo" onClick={() => navigate(`/home`)}>
+        <div className="main-logo" onClick={() => navigate(`/admin/home`)}>
           <span>Hi! School</span>
         </div>
         <div className="user-img">

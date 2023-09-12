@@ -65,7 +65,7 @@ const Notice = () => {
   };
 
   const handleWriting = () => {
-    navigate("/notice/writing");
+    navigate("/admin/notice/writing");
   };
 
   return (

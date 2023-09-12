@@ -38,7 +38,7 @@ const Login: React.FC = () => {
     const role: string = await fetchLogin(email, password);
     if (!isLoginDisabled) {
       if (role === "ROLE_ADMIN") {
-        navigate("/home");
+        navigate("/admin/home");
       } else {
         setErrConfirm(true);
       }
