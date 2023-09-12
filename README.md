@@ -14,9 +14,9 @@
 <br><br>
 
 <h4>
-    <a href="https://heeheepark.notion.site/team_c-c0c5b2a4fe2b4ddab7acde1638bc4e67?pvs=4">Notion</a>
+    <a href="https://faithful-creature-4f3.notion.site/Hi-School-bda01938369343ef83967c966a44a6c9">Notion</a>
   <span> · </span>
-    <a href="https://www.canva.com/design/DAFq6ul3FIQ/FWsmdrQ-RLDoM2DY87YasA/view?utm_content=DAFq6ul3FIQ&utm_campaign=designshare&utm_medium=link&utm_source=publishsharelink">발표자료</a>
+    <a href="https://www.canva.com/design/DAFuBTKIQvg/pB7e-eaxjBTsrvQCV67IGQ/view?utm_content=DAFuBTKIQvg&utm_campaign=designshare&utm_medium=link&utm_source=publishsharelink">발표자료</a>
   </h4>
 </div>
 
@@ -45,9 +45,9 @@
 
 ### 담당 영역 및 역할
 
-- 견기성: 요구사항 명세서 작성 / 교원관리, 교원 승인 대기명단, 교원 탈퇴 목록, 교원 세부정보, 출결 현황, 수상 경력
-- 박주희: 스토리보드 작성 / 헤더·사이드 메뉴, 메인, 학생 관리, 진로 희망사항, 봉사활동 실적
-- 박호진: Figma 작업 / 공지사항, 과목 관리, 과목 정보 입력, 성적현황
+- 견기성: 요구사항 명세서 작성 / 교원관리, 교원 승인 대기명단, 교원 탈퇴 목록, 교원 세부정보, 출결현황
+- 박주희: 스토리보드 작성 / 헤더·사이드 메뉴, 메인, 학생 관리, 진로지도, 성적현황
+- 박호진: Figma 작업 / 공지사항, 과목 관리, 과목 정보 입력
 
 <br>
 <!-- About the Project -->
