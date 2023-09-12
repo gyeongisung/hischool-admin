@@ -23,6 +23,9 @@ const SubjectList = () => {
     };
     fetchData();
   }, []);
+  const canEditGrade = data => {
+    return data.length > 0;
+  };
   return (
     <SubjectListWrap>
       <div className="titile">
@@ -35,9 +38,13 @@ const SubjectList = () => {
         <div>
           <SubjectListGradeButton>
             <span>1학년</span>
-            <Link to={`/subject/wc/${1}`}>
-              <button>수정</button>
-            </Link>
+            {canEditGrade(grade1Data) ? (
+              <Link to={`/subject/wc/${1}`}>
+                <button>수정</button>
+              </Link>
+            ) : (
+              <button disabled>수정</button>
+            )}
           </SubjectListGradeButton>
           <SubjectListDiv>
             <ul>
@@ -61,9 +68,13 @@ const SubjectList = () => {
         <div>
           <SubjectListGradeButton>
             <span>2학년</span>
-            <Link to={`/subject/wc/${2}`}>
-              <button>수정</button>
-            </Link>
+            {canEditGrade(grade2Data) ? (
+              <Link to={`/subject/wc/${2}`}>
+                <button>수정</button>
+              </Link>
+            ) : (
+              <button disabled>수정</button>
+            )}
           </SubjectListGradeButton>
           <SubjectListDiv>
             <ul>
@@ -87,9 +98,13 @@ const SubjectList = () => {
         <div>
           <SubjectListGradeButton>
             <span>3학년</span>
-            <Link to={`/subject/wc/${3}`}>
-              <button>수정</button>
-            </Link>
+            {canEditGrade(grade3Data) ? (
+              <Link to={`/subject/wc/${3}`}>
+                <button>수정</button>
+              </Link>
+            ) : (
+              <button disabled>수정</button>
+            )}
           </SubjectListGradeButton>
           <SubjectListDiv>
             <ul>

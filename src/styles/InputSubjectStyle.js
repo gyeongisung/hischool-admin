@@ -2,7 +2,7 @@ import styled from "@emotion/styled";
 
 const ISJinput = styled.div`
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: 1.25fr 1.25fr 0.25fr;
   align-items: center;
   background: #fff;
   border: 1px solid #bbb;
@@ -100,7 +100,7 @@ const SJTitle = styled.div`
   width: 100%;
   height: 40px;
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: 1.25fr 1.25fr 0.25fr;
   font-size: 18px;
   color: #fff;
   justify-content: space-between;
