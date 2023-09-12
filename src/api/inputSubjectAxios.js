@@ -41,6 +41,16 @@ export const getALLSubData = async categoryid => {
   }
 };
 
+export const getSubData = async categoryid => {
+  try {
+    const res = await client.get(`/api/admin/sbj/cate2/${categoryid}`);
+    return res.data;
+  } catch (err) {
+    console.log(err);
+    return [];
+  }
+};
+
 // 내신고사 과목 데이터 리스트
 export const getALLSubListData = async grade => {
   try {
