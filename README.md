@@ -14,9 +14,9 @@
 <br><br>
 
 <h4>
-    <a href="https://heeheepark.notion.site/team_c-c0c5b2a4fe2b4ddab7acde1638bc4e67?pvs=4">Notion</a>
+    <a href="https://faithful-creature-4f3.notion.site/Hi-School-bda01938369343ef83967c966a44a6c9">Notion</a>
   <span> · </span>
-    <a href="https://www.canva.com/design/DAFq6ul3FIQ/FWsmdrQ-RLDoM2DY87YasA/view?utm_content=DAFq6ul3FIQ&utm_campaign=designshare&utm_medium=link&utm_source=publishsharelink">발표자료</a>
+    <a href="https://www.canva.com/design/DAFuBTKIQvg/pB7e-eaxjBTsrvQCV67IGQ/view?utm_content=DAFuBTKIQvg&utm_campaign=designshare&utm_medium=link&utm_source=publishsharelink">발표자료</a>
   </h4>
 </div>
 
@@ -45,9 +45,9 @@
 
 ### 담당 영역 및 역할
 
-- 견기성: 요구사항 명세서 작성 / 교원관리, 교원 승인 대기명단, 교원 탈퇴 목록, 교원 세부정보, 출결 현황, 수상 경력
-- 박주희: 스토리보드 작성 / 헤더·사이드 메뉴, 메인, 학생 관리, 진로 희망사항, 봉사활동 실적
-- 박호진: Figma 작업 / 공지사항, 과목 관리, 과목 정보 입력, 성적현황
+- 견기성: 요구사항 명세서 작성 / 교원관리, 교원 승인 대기명단, 교원 탈퇴 목록, 교원 세부정보, 출결현황
+- 박주희: 스토리보드 작성 / 헤더·사이드 메뉴, 메인, 학생 관리, 진로지도, 성적현황
+- 박호진: Figma 작업 / 공지사항, 과목 관리, 과목 정보 입력
 
 <br>
 <!-- About the Project -->
@@ -56,7 +56,7 @@
 
 ### 작업기간
 
-2023-08-21 ~ 2023-09-14(24일)
+2023-08-21 ~ 2023-09-13(23일)
 <br><br>
 
 <!-- Getting Started -->
@@ -86,15 +86,23 @@
   <br><br>
 
 ### 주요 기능
-1. 학생별 개인 성적 현황 제공
-   - 학생: 주요 과목 최고 등급, 현재 등급, 최근 응시 시험 등급
-   - 선생님: 최근 응시 시험 학급 성적 현황(내신, 모의고사)
-2. 학급 별 시간표 제공: 학기별 시간표
-3. (학생) 급식표 제공: 주간, 월간 급식표
-4. (선생님) 학사 일정 제공: 해당 년도 학사 일정
-5. 관리자 시스템 관리
-   - 관리자: 교원관리(승인,취소),회원 탈퇴 목록 관리, 모든 정보 수정 권한, 공지사항(입력, 수정) 
-6. (관리자) 모든 정보 수정 권한 : 교원정보, 학생정보, 공지사항, 회원 탈퇴, 승인여부
+주요 기능
+1. 학생 생활기록부
+ - 성적현황, 출결현황, 진로지도
+2. 교원 관리
+ - 소속 학교의 교원 관리
+ - 가입 대기 중인 교원 목록 출력
+3. 학생 관리
+ - 소속 학교의 학생 관리
+ - 학급, 학적 정보 변경
+4. 공지사항
+ - 학교 공지사항
+
+※ 2차 기능 강화
+ 1. 학교 검색 자동완성기능 적용
+ 2. 학년, 반 드롭박스 선택
+ 3. 내신 성적(등급, 석차) 자동 계산
+ 4. 성적 확정기능 추가
   <br>
 
 ## :handshake: Contact

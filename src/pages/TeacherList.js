@@ -25,7 +25,7 @@ const TeacherList = () => {
   }, [page, search, enrollFilter]);
 
   const handleSginClick = () => {
-    navigate("/teacherlist/signlist");
+    navigate("/admin/teacherlist/signlist");
   };
 
   const handleSearchClick = e => {
@@ -102,7 +102,7 @@ const TeacherList = () => {
                   <li
                     className="student-name"
                     onClick={() => {
-                      navigate("/teacherlist/detailinfo", {
+                      navigate("/admin/teacherlist/detailinfo", {
                         state: { userId: item.userId, grade: item.grade },
                       });
                     }}

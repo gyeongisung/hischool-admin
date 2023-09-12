@@ -30,7 +30,7 @@ const SubjectList = () => {
     <SubjectListWrap>
       <div className="titile">
         <h3>과목 관리</h3>
-        <Link to="/subjectlist/input">
+        <Link to="/admin/subjectlist/input">
           <button>과목 정보 입력</button>
         </Link>
       </div>
@@ -39,12 +39,13 @@ const SubjectList = () => {
           <SubjectListGradeButton>
             <span>1학년</span>
             {canEditGrade(grade1Data) ? (
-              <Link to={`/subject/wc/${1}`}>
+              <Link to={`/admin/subject/wc/${1}`}>
                 <button>수정</button>
               </Link>
             ) : (
               <button disabled>수정</button>
             )}
+
           </SubjectListGradeButton>
           <SubjectListDiv>
             <ul>
@@ -69,12 +70,13 @@ const SubjectList = () => {
           <SubjectListGradeButton>
             <span>2학년</span>
             {canEditGrade(grade2Data) ? (
-              <Link to={`/subject/wc/${2}`}>
+              <Link to={`/admin/subject/wc/${2}`}>
                 <button>수정</button>
               </Link>
             ) : (
               <button disabled>수정</button>
             )}
+
           </SubjectListGradeButton>
           <SubjectListDiv>
             <ul>
@@ -99,7 +101,7 @@ const SubjectList = () => {
           <SubjectListGradeButton>
             <span>3학년</span>
             {canEditGrade(grade3Data) ? (
-              <Link to={`/subject/wc/${3}`}>
+              <Link to={`/admin/subject/wc/${3}`}>
                 <button>수정</button>
               </Link>
             ) : (

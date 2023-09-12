@@ -90,7 +90,7 @@ const SignList: React.FC = () => {
   };
 
   const handleCancel = () => {
-    navigate("/teacherlist");
+    navigate("/admin/teacherlist");
   };
 
   return (
@@ -150,7 +150,7 @@ const SignList: React.FC = () => {
                   <li
                     className="student-name"
                     onClick={() => {
-                      navigate("/teacherlist/detailinfo", {
+                      navigate("/admin/teacherlist/detailinfo", {
                         state: { userId: item.userId, grade: item.grade },
                       });
                     }}

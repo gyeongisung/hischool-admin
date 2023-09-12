@@ -40,7 +40,7 @@ const NoticeDetail = () => {
     return <div>공지사항을 찾을 수 없습니다.</div>;
   }
   const handleCencle = () => {
-    navigate("/notice");
+    navigate("/admin/notice");
   };
   const handleDelect = async () => {
     const confirmation = window.confirm("정말로 삭제하시겠습니까?");
@@ -55,7 +55,7 @@ const NoticeDetail = () => {
   };
 
   const handleEditClick = () => {
-    navigate(`/notice/editing/${noticeId}`, { state: { noticeId } });
+    navigate(`/admin/notice/editing/${noticeId}`, { state: { noticeId } });
   };
 
   return (
