@@ -61,7 +61,7 @@ const SideMenu = () => {
         <div className="gnb">
           <ul>
             <NavLink
-              to={`/home`}
+              to={`/admin/home`}
               className={({ isActive }) =>
                 "nav-link" + (isActive ? "-active" : "")
               }
@@ -73,7 +73,7 @@ const SideMenu = () => {
               </li>
             </NavLink>
             <NavLink
-              to={`/notice`}
+              to={`/admin/notice`}
               className={({ isActive }) =>
                 "nav-link" + (isActive ? "-active" : "")
               }
@@ -85,7 +85,7 @@ const SideMenu = () => {
               </li>
             </NavLink>
             <NavLink
-              to={`/subjectlist`}
+              to={`/admin/subjectlist`}
               className={({ isActive }) =>
                 "nav-link" + (isActive ? "-active" : "")
               }
@@ -97,7 +97,7 @@ const SideMenu = () => {
               </li>
             </NavLink>
             <NavLink
-              to={`/teacherlist`}
+              to={`/admin/teacherlist`}
               className={({ isActive }) =>
                 "nav-link" + (isActive ? "-active" : "")
               }
@@ -109,7 +109,7 @@ const SideMenu = () => {
               </li>
             </NavLink>
             <NavLink
-              to={`/studentlist`}
+              to={`/admin/studentlist`}
               className={({ isActive }) =>
                 "nav-link" + (isActive ? "-active" : "")
               }
@@ -121,7 +121,7 @@ const SideMenu = () => {
               </li>
             </NavLink>{" "}
             <NavLink
-              to={`/about`}
+              to={`/admin/about`}
               className={({ isActive }) =>
                 "nav-link" + (isActive ? "-active" : "")
               }

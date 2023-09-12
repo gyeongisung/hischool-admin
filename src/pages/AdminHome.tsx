@@ -82,7 +82,7 @@ const AdminHome = () => {
           <h3>학생 현황</h3>
           <div className="student-status">
             <span>총 인원:</span>
-            <Link to="/studentlist">
+            <Link to="/admin/studentlist">
               <span className="student-num">{memberStatus.stdNum}</span>
             </Link>
             <span>명</span>
@@ -92,12 +92,12 @@ const AdminHome = () => {
           <h3>교원 현황</h3>
           <div className="teacher-status">
             <span>총 인원:</span>
-            <Link to="/teacherlist">
+            <Link to="/admin/teacherlist">
               <span className="teacher-num">{memberStatus.tcNum}</span>
             </Link>
             <span>명</span>
             <span>(승인 대기 인원:</span>
-            <Link to="/teacherlist/signlist">
+            <Link to="/admin/teacherlist/signlist">
               <span className="teacher-num">{memberStatus.tcWaitingNum}</span>
             </Link>
             <span>명)</span>
