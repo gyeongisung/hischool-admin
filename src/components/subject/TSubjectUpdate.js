@@ -1,20 +1,16 @@
 import React, { useState, useEffect } from "react";
-import { getALLMainSubData, getALLSubData } from "../../api/inputSubjectAxios";
+import { getALLMainSubData, getSubData } from "../../api/inputSubjectAxios";
 import { SWCinput } from "../../styles/SubjectList";
 import { faCircleXmark } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-const TSubjectUpdate = ({
-  item,
-  gradeData,
-  setGradeData,
-}) => {
+const TSubjectUpdate = ({ item, gradeData, setGradeData }) => {
   const [mainSubjects, setMainSubjects] = useState([]);
   const [subSubjects, setSubSubjects] = useState([]);
   const [mainSubject, setMainSubject] = useState(item.categoryId);
   const [subject, setSubject] = useState(item.subjectId);
   const [scSbjId, setScSbjId] = useState(item.scSbjId);
-  
+
   useEffect(() => {
     setMainSubject(item.categoryId);
     setSubject(item.subjectId);
@@ -26,7 +22,7 @@ const TSubjectUpdate = ({
       const mainSubjectData = await getALLMainSubData();
       setMainSubjects(mainSubjectData);
       if (mainSubject) {
-        const subSubjectData = await getALLSubData(mainSubject);
+        const subSubjectData = await getSubData(mainSubject);
         setSubSubjects(subSubjectData);
       }
     };
