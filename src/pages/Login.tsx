@@ -9,9 +9,11 @@ import { useNavigate } from "react-router-dom";
 import { fetchLogin } from "../api/client";
 
 const Login: React.FC = () => {
-  const [email, setEmail] = useState<string>("");
+  const defaultEmail = "admin1@naver.com";
+  const defaultPassword = "gkrtod123!";
+  const [email, setEmail] = useState<string>(defaultEmail);
   const [errEmail, setErrEmail] = useState<string>("");
-  const [password, setPassword] = useState<string>("");
+  const [password, setPassword] = useState<string>(defaultPassword);
   const [errPassword, setErrPassword] = useState<string>("");
   const [isLoginDisabled, setIsLoginDisabled] = useState<boolean>(true);
   const [errConfirm, setErrConfirm] = useState<boolean>(false);
@@ -32,16 +34,14 @@ const Login: React.FC = () => {
     setIsLoginDisabled(!isValid);
   };
 
-  // // 유저 선택 및 로그인 버튼 함수
+  // 유저 선택 및 로그인 버튼 함수
   const handleSubmit = async (e: React.FormEvent<HTMLButtonElement>) => {
     e.preventDefault();
     const role: string = await fetchLogin(email, password);
-    if (!isLoginDisabled) {
-      if (role === "ROLE_ADMIN") {
-        navigate("/admin/home");
-      } else {
-        setErrConfirm(true);
-      }
+    if (role === "ROLE_ADMIN") {
+      navigate("/admin/home");
+    } else {
+      setErrConfirm(true);
     }
   };
 
@@ -66,6 +66,7 @@ const Login: React.FC = () => {
               className="login-email"
               name="user-login"
               onChange={e => handleEmail(e)}
+              value={email}
               type="email"
               placeholder="Email"
               onBlur={checkEmail}
@@ -75,6 +76,7 @@ const Login: React.FC = () => {
               className="login-password"
               name="user-password"
               onChange={e => handlePassWord(e)}
+              value={password}
               type="password"
               placeholder="Password"
               autoComplete="on"
