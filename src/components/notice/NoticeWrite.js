@@ -108,7 +108,8 @@ const NoticeWrite = () => {
     navigate(-1);
   };
 
-  const handleCencle = () => {
+  const handleCencle = e => {
+    e.preventDefault();
     navigate(-1);
   };
 
@@ -145,8 +146,8 @@ const NoticeWrite = () => {
           />
         </NoticeWhiteNoitce>
         <NoticeWUButton>
-          <NoticeButton type="submit">글쓰기</NoticeButton>
-          <NoticeButton onClick={handleCencle}>취소</NoticeButton>
+          <NoticeButton type="submit">저장</NoticeButton>
+          <NoticeButton onClick={e => handleCencle(e)}>취소</NoticeButton>
         </NoticeWUButton>
       </form>
     </NoticeWrap>
