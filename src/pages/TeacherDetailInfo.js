@@ -212,9 +212,11 @@ const TeacherDetailInfo = () => {
                 setAcceptOk={setAcceptOk}
               />
             )}
-            <button className="withdraw-btn" onClick={handleSignModalOpen}>
-              승인
-            </button>
+            {userData.aprYn === 0 ? (
+              <button className="withdraw-btn" onClick={handleSignModalOpen}>
+                승인
+              </button>
+            ) : null}
             <div>
               <button type="submit" onClick={handlePatch}>
                 수정
