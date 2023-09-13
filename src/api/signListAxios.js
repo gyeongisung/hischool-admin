@@ -18,7 +18,6 @@ export const putSignAccept = async userId => {
   try {
     const res = await client.put(`/api/admin/tc?userId=${userId}`);
     const result = res.data;
-    console.log(result)
   } catch (err) {
     console.log(err);
   }
