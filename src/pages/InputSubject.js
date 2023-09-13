@@ -21,25 +21,29 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 const InputSubject = () => {
   const [studentsData, setStudentsData] = useState([]);
-  const [lastSavedData, setLastSavedData] = useState([]);
   const [subjectData, setSubjectData] = useState([]);
   const [grade, setGrade] = useState("");
   const navigate = useNavigate();
 
   useEffect(() => {
-    const interimData = [{}];
+    const interimData = [
+      {
+        subject: "",
+        subjectId: "",
+        subjectlist: [],
+      },
+    ];
     setStudentsData(interimData);
-    setLastSavedData(interimData);
   }, []);
 
   const updateLastSavedData = (_id, newData) => {
-    const updateData = lastSavedData.map((item, idx) => {
+    const updateData = studentsData.map((item, idx) => {
       if (idx === _id) {
         item = newData;
       }
       return item;
     });
-    setLastSavedData(updateData);
+    setStudentsData(updateData);
   };
 
   const handleSaveButtonClick = async () => {
@@ -47,28 +51,34 @@ const InputSubject = () => {
       alert("학년을 선택해주세요.");
       return;
     }
-    for (const student of lastSavedData) {
-      if (!student.subjectId) {
-        alert("세부 과목을 선택해주세요.");
-        return;
-      }
+
+    const subjectCheck = studentsData.find(item => item.subject === "");
+    if (subjectCheck) {
+      alert("과목계열 항목을 선택해주세요.");
+      return;
     }
-    if (lastSavedData) {
-      const dataToSend = lastSavedData.map(item => ({
-        subjectId: parseInt(item.subjectId) || 0,
-      }));
-      await postALLData(grade, dataToSend);
-      navigate(-1);
+    const subjectIdCheck = studentsData.find(item => item.subjectId === "");
+    if (subjectIdCheck) {
+      alert("세부과목 항목을 선택해주세요.");
+      return;
     }
+
+    const dataToSend = studentsData.map(item => ({
+      subjectId: parseInt(item.subjectId) || 0,
+    }));
+    // console.log(dataToSend);
+
+    await postALLData(grade, dataToSend);
+    navigate(-1);
   };
 
   const handleAddButtonClick = () => {
     const newStudent = {
-      subSubject: null,
-      subject: null,
+      subject: "",
+      subjectId: "",
+      subjectlist: [],
     };
     setStudentsData(data => [...data, newStudent]);
-    setLastSavedData(data => [...data, newStudent]);
   };
 
   useEffect(() => {
@@ -102,6 +112,15 @@ const InputSubject = () => {
     setGrade(e.target.value);
   };
 
+
+  const deleteStudentData = _subjectId => {
+    const tempStudentData = studentsData.filter(
+      item => item.subjectId !== _subjectId,
+    );
+
+    setStudentsData(tempStudentData);
+  };
+
   return (
     <InputSubJectWrap>
       <SJHeader>
@@ -128,9 +147,9 @@ const InputSubject = () => {
           <TSubjectPlus
             key={index}
             id={index}
+            item={item}
+            deleteStudentData={deleteStudentData}
             subjectData={subjectData}
-            studentsData={studentsData[index]}
-            setStudentsData={setStudentsData}
             updateLastSavedData={updateLastSavedData}
           />
         ))}

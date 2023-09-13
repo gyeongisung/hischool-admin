@@ -1,45 +1,63 @@
 import React, { useEffect, useState } from "react";
 import { ISJinput } from "../../styles/InputSubjectStyle";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faCircleXmark } from "@fortawesome/free-solid-svg-icons";
 
 const TSubjectPlus = ({
   id,
+  item,
+  deleteStudentData,
   subjectData,
-  studentsData,
   updateLastSavedData,
-  selectedStudentIndex,
 }) => {
-  const initialStudentData = {
-    subject: "",
-    subjectId: "",
-  };
-  const [studentData, setStudentData] = useState(initialStudentData);
+  const [studentData, setStudentData] = useState([]);
+  const [mainSubject, setMainSubject] = useState("");
+  const [detailSub, setDetailSub] = useState("");
 
   useEffect(() => {
-    if (selectedStudentIndex !== null) {
-      setStudentData(studentsData[selectedStudentIndex]);
-    }
-  }, [selectedStudentIndex, studentsData]);
+    setStudentData(item.subjectlist);
+    setMainSubject(item.subject);
+    setDetailSub(item.subjectId);
+  }, [item]);
 
   const handleInputChange = e => {
-    const { name, value } = e.target;
+    const { value } = e.target;
     const updatedValue = value;
-    setStudentData(prevData => ({
-      ...prevData,
-      [name]: updatedValue,
-    }));
+
+    const nowList = subjectData.find(temp => temp.mainsubject === updatedValue);
 
     const updatedData = {
-      ...studentData,
-      [name]: updatedValue,
+      subject: updatedValue,
+      subjectId: "",
+      subjectlist: nowList.data,
     };
+    setMainSubject(updatedValue);
+    setDetailSub("");
+    setStudentData(nowList.data);
     updateLastSavedData(id, updatedData);
+  };
+
+  const handleInputChangeSub = e => {
+    const { value } = e.target;
+    const updatedValue = value;
+    const nowList = subjectData.find(temp => temp.mainsubject === item.subject);
+    const updatedData = {
+      subject: mainSubject,
+      subjectId: updatedValue,
+      subjectlist: nowList.data,
+    };
+    setDetailSub(updatedValue);
+    updateLastSavedData(id, updatedData);
+  };
+  const handleDelete = () => {
+    deleteStudentData(item.subjectId);
   };
   return (
     <div>
       <ISJinput>
         <select
           name="subject"
-          value={studentData?.subject || ""}
+          value={item?.subject || ""}
           onChange={handleInputChange}
         >
           <option value="">과목 계열 선택</option>
@@ -56,21 +74,19 @@ const TSubjectPlus = ({
         </select>
         <select
           name="subjectId"
-          value={studentData?.subjectId || ""}
-          onChange={handleInputChange}
+          value={detailSub || ""}
+          onChange={handleInputChangeSub}
         >
           <option value="">세부 과목 선택</option>
-          {studentData?.subject &&
-            subjectData
-              .find(
-                mainSubject => mainSubject.mainsubject === studentData.subject,
-              )
-              .data.map((subSubject, index) => (
-                <option key={index} value={subSubject.subjectid}>
-                  {subSubject.subsubject}
-                </option>
-              ))}
+          {studentData.map((subSubject, index) => (
+            <option key={index} value={subSubject.subjectid}>
+              {subSubject.subsubject}
+            </option>
+          ))}
         </select>
+        <button onClick={handleDelete}>
+          <FontAwesomeIcon icon={faCircleXmark} />
+        </button>
       </ISJinput>
     </div>
   );

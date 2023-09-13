@@ -21,6 +21,16 @@ const ISJinput = styled.div`
     height: 25px;
     text-align: center;
   }
+  > button {
+    margin: 0 auto;
+    min-width: 20px;
+    border: none;
+    text-align: center;
+    height: 25px;
+    background: #fff;
+    cursor: pointer;
+    width: auto;
+  }
 `;
 
 const ISRButtonWrapper = styled.footer`
