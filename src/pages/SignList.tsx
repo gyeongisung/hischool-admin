@@ -110,7 +110,7 @@ const SignList: React.FC = () => {
           <button type="submit" onClick={handleOk}>
             승인
           </button>
-          <button onChange={handleCancel}>취소</button>
+          <button onClick={handleCancel}>취소</button>
         </div>
       </StudentListTitle>
       <TimeTableDiv>
