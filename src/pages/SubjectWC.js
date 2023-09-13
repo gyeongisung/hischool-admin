@@ -30,21 +30,25 @@ const SubjectWC = () => {
       setMainSubjects(mainSubjectData);
 
       const gradeSubjectData = await getALLSubListData(gradeId);
-
       const parseItems = gradeSubjectData.map(item => {
         const rCategoryID = item.categoryId;
         const selectItem = mainSubjectData.find(
           temp => temp.categoryId === rCategoryID,
         );
         item.subDetail = selectItem.subDetail;
+        // selectItem[0].subjectId = item.subjectId;
         return item;
       });
+      // console.log("데이터 정리 ", parseItems);
 
       setGradeData(parseItems);
     };
     fetchData();
   }, []);
 
+  useEffect(() => {
+    // console.log("모아둔 데이터", mainSubjects);
+  }, [mainSubjects]);
 
   const handleSaveButtonClick = async () => {
     for (const student of gradeData) {
@@ -65,7 +69,6 @@ const SubjectWC = () => {
   const handleback = () => {
     navigate(-1);
   };
-
 
   const deleteItem = _item => {
     const newGradeData = gradeData.filter(
