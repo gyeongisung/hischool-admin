@@ -155,7 +155,7 @@ const StudentList = () => {
         <h3>학생 관리</h3>
         <StudentListHeader>
           <div className="search-wrap">
-            <form>
+            <form onSubmit={e => e.preventDefault()}>
               <input
                 type="text"
                 name="search-bar"

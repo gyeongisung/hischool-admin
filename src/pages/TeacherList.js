@@ -70,7 +70,7 @@ const TeacherList = () => {
             </select>
           </div>
           <div>
-            <form>
+            <form onSubmit={e => e.preventDefault()}>
               <input
                 type="text"
                 placeholder="교원 이름을 입력하세요."
