@@ -33,6 +33,10 @@ export const getStudentData = async (
         res = await client.get(
           `/api/admin/student-list?search=${searchText}&page=${page}`,
         );
+      } else if (grade && classNum && !enrollState) {
+        res = await client.get(
+          `/api/admin/student-list?search=${searchText}&classNum=${classNum}&grade=${grade}&page=${page}`,
+        );
       }
     } else {
       if (grade && !classNum && !enrollState) {

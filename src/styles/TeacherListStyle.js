@@ -46,7 +46,12 @@ export const TeacherListTitle = styled.div`
     > div {
       line-height: 1;
       > select {
+        border: 1px solid #ccc;
+        border-radius: 3px;
+        width: 100px;
         height: 25px;
+        text-align: center;
+        cursor: pointer;
       }
     }
     form {
@@ -54,15 +59,9 @@ export const TeacherListTitle = styled.div`
       gap: 5px;
       input {
         padding-left: 5px;
-      }
-      button {
-        width: 50px;
         height: 25px;
-        cursor: pointer;
-        border: none;
-        border-radius: 5px;
-        background: #64ccc5;
-        color: #fff;
+        border: 1px solid #ccc;
+        border-radius: 3px;
       }
     }
   }

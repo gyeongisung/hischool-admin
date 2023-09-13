@@ -75,21 +75,6 @@ const StudentList = () => {
     }
   };
 
-  // 검색 버튼 클릭
-  const handleSearchBtn = e => {
-    e.preventDefault();
-    setPage(1);
-    getStudentData(
-      page,
-      grade,
-      seletedClass,
-      enroll,
-      searchText,
-      setStudentListData,
-      setTotalPage,
-    );
-  };
-
   const handleGrade = e => {
     setGrade(e.target.value);
     setPage(1);
@@ -133,7 +118,7 @@ const StudentList = () => {
       }
     }
     setHandleOk(false);
-  }, [page, grade, seletedClass, enroll, handleOk]);
+  }, [searchText, page, grade, seletedClass, enroll, handleOk]);
 
   useEffect(() => {
     setSaveCheckBox([]);
@@ -178,7 +163,6 @@ const StudentList = () => {
                 value={searchText}
                 onChange={e => setSearchText(e.target.value)}
               />
-              <button onClick={handleSearchBtn}>검색</button>
             </form>
           </div>
           <div className="right-wrap">
@@ -255,7 +239,7 @@ const StudentList = () => {
                       />
                     </li>
                     <li>{item.nm}</li>
-                    <li>{"0000-00-00"}</li>
+                    <li>{item.birth}</li>
                     <li>{item.grade}</li>
                     <li>{item.classNum}</li>
                     <li>{item.phone}</li>
