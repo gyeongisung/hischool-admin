@@ -1,5 +1,10 @@
 import React, { useState, useEffect } from "react";
-import { editSubList, getALLSubListData } from "../api/inputSubjectAxios";
+import {
+  editSubList,
+  getALLMainSubData,
+  getALLSubListData,
+  getSubData,
+} from "../api/inputSubjectAxios";
 import { useNavigate, useParams } from "react-router";
 import {
   ListGradeButton,
@@ -13,13 +18,33 @@ const SubjectWC = () => {
   const { gradeId } = useParams();
   const [gradeData, setGradeData] = useState([]);
   const navigate = useNavigate();
+
+  const [mainSubjects, setMainSubjects] = useState([]);
   useEffect(() => {
     const fetchData = async () => {
+      const mainSubjectData = await getALLMainSubData();
+      mainSubjectData.map(async item => {
+        const subSubjectData = await getSubData(item.categoryId);
+        item.subDetail = subSubjectData;
+      });
+      setMainSubjects(mainSubjectData);
+
       const gradeSubjectData = await getALLSubListData(gradeId);
-      setGradeData(gradeSubjectData);
+
+      const parseItems = gradeSubjectData.map(item => {
+        const rCategoryID = item.categoryId;
+        const selectItem = mainSubjectData.find(
+          temp => temp.categoryId === rCategoryID,
+        );
+        item.subDetail = selectItem.subDetail;
+        return item;
+      });
+
+      setGradeData(parseItems);
     };
     fetchData();
-  }, [gradeId]);
+  }, []);
+
 
   const handleSaveButtonClick = async () => {
     for (const student of gradeData) {
@@ -39,6 +64,14 @@ const SubjectWC = () => {
 
   const handleback = () => {
     navigate(-1);
+  };
+
+
+  const deleteItem = _item => {
+    const newGradeData = gradeData.filter(
+      item => item.subjectId !== _item.subjectId,
+    );
+    setGradeData(newGradeData);
   };
 
   return (
@@ -63,6 +96,8 @@ const SubjectWC = () => {
               item={item}
               gradeData={gradeData}
               setGradeData={setGradeData}
+              mainSubjects={mainSubjects}
+              deleteItem={deleteItem}
             />
           ))}
         </div>

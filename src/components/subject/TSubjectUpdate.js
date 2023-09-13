@@ -1,12 +1,15 @@
 import React, { useState, useEffect } from "react";
-import { getALLMainSubData, getSubData } from "../../api/inputSubjectAxios";
 import { SWCinput } from "../../styles/SubjectList";
 import { faCircleXmark } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-const TSubjectUpdate = ({ item, gradeData, setGradeData }) => {
-  const [mainSubjects, setMainSubjects] = useState([]);
-  const [subSubjects, setSubSubjects] = useState([]);
+const TSubjectUpdate = ({
+  item,
+  gradeData,
+  setGradeData,
+  mainSubjects,
+  deleteItem,
+}) => {
   const [mainSubject, setMainSubject] = useState(item.categoryId);
   const [subject, setSubject] = useState(item.subjectId);
   const [scSbjId, setScSbjId] = useState(item.scSbjId);
@@ -17,21 +20,11 @@ const TSubjectUpdate = ({ item, gradeData, setGradeData }) => {
     setScSbjId(item.scSbjId);
   }, [gradeData, item.subjectId]);
 
-  useEffect(() => {
-    const fetchData = async () => {
-      const mainSubjectData = await getALLMainSubData();
-      setMainSubjects(mainSubjectData);
-      if (mainSubject) {
-        const subSubjectData = await getSubData(mainSubject);
-        setSubSubjects(subSubjectData);
-      }
-    };
-    fetchData();
-  }, [mainSubject]);
 
   const handleMainSubChange = e => {
     const newMainSubject = e.target.value;
     setMainSubject(newMainSubject);
+    
     const newGradeData = gradeData.map(item => {
       if (item.scSbjId === scSbjId) {
         return {
@@ -60,8 +53,7 @@ const TSubjectUpdate = ({ item, gradeData, setGradeData }) => {
   };
 
   const handleDelete = () => {
-    const newGradeData = gradeData.filter(item => item.scSbjId !== scSbjId);
-    setGradeData(newGradeData);
+    deleteItem(item);
   };
 
   return (
@@ -80,7 +72,7 @@ const TSubjectUpdate = ({ item, gradeData, setGradeData }) => {
       </select>
       <select name="subSubject" value={subject} onChange={handleSubChange}>
         <option value="">세부 과목 선택</option>
-        {subSubjects.map(subSubject => (
+        {item?.subDetail.map(subSubject => (
           <option key={subSubject.subjectId} value={subSubject.subjectId}>
             {subSubject.subjectNm}
           </option>
