@@ -66,7 +66,6 @@ const InputSubject = () => {
     const dataToSend = studentsData.map(item => ({
       subjectId: parseInt(item.subjectId) || 0,
     }));
-    // console.log(dataToSend);
 
     await postALLData(grade, dataToSend);
     navigate(-1);
@@ -101,7 +100,6 @@ const InputSubject = () => {
         );
         setSubjectData(newSubjectData);
       } catch (err) {
-        console.log(err);
         setSubjectData([]);
       }
     }
@@ -112,12 +110,20 @@ const InputSubject = () => {
     setGrade(e.target.value);
   };
 
-
+  // 학생 데이터 삭제
   const deleteStudentData = _subjectId => {
+    if (_subjectId !== "") {
+      const tempStudentData = studentsData.filter(
+        item => item.subjectId !== _subjectId,
+      );
+      setStudentsData(tempStudentData);
+    }
+  };
+  const deleteStudentIndex = _idx => {
+    
     const tempStudentData = studentsData.filter(
-      item => item.subjectId !== _subjectId,
+      (item, index) => index !== _idx,
     );
-
     setStudentsData(tempStudentData);
   };
 
@@ -151,6 +157,7 @@ const InputSubject = () => {
             deleteStudentData={deleteStudentData}
             subjectData={subjectData}
             updateLastSavedData={updateLastSavedData}
+            deleteStudentIndex={deleteStudentIndex}
           />
         ))}
       </SJBoard>

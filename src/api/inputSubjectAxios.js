@@ -9,6 +9,7 @@ export const postALLData = async (grade, dataToSend) => {
         list: dataToSend,
       },
     );
+    return response;
   } catch (error) {
     console.error("데이터 전송 오류:", error);
     if (error.response && error.response.status === 500) {
@@ -58,7 +59,6 @@ export const getALLSubListData = async grade => {
     const result = res.data;
     return result;
   } catch (err) {
-    console.log(err);
     return [];
   }
 };

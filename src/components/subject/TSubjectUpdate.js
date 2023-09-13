@@ -20,7 +20,6 @@ const TSubjectUpdate = ({
     setScSbjId(item.scSbjId);
   }, [gradeData, item.subjectId]);
 
-
   const handleMainSubChange = e => {
     const newMainSubject = e.target.value;
     setMainSubject(newMainSubject);
