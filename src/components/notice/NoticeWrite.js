@@ -91,6 +91,12 @@ const NoticeWrite = () => {
 
   const handleSubmit = async event => {
     event.preventDefault();
+    const tempTitle = title.trim();
+    if (tempTitle === "") {
+      setTitle("");
+      alert("제목은 공백이 안됩니다.");
+      return;
+    }
     const dataToSend = {
       title: title,
       content: content,

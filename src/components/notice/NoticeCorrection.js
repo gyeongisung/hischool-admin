@@ -110,6 +110,12 @@ const NoticeCorrection = props => {
 
   const handleSubmit = async event => {
     event.preventDefault();
+    const tempTitle = title.trim();
+    if (tempTitle === "") {
+      setTitle("");
+      alert("제목은 공백이 안됩니다.");
+      return;
+    }
     try {
       const dataToSend = {
         noticeId: noticeId,
@@ -118,7 +124,7 @@ const NoticeCorrection = props => {
         imptyn: isImportant ? 1 : 0,
       };
       await patchNoticeData(dataToSend);
-      navigate(-1); 
+      navigate(-1);
     } catch (error) {
       console.error("글 수정 오류:", error);
     }

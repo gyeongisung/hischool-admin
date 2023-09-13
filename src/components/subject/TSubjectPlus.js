@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { ISJinput } from "../../styles/InputSubjectStyle";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faCircleXmark } from "@fortawesome/free-solid-svg-icons";
 
 const TSubjectPlus = ({
   id,
@@ -100,7 +102,9 @@ const TSubjectPlus = ({
             </option>
           ))}
         </select>
-        <button onClick={handleDelete}>삭제</button>
+        <button onClick={handleDelete}>
+          <FontAwesomeIcon icon={faCircleXmark} />
+        </button>
       </ISJinput>
     </div>
   );
