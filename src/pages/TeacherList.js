@@ -73,12 +73,11 @@ const TeacherList = () => {
             <form>
               <input
                 type="text"
-                placeholder="이름을 입력하세요."
+                placeholder="교원 이름을 입력하세요."
                 name="enroll-state"
                 value={search}
                 onChange={e => setSearch(e.target.value)}
               />
-              <button onClick={handleSearchClick}>검색</button>
             </form>
           </div>
         </div>
