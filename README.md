@@ -7,13 +7,14 @@
 <!-- Badges -->
 <!-- Screenshots -->
 
-<div align="center"> 
-  <img src="assets/1.시안.png" alt="screenshot" />
-</div>
+
+![Hi! School 3차 시연영상](https://github.com/gyeongisung/hischool-admin/assets/130673870/783ddaf4-62de-4833-bb09-69998afa3604)
 
 <br><br>
 
 <h4>
+  <a href="https://youtu.be/p0zX2h4Hq1k">시연 영상</a>
+  <span> · </span>
     <a href="https://faithful-creature-4f3.notion.site/Hi-School-bda01938369343ef83967c966a44a6c9">Notion</a>
   <span> · </span>
     <a href="https://www.canva.com/design/DAFuBTKIQvg/pB7e-eaxjBTsrvQCV67IGQ/view?utm_content=DAFuBTKIQvg&utm_campaign=designshare&utm_medium=link&utm_source=publishsharelink">발표자료</a>
