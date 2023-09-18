@@ -1,27 +1,29 @@
 <div align="center">
 
   <h1>고등학교 성적 관리 서비스 Hi! School</h1>
-  <br><br><br>
+  <br><br>
   
   
 <!-- Badges -->
 <!-- Screenshots -->
-
+<h4>
+<a href="https://youtu.be/p0zX2h4Hq1k">🎬 시연 영상 보기</a>
+  <span> · </span>
+   <a href="https://faithful-creature-4f3.notion.site/Hi-School-bda01938369343ef83967c966a44a6c9">📑 Notion 바로가기</a>
+  <span> · </span>
+    <a href="https://www.canva.com/design/DAFuBTKIQvg/pB7e-eaxjBTsrvQCV67IGQ/view?utm_content=DAFuBTKIQvg&utm_campaign=designshare&utm_medium=link&utm_source=publishsharelink">🙋‍♀️ 발표자료 보기</a>
+</h4>
+<br>
 
 ![Hi! School 3차 시연영상](https://github.com/gyeongisung/hischool-admin/assets/130673870/783ddaf4-62de-4833-bb09-69998afa3604)
 
-<br><br>
-
 <h4>
-  <a href="https://youtu.be/p0zX2h4Hq1k">시연 영상</a>
-  <span> · </span>
-    <a href="https://faithful-creature-4f3.notion.site/Hi-School-bda01938369343ef83967c966a44a6c9">Notion</a>
-  <span> · </span>
-    <a href="https://www.canva.com/design/DAFuBTKIQvg/pB7e-eaxjBTsrvQCV67IGQ/view?utm_content=DAFuBTKIQvg&utm_campaign=designshare&utm_medium=link&utm_source=publishsharelink">발표자료</a>
+   
   </h4>
 </div>
 
 <br /><br><br>
+
 
 <!-- TechStack -->
 
