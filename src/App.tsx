@@ -3,7 +3,6 @@ import "./App.css";
 import Login from "./pages/Login";
 import NotFound from "./pages/NotFound";
 import Main from "./pages/Main";
-import AdminHome from "./pagesHome";
 import Notice from "./pages/notice/Notice";
 import SubjectList from "./pages/SubjectList";
 import TeacherList from "./pages/TeacherList";
@@ -16,6 +15,7 @@ import NoticeDetail from "./pages/notice/NoticeDetail";
 import InputSubject from "./pages/InputSubject";
 import NoticeWC from "./pages/notice/NoticeWC";
 import SubjectWC from "./pages/SubjectWC";
+import AdminHome from "./pages/AdminHome";
 
 function App() {
   return (

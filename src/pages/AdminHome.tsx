@@ -4,12 +4,12 @@ import {
   AdminHomeDiv,
   FullCalendarDiv,
   StatusCountDiv,
-} from "../stylesHomeStyle";
+} from "../styles/AdminHomeStyle";
 import FullCalendar from "@fullcalendar/react";
 import dayGridPlugin from "@fullcalendar/daygrid";
-import { getAllMemberStatus, getSchedule } from "../apiHomeAxios";
-import HomeNotice from "../componentsHome/HomeNotice";
-import NumberList from "../componentsHome/NumberList";
+import { getAllMemberStatus, getSchedule } from "../api/adminHomeAxios";
+import HomeNotice from "../components/adminHome/HomeNotice";
+import NumberList from "../components/adminHome/NumberList";
 import { CalendarApi } from "@fullcalendar/core";
 
 export interface StatusType {
@@ -135,7 +135,7 @@ const AdminHome = () => {
           <NumberList />
         </div>
       </div>
-    <HomeDiv>
+    </AdminHomeDiv>
   );
 };
 
