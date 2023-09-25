@@ -4,12 +4,12 @@ import {
   AdminHomeDiv,
   FullCalendarDiv,
   StatusCountDiv,
-} from "../styles/AdminHomeStyle";
+} from "../stylesHomeStyle";
 import FullCalendar from "@fullcalendar/react";
 import dayGridPlugin from "@fullcalendar/daygrid";
-import { getAllMemberStatus, getSchedule } from "../api/adminHomeAxios";
-import HomeNotice from "../components/adminHome/HomeNotice";
-import NumberList from "../components/adminHome/NumberList";
+import { getAllMemberStatus, getSchedule } from "../apiHomeAxios";
+import HomeNotice from "../componentsHome/HomeNotice";
+import NumberList from "../componentsHome/NumberList";
 import { CalendarApi } from "@fullcalendar/core";
 
 export interface StatusType {
@@ -82,7 +82,7 @@ const AdminHome = () => {
           <h3>학생 현황</h3>
           <div className="student-status">
             <span>총 인원:</span>
-            <Link to="/admin/studentlist">
+            <Link to="/studentlist">
               <span className="student-num">{memberStatus.stdNum}</span>
             </Link>
             <span>명</span>
@@ -92,12 +92,12 @@ const AdminHome = () => {
           <h3>교원 현황</h3>
           <div className="teacher-status">
             <span>총 인원:</span>
-            <Link to="/admin/teacherlist">
+            <Link to="/teacherlist">
               <span className="teacher-num">{memberStatus.tcNum}</span>
             </Link>
             <span>명</span>
             <span>(승인 대기 인원:</span>
-            <Link to="/admin/teacherlist/signlist">
+            <Link to="/teacherlist/signlist">
               <span className="teacher-num">{memberStatus.tcWaitingNum}</span>
             </Link>
             <span>명)</span>
@@ -135,7 +135,7 @@ const AdminHome = () => {
           <NumberList />
         </div>
       </div>
-    </AdminHomeDiv>
+    <HomeDiv>
   );
 };
 

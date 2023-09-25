@@ -2,8 +2,8 @@ import React, { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faChevronRight } from "@fortawesome/free-solid-svg-icons";
-import { HomeNoticeWrap } from "../../styles/AdminHomeStyle";
-import { getMainNoticeList } from "../../api/adminHomeAxios";
+import { HomeNoticeWrap } from "../../stylesHomeStyle";
+import { getMainNoticeList } from "../../apiHomeAxios";
 
 export interface NoticeType {
   imptList: [
@@ -60,7 +60,7 @@ const HomeNotice = () => {
 
   return (
     <HomeNoticeWrap>
-      <Link to="/admin/notice" className="notice-wrap-title">
+      <Link to="/notice" className="notice-wrap-title">
         <h3>
           공지사항
           <FontAwesomeIcon icon={faChevronRight} className="icon-arrow" />
@@ -81,7 +81,7 @@ const HomeNotice = () => {
                   <span>중요</span>
                 </li>
                 <li>
-                  <Link to={`/admin/notice/${item.noticeId}`}>{item.title}</Link>
+                  <Link to={`/notice/${item.noticeId}`}>{item.title}</Link>
                 </li>
                 <li>{item.createdAt}</li>
                 <li>{item.hits}</li>
@@ -92,7 +92,7 @@ const HomeNotice = () => {
               <ul key={item.noticeId}>
                 <li>{item.noticeId}</li>
                 <li className="list-title">
-                  <Link to={`/admin/notice/${item.noticeId}`}>{item.title}</Link>
+                  <Link to={`/notice/${item.noticeId}`}>{item.title}</Link>
                 </li>
                 <li>{item.createdAt}</li>
                 <li>{item.hits}</li>

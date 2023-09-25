@@ -39,7 +39,7 @@ const Login: React.FC = () => {
     e.preventDefault();
     const role: string = await fetchLogin(email, password);
     if (role === "ROLE_ADMIN") {
-      navigate("/admin/home");
+      navigate("/home");
     } else {
       setErrConfirm(true);
     }

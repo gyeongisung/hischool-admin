@@ -55,7 +55,7 @@ const TeacherDetailInfo = () => {
       setModalOpen(false);
       setAcceptOk(false);
       putSignAccept(state.userId);
-      navigate("/admin/teacherlist/signlist");
+      navigate("/teacherlist/signlist");
     }
   }, [acceptOk]);
 

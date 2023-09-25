@@ -65,7 +65,7 @@ const Notice = () => {
   };
 
   const handleWriting = () => {
-    navigate("/admin/notice/writing");
+    navigate("/notice/writing");
   };
 
   return (
@@ -108,7 +108,7 @@ const Notice = () => {
                     <span>중요</span>
                   </li>
                   <li>
-                    <Link to={`/admin/notice/${notice.noticeId}`}>
+                    <Link to={`/notice/${notice.noticeId}`}>
                       {notice.title}
                     </Link>
                   </li>
@@ -121,7 +121,7 @@ const Notice = () => {
                 <ul key={notice.noticeId}>
                   <li>{notice.noticeId}</li>
                   <li>
-                    <Link to={`/admin/notice/${notice.noticeId}`}>
+                    <Link to={`/notice/${notice.noticeId}`}>
                       {notice.title}
                     </Link>
                   </li>
@@ -139,7 +139,7 @@ const Notice = () => {
                     <span>중요</span>
                   </li>
                   <li>
-                    <Link to={`/admin/notice/${notice.noticeId}`}>
+                    <Link to={`/notice/${notice.noticeId}`}>
                       {notice.title}
                     </Link>
                   </li>
@@ -152,7 +152,7 @@ const Notice = () => {
                 <ul key={notice.noticeId}>
                   <li>{notice.noticeId}</li>
                   <li>
-                    <Link to={`/admin/notice/${notice.noticeId}`}>
+                    <Link to={`/notice/${notice.noticeId}`}>
                       {notice.title}
                     </Link>
                   </li>

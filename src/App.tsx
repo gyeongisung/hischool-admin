@@ -3,7 +3,7 @@ import "./App.css";
 import Login from "./pages/Login";
 import NotFound from "./pages/NotFound";
 import Main from "./pages/Main";
-import AdminHome from "./pages/AdminHome";
+import AdminHome from "./pagesHome";
 import Notice from "./pages/notice/Notice";
 import SubjectList from "./pages/SubjectList";
 import TeacherList from "./pages/TeacherList";
@@ -21,29 +21,26 @@ function App() {
   return (
     <>
       <Routes>
-        <Route path="/admin/" element={<Login />} />
+        <Route path="/" element={<Login />} />
         <Route path="*" element={<NotFound />} />
         <Route element={<Main />}>
-          <Route path="/admin/home" element={<AdminHome />} />
-          <Route path="/admin/notice" element={<Notice />} />
-          <Route path="/admin/notice/:noticeId" element={<NoticeDetail />} />
+          <Route path="/home" element={<AdminHome />} />
+          <Route path="/notice" element={<Notice />} />
+          <Route path="/notice/:noticeId" element={<NoticeDetail />} />
+          <Route path="/notice/editing/:noticeId" element={<NoticeWC />} />
+          <Route path="/notice/writing" element={<NoticeWC />} />
+          <Route path="/subjectlist" element={<SubjectList />} />
+          <Route path="/subjectlist/input" element={<InputSubject />} />
+          <Route path="/subject/wc/:gradeId" element={<SubjectWC />} />
+          <Route path="/teacherlist" element={<TeacherList />} />
+          <Route path="/teacherlist/signlist" element={<SignList />} />
           <Route
-            path="/admin/notice/editing/:noticeId"
-            element={<NoticeWC />}
-          />
-          <Route path="/admin/notice/writing" element={<NoticeWC />} />
-          <Route path="/admin/subjectlist" element={<SubjectList />} />
-          <Route path="/admin/subjectlist/input" element={<InputSubject />} />
-          <Route path="/admin/subject/wc/:gradeId" element={<SubjectWC />} />
-          <Route path="/admin/teacherlist" element={<TeacherList />} />
-          <Route path="/admin/teacherlist/signlist" element={<SignList />} />
-          <Route
-            path="/admin/teacherlist/detailinfo"
+            path="/teacherlist/detailinfo"
             element={<TeacherDetailInfo />}
           />
-          <Route path="/admin/studentlist" element={<StudentList />} />
-          <Route path="/admin/liferecord" element={<LifeRecord />} />
-          <Route path="/admin/about" element={<About />} />
+          <Route path="/studentlist" element={<StudentList />} />
+          <Route path="/liferecord" element={<LifeRecord />} />
+          <Route path="/about" element={<About />} />
         </Route>
       </Routes>
     </>

@@ -28,7 +28,7 @@ const SideMenu = () => {
     cookies.remove("accessToken");
     cookies.remove("refreshToken");
     setTimeout(() => {
-      navigate("/admin/");
+      navigate("/");
     }, 300);
   };
 
@@ -39,7 +39,7 @@ const SideMenu = () => {
   return (
     <SideMenuWrap>
       <div className="user-info-wrap">
-        <div className="main-logo" onClick={() => navigate(`/admin/home`)}>
+        <div className="main-logo" onClick={() => navigate(`/home`)}>
           <span>Hi! School</span>
         </div>
         <div className="user-img">
@@ -61,7 +61,7 @@ const SideMenu = () => {
         <div className="gnb">
           <ul>
             <NavLink
-              to={`/admin/home`}
+              to={`/home`}
               className={({ isActive }) =>
                 "nav-link" + (isActive ? "-active" : "")
               }
@@ -73,7 +73,7 @@ const SideMenu = () => {
               </li>
             </NavLink>
             <NavLink
-              to={`/admin/notice`}
+              to={`/notice`}
               className={({ isActive }) =>
                 "nav-link" + (isActive ? "-active" : "")
               }
@@ -85,7 +85,7 @@ const SideMenu = () => {
               </li>
             </NavLink>
             <NavLink
-              to={`/admin/subjectlist`}
+              to={`/subjectlist`}
               className={({ isActive }) =>
                 "nav-link" + (isActive ? "-active" : "")
               }
@@ -97,7 +97,7 @@ const SideMenu = () => {
               </li>
             </NavLink>
             <NavLink
-              to={`/admin/teacherlist`}
+              to={`/teacherlist`}
               className={({ isActive }) =>
                 "nav-link" + (isActive ? "-active" : "")
               }
@@ -109,7 +109,7 @@ const SideMenu = () => {
               </li>
             </NavLink>
             <NavLink
-              to={`/admin/studentlist`}
+              to={`/studentlist`}
               className={({ isActive }) =>
                 "nav-link" + (isActive ? "-active" : "")
               }
@@ -121,7 +121,7 @@ const SideMenu = () => {
               </li>
             </NavLink>{" "}
             <NavLink
-              to={`/admin/about`}
+              to={`/about`}
               className={({ isActive }) =>
                 "nav-link" + (isActive ? "-active" : "")
               }
